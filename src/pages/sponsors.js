@@ -1,5 +1,12 @@
 export const affiliates = [
   {
+    name: "frontend masters",
+    image: "frontend-masters.svg.astro",
+    description:
+      "name's quite literal - learn frontend from the masters. courses from ryan carniato, primeagen, and many more.",
+    link: "https://soydev.link/masters",
+  },
+  {
     name: "eight sleep",
     image: "eight-sleep.svg.astro",
     description:
@@ -166,13 +173,6 @@ export const sponsors = [
     link: "https://soydev.link/unkey",
   },
 
-  {
-    name: "frontend masters",
-    image: "frontend-masters.svg.astro",
-    description:
-      "name's quite literal - learn frontend from the masters. courses from ryan carniato, primeagen, and many more.",
-    link: "https://soydev.link/masters",
-  },
   {
     name: "payload",
     image: "payload.svg.astro",
