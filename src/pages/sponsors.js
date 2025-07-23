@@ -73,14 +73,13 @@ export const sponsors = [
     name: "kilo",
     image: "kilo.svg.astro",
     description:
-      "the open source ai coding agent for vscode, that codes, architects, debugs, and much more",
+      "the open source ai coding agent for vscode that codes, architects, debugs, and much more.",
     link: "https://soydev.link/kilo",
   },
   {
     name: "arcjet",
     image: "arcjet.svg.astro",
-    description:
-      "the security platform for the modern web. i really wish this existed when i made t3 chat",
+    description: "the security platform for the modern web.",
     link: "https://soydev.link/arcjet",
   },
   {
@@ -145,8 +144,7 @@ export const sponsors = [
   {
     name: "depot",
     image: "depot.svg.astro",
-    description:
-      "the build platform used by posthog and so many more to build their docker images 40x faster",
+    description: "40x faster docker builds used by posthog and so many more.",
     link: "https://soydev.link/depot",
   },
   {
