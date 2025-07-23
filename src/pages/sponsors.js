@@ -70,6 +70,19 @@ export const sponsors = [
     link: "https://soydev.link/blacksmith",
   },
   {
+    name: "kilo",
+    image: "kilo.svg.astro",
+    description:
+      "the open source ai coding agent for vscode that codes, architects, debugs, and much more.",
+    link: "https://soydev.link/kilo",
+  },
+  {
+    name: "arcjet",
+    image: "arcjet.svg.astro",
+    description: "the security platform for the modern web.",
+    link: "https://soydev.link/arcjet",
+  },
+  {
     name: "vapi",
     image: "vapi.svg.astro",
     description: "add ai voice to your ai apps in minutes.",
@@ -127,6 +140,12 @@ export const sponsors = [
     image: "mobbin.svg.astro",
     description: "the best place to get design inspiration, just 10$ a month.",
     link: "https://soydev.link/mobbin",
+  },
+  {
+    name: "depot",
+    image: "depot.svg.astro",
+    description: "40x faster docker builds used by posthog and so many more.",
+    link: "https://soydev.link/depot",
   },
   {
     name: "agentuity",
