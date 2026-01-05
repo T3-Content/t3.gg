@@ -1,3 +1,10 @@
+type Sponsor = {
+  name: string;
+  image: string;
+  description: string;
+  link: string;
+};
+
 export const affiliates = [
   {
     name: "frontend masters",
@@ -27,7 +34,7 @@ export const affiliates = [
       "learn by rebuilding, literally - one of their courses is recreating redis lol.",
     link: "https://soydev.link/codecrafters",
   },
-];
+] satisfies Sponsor[];
 
 export const sponsors = [
   {
@@ -95,6 +102,12 @@ export const sponsors = [
     link: "https://soydev.link/notion",
   },
   {
+    name: "tuple",
+    image: "tuple.svg.astro",
+    description: "the best pair programming tool by far.",
+    link: "https://soydev.link/tuple",
+  },
+  {
     name: "ag grid",
     image: "ag-grid.svg.astro",
     description:
@@ -113,6 +126,12 @@ export const sponsors = [
     image: "ahrefs.svg.astro",
     description: "makes me feel like i don't suck at SEO.",
     link: "https://soydev.link/ahrefs",
+  },
+  {
+    name: "greptile",
+    image: "greptile.svg.astro",
+    description: "the most tasteful ai code review tool.",
+    link: "https://soydev.link/greptile",
   },
   {
     name: "zephyr cloud",
@@ -321,4 +340,118 @@ export const sponsors = [
       "the world's greatest log dump. they'll parse terabytes for you and give you a dashboard to see it all. wild.",
     link: "https://soydev.link/axiom",
   },
-];
+  {
+    name: "firecrawl",
+    image: "firecrawl.svg.astro",
+    description: "the best way to scape the web (that's also open source)",
+    link: "https://soydev.link/firecrawl",
+  },
+  {
+    name: "embrace",
+    image: "embrace.svg.astro",
+    description: "web and mobile observability that's actually amazing",
+    link: "https://soydev.link/embrace",
+  },
+  {
+    name: "exa",
+    image: "exa.svg.astro",
+    description: "the only sane way to let your agents search the web",
+    link: "https://soydev.link/exa",
+  },
+  {
+    name: "daytona",
+    image: "daytona.svg.astro",
+    description: "the place where you let agents run their code",
+    link: "https://soydev.link/daytona",
+  },
+  {
+    name: "rork",
+    image: "rork.svg.astro",
+    description: "the vibe coding platform that actually gets react native",
+    link: "https://soydev.link/rork",
+  },
+  {
+    name: "modal",
+    image: "modal.svg.astro",
+    description: "gpus, sandboxes, and more for your ai apps",
+    link: "https://soydev.link/modal",
+  },
+  {
+    name: "factory",
+    image: "factory.svg.astro",
+    description: "coding agents in your cli, browser, editor, and more.",
+    link: "https://soydev.link/factory",
+  },
+  {
+    name: "spacetimedb",
+    image: "spacetime.svg.astro",
+    description: "the most powerful fullstack database i've ever seen",
+    link: "https://soydev.link/spacetime",
+  },
+  {
+    name: "deepsource",
+    image: "deepsource.svg.astro",
+    description: "easily secure your entire development lifecycle",
+    link: "https://soydev.link/deepsource",
+  },
+  {
+    name: "jfrog fly",
+    image: "jfrog.svg.astro",
+    description: "artifact management that's built for your ai agents",
+    link: "https://soydev.link/jfrogfly",
+  },
+  {
+    name: "wispr flow",
+    image: "wispr.svg.astro",
+    description: "the voice to text product that i can't live without",
+    link: "https://soydev.link/wispr",
+  },
+  {
+    name: "dnsimple",
+    image: "dnsimple.svg.astro",
+    description: "the best way to manage your domains and dns",
+    link: "https://soydev.link/dnsimple",
+  },
+  {
+    name: "railway",
+    image: "railway.svg.astro",
+    description: "the modern hosting solution with actual servers",
+    link: "https://soydev.link/railway",
+  },
+  {
+    name: "rwx",
+    image: "rwx.svg.astro",
+    description: "the best modern ci/cd for teams that actually ship",
+    link: "https://soydev.link/rwx",
+  },
+  {
+    name: "kernel",
+    image: "kernel.svg.astro",
+    description: "stupidly fast browser infra for your agents",
+    link: "https://soydev.link/kernel",
+  },
+  {
+    name: "milkstraw",
+    image: "milkstraw.svg.astro",
+    description: "save up to 50% on your aws bill",
+    link: "https://soydev.link/milkstraw",
+  },
+  {
+    name: "trigger.dev",
+    image: "trigger.svg.astro",
+    description: "fully managed ai agents and workflows",
+    link: "https://soydev.link/trigger",
+  },
+  {
+    name: "magicpatterns",
+    image: "magicpattern.svg.astro",
+    description: "the ai design tool for teams that get product",
+    link: "https://soydev.link/magicpatterns",
+  },
+  {
+    name: "sent.dm",
+    image: "sentdm.svg.astro",
+    description: "imagine if twillio was good...",
+    link: "https://soydev.link/sentdm",
+  },
+] satisfies Sponsor[];
