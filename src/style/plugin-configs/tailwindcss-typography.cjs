@@ -1,15 +1,3 @@
-const colorForeground = "var(--color-foreground)";
-const colorBackground = "var(--color-background)";
-
-/**
- * Get a color with a given opacity
- * @param {number} opacity - The opacity of the color (0-1)
- * @returns {string} The color with the given opacity
- */
-function applyAlphaColor(color, opacity) {
-  return `color-mix(in srgb, ${color} ${opacity * 100}%, transparent)`
-}
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   theme: {
@@ -17,48 +5,70 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
-            '--tw-prose-headings': colorForeground,
-            '--tw-prose-quotes': colorForeground,
-            '--tw-prose-bold': colorForeground,
-            color: applyAlphaColor(colorForeground, .9),
-            blockquote: { "border-color": colorForeground },
+            "--tw-prose-body": "var(--color-subtle)",
+            "--tw-prose-headings": "var(--color-text)",
+            "--tw-prose-lead": "var(--color-subtle)",
+            "--tw-prose-links": "var(--color-accent)",
+            "--tw-prose-bold": "var(--color-text)",
+            "--tw-prose-counters": "var(--color-muted)",
+            "--tw-prose-bullets": "var(--color-muted)",
+            "--tw-prose-hr": "var(--color-muted)",
+            "--tw-prose-quotes": "var(--color-subtle)",
+            "--tw-prose-quote-borders": "var(--color-accent)",
+            "--tw-prose-captions": "var(--color-muted)",
+            "--tw-prose-code": "var(--color-accent)",
+            "--tw-prose-pre-code": "var(--color-text)",
+            "--tw-prose-pre-bg": "var(--color-surface)",
+            "--tw-prose-th-borders": "var(--color-muted)",
+            "--tw-prose-td-borders": "var(--color-muted)",
+            "--tw-prose-invert-body": "var(--color-subtle)",
+            "--tw-prose-invert-headings": "var(--color-text)",
+            "--tw-prose-invert-lead": "var(--color-subtle)",
+            "--tw-prose-invert-links": "var(--color-accent)",
+            "--tw-prose-invert-bold": "var(--color-text)",
+            "--tw-prose-invert-counters": "var(--color-muted)",
+            "--tw-prose-invert-bullets": "var(--color-muted)",
+            "--tw-prose-invert-hr": "var(--color-muted)",
+            "--tw-prose-invert-quotes": "var(--color-subtle)",
+            "--tw-prose-invert-quote-borders": "var(--color-accent)",
+            "--tw-prose-invert-captions": "var(--color-muted)",
+            "--tw-prose-invert-code": "var(--color-accent)",
+            "--tw-prose-invert-pre-code": "var(--color-text)",
+            "--tw-prose-invert-pre-bg": "var(--color-surface)",
+            "--tw-prose-invert-th-borders": "var(--color-muted)",
+            "--tw-prose-invert-td-borders": "var(--color-muted)",
+            blockquote: {
+              fontStyle: "normal",
+              borderLeftWidth: "2px",
+            },
             "blockquote p:first-of-type::before": { content: "none" },
             "blockquote p:first-of-type::after": { content: "none" },
-            "ul > li::marker": {
-              color: colorForeground,
-              fontWeight: "600",
-            },
-            pre: {
-              color: colorForeground,
-              backgroundColor: colorForeground,
-            },
-            "pre code::before": {
-              "padding-left": "unset",
-            },
-            "pre code::after": {
-              "padding-right": "unset",
-            },
             code: {
-              backgroundColor: applyAlphaColor(colorForeground, .1),
-              color: "#DD1144", /* red */
+              backgroundColor: "color-mix(in srgb, var(--color-accent) 15%, transparent)",
               fontWeight: "400",
-              "border-radius": "0.25rem",
+              borderRadius: "0.25rem",
+              padding: "0.125rem 0.375rem",
             },
-            "code::before": {
-              content: '""',
-              "padding-left": "0.25rem",
+            "code::before": { content: "none" },
+            "code::after": { content: "none" },
+            pre: {
+              borderRadius: "0.5rem",
+              border: "1px solid color-mix(in srgb, var(--color-text) 10%, transparent)",
             },
-            "code::after": {
-              content: '""',
-              "padding-right": "0.25rem",
+            "pre code": {
+              backgroundColor: "transparent",
+              padding: "0",
             },
             a: {
-              color: "var(--color-theo-blue)",
-              textDecoration: `none`,
+              textDecoration: "none",
+              transition: "color 0.2s ease",
               "&:hover": {
-                textDecoration: `underline`,
+                textDecoration: "underline",
               },
             },
+            h1: { fontWeight: "500", letterSpacing: "-0.025em" },
+            h2: { fontWeight: "500", letterSpacing: "-0.025em" },
+            h3: { fontWeight: "500" },
           },
         },
       },

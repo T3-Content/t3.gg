@@ -8,136 +8,137 @@ const siteTitle = "sponsor theo";
 const description = "want to sponsor theo? here's everything you need to know";
 
 const backToLink = {
-  text: "back to theo's sponsors",
+  text: "sponsors",
   href: "/sponsors",
 };
 ---
 
 <BaseLayout title={siteTitle} description={description} {backToLink}>
-  <article class="prose prose-lg lg:prose-xl mx-auto max-w-[800px] px-2">
-    <section>
-      <blockquote>
-        <p>
-          Someday I&apos;ll have to tell you how transformational these ads have
-          been for us. Our biggest worry is how we will service all the new
-          clients going into 2025.
+  <div class="mx-auto w-full max-w-2xl px-6 py-16">
+    <article class="prose prose-invert prose-lg max-w-none">
+      <header class="not-prose mb-12">
+        <h1 class="text-2xl font-medium tracking-tight text-text">
+          sponsor theo
+        </h1>
+        <p class="mt-2 text-sm text-muted">
+          reach experienced developers who ship
         </p>
-        <p>
-          We did other ads in 2024, but <span class="font-bold"
-            >the Theo ads were by far the most effective for us</span
-          >. It&apos;s clear to us that you in particular get it - exactly what
-          we need.
+      </header>
+
+      <blockquote class="not-prose my-12 border-l-2 border-accent/40 pl-6">
+        <p class="text-subtle">
+          Someday I'll have to tell you how transformational these ads have been
+          for us. Our biggest worry is how we will service all the new clients
+          going into 2025.
         </p>
-        <div class="not-prose flex items-center gap-3">
-          <div class="size-12 *:size-full">
+        <p class="mt-4 text-subtle">
+          We did other ads in 2024, but
+          <span class="text-text">the Theo ads were by far the most effective for us</span
+          >. It's clear to us that you in particular get it.
+        </p>
+        <div class="mt-6 flex items-center gap-3">
+          <div class="size-10 text-text [&_svg]:size-full">
             <InfiniteRedLogo />
           </div>
-          <p class="text-foreground text-lg font-semibold">
-            Jamon<span class="text-foreground/75"
-              >, <a href="https://infinitered.com" target="_blank"
-                >Infinite Red</a
-              ></span
+          <div>
+            <p class="text-sm font-medium text-text">Jamon</p>
+            <a
+              href="https://infinitered.com"
+              target="_blank"
+              class="text-xs text-muted transition-colors hover:text-accent"
             >
-          </p>
+              Infinite Red
+            </a>
+          </div>
         </div>
       </blockquote>
-    </section>
-    <section>
-      <h2 class="text-3xl font-semibold">sponsoring theo</h2>
-      <p>
-        hi! i'm theo. you probably know me from <a
-          href="https://youtube.com/@t3dotgg">youtube</a
-        >. if you want experienced devs to know something, i'm a pretty good way
-        to make that happen.
-      </p>
-    </section>
 
-    <section>
-      <h3>why sponsor theo?</h3>
-      <p>
-        good developers watch my videos to learn about new technologies. my
-        audience is so excited to learn about new tech that they <em
-          >often like the ads more than the videos themselves</em
-        >
-      </p>
-    </section>
-
-    <section>
-      <Image
-        alt="sponsor comments"
-        src={"https://ezkf3xv6eh.ufs.sh/f/3odeDX4eRzTNQlTj6vGY8AzxSWdivlGJ0fNusyEU7bKQDZBH"}
-        onclick={`window.open('https://ezkf3xv6eh.ufs.sh/f/3odeDX4eRzTNQlTj6vGY8AzxSWdivlGJ0fNusyEU7bKQDZBH', '_blank')`}
-        width={800}
-        height={400}
-        loading="lazy"
-      />
-    </section>
-
-    <section>
-      <h3>the numbers</h3>
-      <p>
-        i'm in the <a
-          href="https://socialblade.com/youtube/c/theobrowne1017"
-          target="_blank">top 2000 youtubers in the US</a
-        >. we get <strong>over 3 million views per month</strong>, often
-        breaking <strong>400,000 watch hours</strong> (~2 super bowl commercials).
-      </p>
-      <p>
-        my channel has significantly more reach than branded content reasonably
-        should. big brands on youtube (like <a
-          href="https://socialblade.com/youtube/c/vercelhq"
-          target="_blank">vercel</a
-        >) have <strong>less than 5% of my reach</strong>.
-      </p>
-    </section>
-
-    <section>
-      <h3>demographics</h3>
-      <p>
-        this isn't a bunch of beginners learning to code - my audience actually
-        ships. <strong>76% of them are over 25</strong>. the most recent state
-        of react survey showed that <em
-          >over half of react devs watch my videos.</em
-        >
-      </p>
-    </section>
-
-    <section>
-      <p>
-        i've helped <a href="/sponsors">over 40 brands grow their businesses</a>
-        - will yours be next?
-      </p>
-      <h3></h3>
-    </section>
-
-    <section>
-      <p>
-        email us at
-        <span class="font-semibold">youtube @ (this domain)</span> for more info
-        on pricing and availability
-      </p>
-    </section>
-
-    <section>
-      <blockquote>
+      <section>
+        <h2>why sponsor?</h2>
         <p>
-          I always know when you guys publish something because we have a slack
-          channel with new signups and <span class="font-semibold"
-            >it&apos;s getting flooded.</span
-          >
+          good developers watch my videos to learn about new technologies. my
+          audience is so excited to learn about new tech that they
+          <em>often like the ads more than the videos themselves</em>.
         </p>
+      </section>
 
-        <div class="not-prose flex items-center gap-3">
-          <div class="size-12 *:size-full">
+      <section class="not-prose my-12">
+        <Image
+          alt="sponsor comments"
+          src={"https://ezkf3xv6eh.ufs.sh/f/3odeDX4eRzTNQlTj6vGY8AzxSWdivlGJ0fNusyEU7bKQDZBH"}
+          class="cursor-pointer rounded-lg border border-white/10 transition-opacity hover:opacity-80"
+          onclick={`window.open('https://ezkf3xv6eh.ufs.sh/f/3odeDX4eRzTNQlTj6vGY8AzxSWdivlGJ0fNusyEU7bKQDZBH', '_blank')`}
+          width={800}
+          height={400}
+          loading="lazy"
+        />
+      </section>
+
+      <section>
+        <h2>the numbers</h2>
+        <p>
+          i'm in the <a
+            href="https://socialblade.com/youtube/c/theobrowne1017"
+            target="_blank">top 2000 youtubers in the US</a
+          >. we get <strong>over 3 million views per month</strong>, often
+          breaking <strong>400,000 watch hours</strong> (~2 super bowl commercials).
+        </p>
+        <p>
+          my channel has significantly more reach than branded content reasonably
+          should. big brands on youtube (like <a
+            href="https://socialblade.com/youtube/c/vercelhq"
+            target="_blank">vercel</a
+          >) have <strong>less than 5% of my reach</strong>.
+        </p>
+      </section>
+
+      <section>
+        <h2>demographics</h2>
+        <p>
+          this isn't a bunch of beginners learning to code - my audience actually
+          ships. <strong>76% of them are over 25</strong>. the most recent state
+          of react survey showed that
+          <em>over half of react devs watch my videos.</em>
+        </p>
+      </section>
+
+      <section>
+        <p>
+          i've helped <a href="/sponsors">over 40 brands grow their businesses</a>
+          - will yours be next?
+        </p>
+      </section>
+
+      <section class="not-prose my-12 rounded-lg border border-white/10 bg-surface/50 p-6 text-center">
+        <p class="text-subtle">
+          email us at
+          <span class="font-medium text-text">youtube @ (this domain)</span>
+          for pricing and availability
+        </p>
+      </section>
+
+      <blockquote class="not-prose my-12 border-l-2 border-accent/40 pl-6">
+        <p class="text-subtle">
+          I always know when you guys publish something because we have a slack
+          channel with new signups and
+          <span class="text-text">it's getting flooded.</span>
+        </p>
+        <div class="mt-6 flex items-center gap-3">
+          <div class="size-10 text-text [&_svg]:size-full">
             <SevallaLogo />
           </div>
-          <p class="text-foreground text-lg font-semibold">
-            Paul<span class="text-foreground/75"
-              >, <a href="https://sevalla.com" target="_blank">Sevalla</a></span
+          <div>
+            <p class="text-sm font-medium text-text">Paul</p>
+            <a
+              href="https://sevalla.com"
+              target="_blank"
+              class="text-xs text-muted transition-colors hover:text-accent"
             >
-          </p>
+              Sevalla
+            </a>
+          </div>
         </div>
       </blockquote>
-    </section>
-  </article>
+    </article>
+  </div>
 </BaseLayout>

@@ -1,5 +1,4 @@
 ---
-// Resolve sponsor image file paths for dynamic imports
 const sponsorImages = import.meta.glob<any>("../assets/sponsors/*.svg.astro");
 
 interface Props {
@@ -17,18 +16,14 @@ const { heading, sponsors, class: className } = Astro.props;
 ---
 
 <section class={className}>
-  <h2 class="px-8 pb-4 text-2xl font-semibold">{heading}</h2>
-  <div
-    class="grid grid-cols-1 gap-8 px-4 md:grid-cols-2 md:px-8 lg:grid-cols-3"
-  >
+  <h2 class="mb-6 text-sm tracking-wider text-muted">{heading}</h2>
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
     {
-      // `Promise.all` not needed as Astro handles `await` in `map()` concurrently by default
       sponsors.map(async (brand) => {
         const imageImporter =
           sponsorImages[`../assets/sponsors/${brand.image}`];
 
         try {
-          // dynamically build the BrandImage component; catch if it doesn't exist
           const BrandImage = await imageImporter().then(
             (mod) => mod.default || mod,
           );
@@ -36,22 +31,22 @@ const { heading, sponsors, class: className } = Astro.props;
           return (
             <a
               href={brand.link}
-              class="group border-foreground/10 flex flex-row rounded-lg border p-6 transition duration-300 ease-out hover:bg-[white]/50 dark:hover:bg-[white]/5"
+              class="group flex flex-row items-center gap-4 rounded-lg border border-white/5 bg-surface/50 p-4 transition-all duration-200 hover:border-white/10 hover:bg-surface"
               target="_blank"
               rel="noopener noreferrer"
             >
               <div
                 role="img"
                 aria-label={brand.name}
-                class="flex size-24 shrink-0 items-center justify-center self-center [&_svg]:size-full"
+                class="flex size-12 shrink-0 items-center justify-center text-text [&_svg]:size-full"
               >
                 <BrandImage />
               </div>
-              <div class="flex grow flex-col pl-6">
-                <h2 class="text-foreground mb-2 text-xl font-semibold">
+              <div class="flex min-w-0 grow flex-col">
+                <h3 class="text-sm font-medium text-text">
                   {brand.name}
-                </h2>
-                <p class="text-foreground/65 grow" style="text-wrap: balance;">
+                </h3>
+                <p class="mt-0.5 truncate text-xs text-muted">
                   {brand.description}
                 </p>
               </div>

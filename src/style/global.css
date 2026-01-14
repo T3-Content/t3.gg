@@ -9,30 +9,56 @@
 /* tailwindcss-safe-area plugin */
 @import "tailwindcss-safe-area";
 
-@theme {
-  /* custom colors */
-  --color-theo-purple-light: #e8dcff;
-  --color-theo-purple-dark: #4e3471;
-  --color-theo-purple: var(--color-theo-purple-light);
-  --color-theo-blue-light: #1f11e4;
-  --color-theo-blue-dark: #a19af8;
-  --color-theo-blue: var(--color-theo-blue-light);
+/* Geist Mono - sharp, technical, distinctive */
+@font-face {
+  font-family: "Geist Mono";
+  src: url("https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-mono/GeistMono-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
-  /* override default black and white colors */
-  --color-black: #27272a;
-  --color-white: #f4f4f5;
-  --color-foreground: var(--color-black);
-  --color-background: var(--color-white);
+@font-face {
+  font-family: "Geist Mono";
+  src: url("https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-mono/GeistMono-Medium.woff2")
+    format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  /* dark-only color palette */
+  --color-void: #050505;
+  --color-surface: #0a0a0a;
+  --color-muted: #525252;
+  --color-subtle: #a3a3a3;
+  --color-text: #fafafa;
+  --color-accent: #22d3ee;
+
+  /* semantic colors */
+  --color-foreground: var(--color-text);
+  --color-background: var(--color-void);
+
+  /* legacy support */
+  --color-black: var(--color-void);
+  --color-white: var(--color-text);
+  --color-theo-purple: #a78bfa;
+  --color-theo-blue: var(--color-accent);
+
+  /* typography */
+  --font-mono: "Geist Mono", ui-monospace, monospace;
 
   /* custom animations */
-  /* https://tailwindcss.com/docs/theme#defining-animation-keyframes */
-  --animate-fade-in-down: fade-in-down 0.5s ease-out;
-  --animate-fade-in: fade-in 0.2s ease-out;
+  --animate-fade-in-up: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fade-in: fade-in 0.4s ease-out forwards;
+  --animate-glow-pulse: glow-pulse 2s ease-in-out infinite;
 
-  @keyframes fade-in-down {
+  @keyframes fade-in-up {
     0% {
       opacity: 0;
-      transform: translateY(-10px);
+      transform: translateY(20px);
     }
     100% {
       opacity: 1;
@@ -48,59 +74,25 @@
       opacity: 1;
     }
   }
-}
 
-/* custom light/dark theme variants */
-@custom-variant light {
-  &:where(html.light, html.light *):not(
-      .scheme-dark,
-      .scheme-dark *,
-      .scheme-only-dark,
-      .scheme-only-dark *
-    ) {
-    @slot;
-  }
-  @media (prefers-color-scheme: light) {
-    &:where(html:not(.light):not(.dark), html:not(.light):not(.dark) *):not(
-        .scheme-dark,
-        .scheme-dark *,
-        .scheme-only-dark,
-        .scheme-only-dark *
-      ) {
-      @slot;
+  @keyframes glow-pulse {
+    0%,
+    100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
     }
   }
-}
-@custom-variant dark {
-  &:where(html.dark, html.dark *):not(
-      .scheme-light,
-      .scheme-light *,
-      .scheme-only-light,
-      .scheme-only-light *
-    ) {
-    @slot;
-  }
-  @media (prefers-color-scheme: dark) {
-    &:where(html:not(.light):not(.dark), html:not(.light):not(.dark) *):not(
-        .scheme-light,
-        .scheme-light *,
-        .scheme-only-light,
-        .scheme-only-light *
-      ) {
-      @slot;
-    }
-  }
-}
 
-/* custom color overrides for dark theme */
-:root {
-  @variant dark {
-    /* override theme-dynamic colors */
-    --color-theo-purple: var(--color-theo-purple-dark);
-    --color-theo-blue: var(--color-theo-blue-dark);
-    --color-foreground: var(--color-white);
-    --color-background: var(--color-black);
-  }
+  /* stagger delays */
+  --animate-delay-1: 0.05s;
+  --animate-delay-2: 0.1s;
+  --animate-delay-3: 0.15s;
+  --animate-delay-4: 0.2s;
+  --animate-delay-5: 0.25s;
+  --animate-delay-6: 0.3s;
+  --animate-delay-7: 0.35s;
 }
 
 /* custom `bg-texture` image utility */

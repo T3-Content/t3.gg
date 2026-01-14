@@ -23,29 +23,17 @@ const { post } = Astro.props;
 const title = post.frontmatter.title;
 const description = post.frontmatter.description;
 
-const BaseLayoutClassNames = {
-  html: "bg-theo-purple/40",
-};
-
 const backToLink = {
-  text: "back to theo's blog",
+  text: "blog",
   href: "/blog",
 };
 ---
 
-<BaseLayout
-  {title}
-  {description}
-  {backToLink}
-  classNames={BaseLayoutClassNames}
->
-  <div class="bg-texture flex size-full justify-center">
-    <div class="max-w-full px-4 pt-8 lg:w-[42rem] lg:px-0 xl:w-[64rem]">
-      <a class="pt-8 text-xl" href="/blog">Theo's Blog</a>
-      <article class="prose prose-lg lg:prose-xl max-w-none">
-        <BlogPostHeader post={post.frontmatter} />
-        <post.Content />
-      </article>
-    </div>
+<BaseLayout {title} {description} {backToLink}>
+  <div class="mx-auto w-full max-w-2xl px-6 py-16">
+    <article class="prose prose-invert prose-lg max-w-none">
+      <BlogPostHeader post={post.frontmatter} />
+      <post.Content />
+    </article>
   </div>
 </BaseLayout>

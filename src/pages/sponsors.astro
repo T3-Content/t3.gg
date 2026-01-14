@@ -3,41 +3,54 @@ import "../style/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SponsorGridSection from "../components/SponsorGridSection.astro";
 import { affiliates, sponsors } from "../lib/sponsors";
-import LeftArrow from "../assets/icons/left-arrow.svg.astro";
 
-const siteTitle = "theo's sponsors";
+const siteTitle = "sponsors";
 const description = "all of the brands running ads on my youtube channel";
 ---
 
 <BaseLayout title={siteTitle} description={description}>
-  <header class="flex flex-col gap-2 px-8 pt-4 pb-8">
-    <a
-      href="/"
-      class="text-foreground/60 hover:text-foreground flex items-center gap-1 text-sm hover:underline"
+  <div class="mx-auto w-full max-w-5xl px-6 py-16">
+    <header class="mb-16 opacity-0 animate-fade-in-up" style="animation-delay: 0s;">
+      <h1 class="text-2xl tracking-tight text-text">sponsors</h1>
+      <p class="mt-2 text-sm text-muted">
+        brands that have run ads on my content
+      </p>
+      <p class="mt-4 text-sm text-subtle">
+        want to sponsor?
+        <a
+          href="/sponsor-me"
+          class="text-accent transition-colors hover:text-text"
+        >
+          learn more
+        </a>
+      </p>
+    </header>
+
+    <div
+      class="opacity-0 animate-fade-in-up"
+      style="animation-delay: 0.1s;"
     >
-      <LeftArrow />
-      back
-    </a>
-    <h1 class="text-4xl font-semibold">my sponsors</h1>
-    <p>here's all the brands that have run ads on my content</p>
-    <p class="text-foreground/60 text-sm font-light">
-      psssst... if you're a brand and want to run an ad on my channel,
-      <a href="/sponsor-me" class="text-theo-blue hover:underline">click here</a
-      >
-    </p>
-  </header>
-  <SponsorGridSection
-    heading="affiliates"
-    sponsors={affiliates}
-    class="pb-16"
-  />
-  <SponsorGridSection heading="video sponsors" sponsors={sponsors} />
-  <div class="-mb-8 py-24 text-center">
-    <p>
-      interested in sponsoring theo? learn more <a
+      <SponsorGridSection heading="affiliates" sponsors={affiliates} class="mb-16" />
+    </div>
+
+    <div
+      class="opacity-0 animate-fade-in-up"
+      style="animation-delay: 0.15s;"
+    >
+      <SponsorGridSection heading="video sponsors" sponsors={sponsors} />
+    </div>
+
+    <footer
+      class="mt-24 text-center text-sm text-muted opacity-0 animate-fade-in-up"
+      style="animation-delay: 0.2s;"
+    >
+      interested in sponsoring?
+      <a
         href="/sponsor-me"
-        class="text-theo-blue hover:underline">here</a
+        class="text-accent transition-colors hover:text-text"
       >
-    </p>
+        get in touch
+      </a>
+    </footer>
   </div>
 </BaseLayout>

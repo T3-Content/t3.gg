@@ -1,27 +1,32 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const siteTitle = "404 Not Found";
+const siteTitle = "404";
 const description = "Page not found";
-
-const BaseLayoutClassNames = {
-  html: "h-full",
-  body: "size-full",
-  main: "h-full",
-};
 ---
 
-<BaseLayout
-  title={siteTitle}
-  description={description}
-  classNames={BaseLayoutClassNames}
->
-  <div class="flex size-full items-center justify-center">
-    <div
-      class="flex flex-col justify-center gap-1 py-4 text-center text-6xl font-bold"
-    >
-      <div>404</div>
-      <div class="text-xl font-light">(Page Not Found)</div>
+<BaseLayout title={siteTitle} description={description}>
+  <div class="flex min-h-screen flex-col items-center justify-center px-6">
+    <div class="text-center">
+      <h1
+        class="text-8xl font-light tracking-tighter text-text opacity-0 animate-fade-in-up"
+        style="animation-delay: 0s;"
+      >
+        404
+      </h1>
+      <p
+        class="mt-4 text-sm tracking-wider text-muted opacity-0 animate-fade-in-up"
+        style="animation-delay: 0.1s;"
+      >
+        nothing here
+      </p>
+      <a
+        href="/"
+        class="mt-8 inline-block text-subtle opacity-0 transition-colors duration-200 animate-fade-in-up hover:text-text"
+        style="animation-delay: 0.2s;"
+      >
+        go back
+      </a>
     </div>
   </div>
 </BaseLayout>

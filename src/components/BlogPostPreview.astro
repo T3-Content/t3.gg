@@ -10,38 +10,19 @@ const { post } = Astro.props;
 const url = "/blog/post/" + getSlugFromPath(post.file);
 
 const date = parseISO(post.frontmatter.date);
-const formattedDate = format(date, "LLLL d, yyyy");
+const formattedDate = format(date, "MMM d, yyyy");
 ---
 
 <a
   href={url}
-  class="group bg-theo-purple/80 text-foreground relative flex aspect-video h-auto w-full overflow-hidden rounded-xl opacity-100 transition-opacity hover:opacity-70"
-  style={`background-image: url(${
-    post.frontmatter.imageURL ?? "https://t3.gg/images/social-media.png"
-  }); background-size: cover; background-repeat: no-repeat; background-position: center;`}
+  class="group relative flex items-baseline justify-between gap-4 py-3"
 >
-  <div
-    class="bg-theo-purple/80 absolute top-0 max-w-full truncate rounded-br-lg p-2 text-lg group-hover:underline md:p-4 md:text-2xl"
-  >
+  <span class="text-subtle transition-colors duration-200 group-hover:text-text">
     {post.frontmatter.title}
-  </div>
-  {
-    post.frontmatter.description && (
-      <div class="bg-theo-purple/80 absolute bottom-0 flex w-full flex-col justify-center p-2 md:p-4">
-        <div class="hidden sm:block">{formattedDate}</div>
-        <div class="text-md description md:text-xl">
-          {post.frontmatter.description}
-        </div>
-      </div>
-    )
-  }
+  </span>
+  <span class="shrink-0 text-sm text-muted">{formattedDate}</span>
+  <span
+    class="absolute bottom-2 left-0 h-px w-0 bg-accent/40 transition-all duration-300 ease-out group-hover:w-full"
+  >
+  </span>
 </a>
-
-<style>
-  .description {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-</style>
