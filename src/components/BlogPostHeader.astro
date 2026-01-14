@@ -11,12 +11,9 @@ const date = parseISO(post.date);
 const formatted = format(date, "LLLL d, yyyy");
 ---
 
-<div class="lg:w-[42rem] xl:w-[64rem]">
-  <h2
-    class="m-0 p-0 font-bold"
-    style={"margin-block-end: 0; margin-block-start: 1rem;"}
-  >
+<header class="not-prose mb-12 border-b border-white/10 pb-8">
+  <h1 class="mb-3 text-2xl font-medium tracking-tight text-text">
     {post.title}
-  </h2>
-  <time datetime={date.toString()}>{formatted}</time>
-</div>
+  </h1>
+  <time datetime={date.toString()} class="text-sm text-muted">{formatted}</time>
+</header>

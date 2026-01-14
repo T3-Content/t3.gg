@@ -1,73 +1,104 @@
 ---
 import "../style/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
-const siteTitle = "theo - builder who's also on youtube";
+const siteTitle = "theo";
 const description =
   "theo (aka t3, t3dotgg) is a youtuber/ceo/dev. built t3 chat, ping.gg, t3 stack and more.";
 
 const links = [
   {
     href: "https://t3.chat",
-    label: "t3 chat",
-    description: "the best ai chat app ever made",
-    target: "_blank",
+    label: "t3.chat",
+    external: true,
   },
   {
     href: "https://youtube.com/@t3dotgg",
     label: "youtube",
-    description: "nerdy videos about software dev stuff",
-    target: "_blank",
-  },
-  {
-    href: "https://youtube.com/@theorants",
-    label: "other youtube",
-    description: "nerdy videos about audio/video, apple and other stuff",
-    target: "_blank",
+    external: true,
   },
   {
     href: "https://create.t3.gg",
-    label: "create t3 app",
-    description: "the best way to use the t3 stack",
-    target: "_blank",
+    label: "create-t3-app",
+    external: true,
   },
-  { href: "/blog", description: "random thoughts about things", label: "blog" },
+  {
+    href: "/blog",
+    label: "blog",
+    external: false,
+  },
   {
     href: "/sponsors",
-    description: "all of the brands running ads on my youtube channel",
     label: "sponsors",
+    external: false,
   },
 ];
 ---
 
 <BaseLayout title={siteTitle} description={description}>
-  <div
-    class="container mx-auto grid grow place-items-center px-4 py-6 sm:py-12"
-  >
-    <div>
-      <div>
-        <p class="mb-12 max-w-xl text-center text-2xl">
-          hi, i'm theo. i make things. mostly code and videos. you're probably
-          here for one of these things...
-        </p>
-      </div>
-      <div
-        class="mx-auto flex w-full max-w-md grow flex-col items-center space-y-6"
+  <div class="relative flex min-h-screen flex-col items-center justify-center px-6">
+    <!-- Subtle ambient glow -->
+    <div
+      class="pointer-events-none absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.03]"
+      style="background: radial-gradient(circle, #22d3ee 0%, transparent 70%);"
+    >
+    </div>
+
+    <div class="relative z-10 w-full max-w-xs">
+      <!-- Header -->
+      <header
+        class="mb-16 opacity-0 animate-fade-in-up"
+        style="animation-delay: 0s;"
       >
+        <h1 class="text-xl tracking-tight text-text">theo</h1>
+        <p class="mt-1 text-sm text-muted">builds things</p>
+      </header>
+
+      <!-- Links -->
+      <nav class="flex flex-col gap-0">
         {
-          links.map((link) => (
+          links.map((link, i) => (
             <a
               href={link.href}
-              target={link.target}
-              class="group border-foreground/60 hover:bg-foreground/60 hover:text-background relative w-full border py-3 text-center transition-colors duration-300 ease-out"
+              target={link.external ? "_blank" : undefined}
+              rel={link.external ? "noopener noreferrer" : undefined}
+              class="group relative flex items-center justify-between py-3 opacity-0 animate-fade-in-up"
+              style={`animation-delay: ${(i + 1) * 0.05}s;`}
             >
-              <span class="text-lg">{link.label}</span>
-              <span class="text-foreground/60 group-hover:text-background/90 block text-sm transition-colors">
-                {link.description}
+              <span class="text-subtle transition-colors duration-200 group-hover:text-text">
+                {link.label}
               </span>
+              <span class="text-muted opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0.5">
+                {link.external ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3.5 w-3.5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3.5 w-3.5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                )}
+              </span>
+              <!-- Hover line -->
+              <span class="absolute bottom-2 left-0 h-px w-0 bg-accent/40 transition-all duration-300 ease-out group-hover:w-full" />
             </a>
           ))
         }
-      </div>
+      </nav>
     </div>
   </div>
 </BaseLayout>
