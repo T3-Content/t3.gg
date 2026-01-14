@@ -7,7 +7,7 @@
 @config "./plugin-configs/tailwindcss-typography.cjs";
 
 /* tailwindcss-safe-area plugin */
-@plugin "tailwindcss-safe-area";
+@import "tailwindcss-safe-area";
 
 @theme {
   /* custom colors */
