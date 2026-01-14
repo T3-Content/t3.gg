@@ -1,24 +1,25 @@
 export const getTheme = () => {
   if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-    return localStorage.getItem("theme") as 'light' | 'dark';
+    return localStorage.getItem("theme") as "light" | "dark";
   }
   return null;
 };
 
-export function setTheme(theme: 'light' | 'dark') {
+export function setTheme(theme: "light" | "dark") {
   /**
    * clear the current theme when setting a new theme value
    * (essentially always reset to system theme first)
    */
-  window.localStorage.removeItem('theme');
+  window.localStorage.removeItem("theme");
   document.documentElement.classList.remove("light", "dark");
   // now set the new theme
-  window.localStorage.setItem('theme', theme);
+  window.localStorage.setItem("theme", theme);
   document.documentElement.classList.add(theme);
 }
 
 export function setUpClientThemeScripts() {
-  const startViewTransition = (fn: () => void) => document.startViewTransition?.(fn) ?? fn();
+  const startViewTransition = (fn: () => void) =>
+    document.startViewTransition?.(fn) ?? fn();
   const setUpThemeScripts = () => {
     // set the initial theme
     setTheme(getTheme());

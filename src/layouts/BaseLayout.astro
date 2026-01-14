@@ -70,16 +70,14 @@ const isHomepage = Astro.url.pathname === "/";
       classNames?.body,
     )}
   >
-    <main
-      class={cn("flex min-h-screen flex-col text-text", classNames?.main)}
-    >
+    <main class={cn("flex min-h-screen flex-col text-text", classNames?.main)}>
       <slot />
       {
         !isHomepage && backToLink && (
           <aside class="mb-8 text-center">
             <a
               href={backToLink.href}
-              class="group mt-8 -mb-4 inline-flex items-center justify-center gap-2 p-2 text-muted transition-colors duration-200 hover:text-text"
+              class="group text-muted hover:text-text mt-8 -mb-4 inline-flex items-center justify-center gap-2 p-2 transition-colors duration-200"
             >
               <LeftArrow class="transition-transform duration-200 group-hover:-translate-x-0.5" />
               <span class="text-sm tracking-wide">{backToLink.text}</span>
@@ -104,7 +102,7 @@ const isHomepage = Astro.url.pathname === "/";
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-muted transition-colors duration-200 hover:text-text"
+                  class="text-muted hover:text-text transition-colors duration-200"
                 >
                   {link.label}
                 </a>

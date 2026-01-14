@@ -18,9 +18,12 @@ const sortedPosts = allPosts
 
 <BaseLayout title={siteTitle} description={description}>
   <div class="mx-auto w-full max-w-4xl px-6 py-16">
-    <header class="mb-16 opacity-0 animate-fade-in-up" style="animation-delay: 0s;">
-      <h1 class="text-2xl tracking-tight text-text">blog</h1>
-      <p class="mt-2 text-sm text-muted">
+    <header
+      class="animate-fade-in-up mb-16 opacity-0"
+      style="animation-delay: 0s;"
+    >
+      <h1 class="text-text text-2xl tracking-tight">blog</h1>
+      <p class="text-muted mt-2 text-sm">
         thoughts on tech and content. usually goes to twitter, sometimes here.
       </p>
     </header>
@@ -29,7 +32,7 @@ const sortedPosts = allPosts
       {
         sortedPosts.map((p, i) => (
           <div
-            class="opacity-0 animate-fade-in-up"
+            class="animate-fade-in-up opacity-0"
             style={`animation-delay: ${(i + 1) * 0.05}s;`}
           >
             <BlogPostPreview post={p} />
