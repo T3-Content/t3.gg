@@ -13,132 +13,423 @@ const backToLink = {
 };
 ---
 
-<BaseLayout title={siteTitle} description={description} {backToLink}>
-  <div class="mx-auto w-full max-w-2xl px-6 py-16">
-    <article class="prose prose-invert prose-lg max-w-none">
-      <header class="not-prose mb-12">
-        <h1 class="text-2xl font-medium tracking-tight text-text">
-          sponsor theo
-        </h1>
-        <p class="mt-2 text-sm text-muted">
-          reach experienced developers who ship
-        </p>
-      </header>
+<BaseLayout title={siteTitle} description={description} {backToLink} win95Title="Sponsor Info - WordPad">
+  <!-- Dark theme view -->
+  <div class="dark-view">
+    <div class="mx-auto w-full max-w-2xl px-6 py-16">
+      <article class="prose prose-invert prose-lg max-w-none">
+        <header class="not-prose mb-12">
+          <h1 class="text-2xl font-medium tracking-tight text-text">
+            sponsor theo
+          </h1>
+          <p class="mt-2 text-sm text-muted">
+            reach experienced developers who ship
+          </p>
+        </header>
 
-      <blockquote class="not-prose my-12 border-l-2 border-accent/40 pl-6">
-        <p class="text-subtle">
-          Someday I'll have to tell you how transformational these ads have been
-          for us. Our biggest worry is how we will service all the new clients
-          going into 2025.
-        </p>
-        <p class="mt-4 text-subtle">
-          We did other ads in 2024, but
-          <span class="text-text">the Theo ads were by far the most effective for us</span
-          >. It's clear to us that you in particular get it.
-        </p>
-        <div class="mt-6 flex items-center gap-3">
-          <div class="size-10 text-text [&_svg]:size-full">
-            <InfiniteRedLogo />
+        <blockquote class="not-prose my-12 border-l-2 border-accent/40 pl-6">
+          <p class="text-subtle">
+            Someday I'll have to tell you how transformational these ads have been
+            for us. Our biggest worry is how we will service all the new clients
+            going into 2025.
+          </p>
+          <p class="mt-4 text-subtle">
+            We did other ads in 2024, but
+            <span class="text-text">the Theo ads were by far the most effective for us</span
+            >. It's clear to us that you in particular get it.
+          </p>
+          <div class="mt-6 flex items-center gap-3">
+            <div class="size-10 text-text [&_svg]:size-full">
+              <InfiniteRedLogo />
+            </div>
+            <div>
+              <p class="text-sm font-medium text-text">Jamon</p>
+              <a
+                href="https://infinitered.com"
+                target="_blank"
+                class="text-xs text-muted transition-colors hover:text-accent"
+              >
+                Infinite Red
+              </a>
+            </div>
           </div>
-          <div>
-            <p class="text-sm font-medium text-text">Jamon</p>
-            <a
-              href="https://infinitered.com"
-              target="_blank"
-              class="text-xs text-muted transition-colors hover:text-accent"
-            >
-              Infinite Red
-            </a>
+        </blockquote>
+
+        <section>
+          <h2>why sponsor?</h2>
+          <p>
+            good developers watch my videos to learn about new technologies. my
+            audience is so excited to learn about new tech that they
+            <em>often like the ads more than the videos themselves</em>.
+          </p>
+        </section>
+
+        <section class="not-prose my-12">
+          <Image
+            alt="sponsor comments"
+            src={"https://ezkf3xv6eh.ufs.sh/f/3odeDX4eRzTNQlTj6vGY8AzxSWdivlGJ0fNusyEU7bKQDZBH"}
+            class="cursor-pointer rounded-lg border border-white/10 transition-opacity hover:opacity-80"
+            onclick={`window.open('https://ezkf3xv6eh.ufs.sh/f/3odeDX4eRzTNQlTj6vGY8AzxSWdivlGJ0fNusyEU7bKQDZBH', '_blank')`}
+            width={800}
+            height={400}
+            loading="lazy"
+          />
+        </section>
+
+        <section>
+          <h2>the numbers</h2>
+          <p>
+            i'm in the <a
+              href="https://socialblade.com/youtube/c/theobrowne1017"
+              target="_blank">top 2000 youtubers in the US</a
+            >. we get <strong>over 3 million views per month</strong>, often
+            breaking <strong>400,000 watch hours</strong> (~2 super bowl commercials).
+          </p>
+          <p>
+            my channel has significantly more reach than branded content reasonably
+            should. big brands on youtube (like <a
+              href="https://socialblade.com/youtube/c/vercelhq"
+              target="_blank">vercel</a
+            >) have <strong>less than 5% of my reach</strong>.
+          </p>
+        </section>
+
+        <section>
+          <h2>demographics</h2>
+          <p>
+            this isn't a bunch of beginners learning to code - my audience actually
+            ships. <strong>76% of them are over 25</strong>. the most recent state
+            of react survey showed that
+            <em>over half of react devs watch my videos.</em>
+          </p>
+        </section>
+
+        <section>
+          <p>
+            i've helped <a href="/sponsors">over 40 brands grow their businesses</a>
+            - will yours be next?
+          </p>
+        </section>
+
+        <section class="not-prose my-12 rounded-lg border border-white/10 bg-surface/50 p-6 text-center">
+          <p class="text-subtle">
+            email us at
+            <span class="font-medium text-text">youtube @ (this domain)</span>
+            for pricing and availability
+          </p>
+        </section>
+
+        <blockquote class="not-prose my-12 border-l-2 border-accent/40 pl-6">
+          <p class="text-subtle">
+            I always know when you guys publish something because we have a slack
+            channel with new signups and
+            <span class="text-text">it's getting flooded.</span>
+          </p>
+          <div class="mt-6 flex items-center gap-3">
+            <div class="size-10 text-text [&_svg]:size-full">
+              <SevallaLogo />
+            </div>
+            <div>
+              <p class="text-sm font-medium text-text">Paul</p>
+              <a
+                href="https://sevalla.com"
+                target="_blank"
+                class="text-xs text-muted transition-colors hover:text-accent"
+              >
+                Sevalla
+              </a>
+            </div>
+          </div>
+        </blockquote>
+      </article>
+    </div>
+  </div>
+
+  <!-- Win95 theme view - WordPad style window -->
+  <div class="win95-view">
+    <div class="win95-sponsor-container">
+      <div class="win95-window win95-sponsor-window">
+        <!-- Title bar -->
+        <div class="win95-titlebar">
+          <span class="win95-titlebar-text">Sponsor Info - WordPad</span>
+          <div class="win95-titlebar-buttons">
+            <button class="win95-titlebar-btn" aria-label="Minimize">_</button>
+            <button class="win95-titlebar-btn" aria-label="Maximize">□</button>
+            <a href="/sponsors" class="win95-titlebar-btn" aria-label="Close">×</a>
           </div>
         </div>
-      </blockquote>
 
-      <section>
-        <h2>why sponsor?</h2>
-        <p>
-          good developers watch my videos to learn about new technologies. my
-          audience is so excited to learn about new tech that they
-          <em>often like the ads more than the videos themselves</em>.
-        </p>
-      </section>
+        <!-- Menu bar -->
+        <div class="win95-menubar">
+          <span class="win95-menu-item"><u>F</u>ile</span>
+          <span class="win95-menu-item"><u>E</u>dit</span>
+          <span class="win95-menu-item"><u>V</u>iew</span>
+          <span class="win95-menu-item"><u>I</u>nsert</span>
+          <span class="win95-menu-item"><u>F</u>ormat</span>
+          <span class="win95-menu-item"><u>H</u>elp</span>
+        </div>
 
-      <section class="not-prose my-12">
-        <Image
-          alt="sponsor comments"
-          src={"https://ezkf3xv6eh.ufs.sh/f/3odeDX4eRzTNQlTj6vGY8AzxSWdivlGJ0fNusyEU7bKQDZBH"}
-          class="cursor-pointer rounded-lg border border-white/10 transition-opacity hover:opacity-80"
-          onclick={`window.open('https://ezkf3xv6eh.ufs.sh/f/3odeDX4eRzTNQlTj6vGY8AzxSWdivlGJ0fNusyEU7bKQDZBH', '_blank')`}
-          width={800}
-          height={400}
-          loading="lazy"
-        />
-      </section>
+        <!-- Toolbar -->
+        <div class="win95-wordpad-toolbar">
+          <button class="win95-toolbar-btn" title="New">📄</button>
+          <button class="win95-toolbar-btn" title="Open">📂</button>
+          <button class="win95-toolbar-btn" title="Save">💾</button>
+          <div class="win95-toolbar-divider"></div>
+          <button class="win95-toolbar-btn" title="Print">🖨️</button>
+          <div class="win95-toolbar-divider"></div>
+          <button class="win95-toolbar-btn" title="Bold"><b>B</b></button>
+          <button class="win95-toolbar-btn" title="Italic"><i>I</i></button>
+          <button class="win95-toolbar-btn" title="Underline"><u>U</u></button>
+        </div>
 
-      <section>
-        <h2>the numbers</h2>
-        <p>
-          i'm in the <a
-            href="https://socialblade.com/youtube/c/theobrowne1017"
-            target="_blank">top 2000 youtubers in the US</a
-          >. we get <strong>over 3 million views per month</strong>, often
-          breaking <strong>400,000 watch hours</strong> (~2 super bowl commercials).
-        </p>
-        <p>
-          my channel has significantly more reach than branded content reasonably
-          should. big brands on youtube (like <a
-            href="https://socialblade.com/youtube/c/vercelhq"
-            target="_blank">vercel</a
-          >) have <strong>less than 5% of my reach</strong>.
-        </p>
-      </section>
+        <!-- Window content -->
+        <div class="win95-content" style="padding: 4px;">
+          <div class="win95-inset win95-sponsor-content">
+            <!-- Header -->
+            <header class="win95-sponsor-header">
+              <h1>Sponsor Theo</h1>
+              <p>reach experienced developers who ship</p>
+            </header>
 
-      <section>
-        <h2>demographics</h2>
-        <p>
-          this isn't a bunch of beginners learning to code - my audience actually
-          ships. <strong>76% of them are over 25</strong>. the most recent state
-          of react survey showed that
-          <em>over half of react devs watch my videos.</em>
-        </p>
-      </section>
+            <!-- Testimonial 1 -->
+            <div class="win95-testimonial">
+              <div class="win95-testimonial-quote">
+                <p>"Someday I'll have to tell you how transformational these ads have been for us. Our biggest worry is how we will service all the new clients going into 2025.</p>
+                <p>We did other ads in 2024, but <strong>the Theo ads were by far the most effective for us</strong>. It's clear to us that you in particular get it."</p>
+              </div>
+              <div class="win95-testimonial-author">
+                <strong>— Jamon, Infinite Red</strong>
+              </div>
+            </div>
 
-      <section>
-        <p>
-          i've helped <a href="/sponsors">over 40 brands grow their businesses</a>
-          - will yours be next?
-        </p>
-      </section>
+            <!-- Why Sponsor -->
+            <section class="win95-section">
+              <h2>Why Sponsor?</h2>
+              <p>Good developers watch my videos to learn about new technologies. My audience is so excited to learn about new tech that they <em>often like the ads more than the videos themselves</em>.</p>
+            </section>
 
-      <section class="not-prose my-12 rounded-lg border border-white/10 bg-surface/50 p-6 text-center">
-        <p class="text-subtle">
-          email us at
-          <span class="font-medium text-text">youtube @ (this domain)</span>
-          for pricing and availability
-        </p>
-      </section>
+            <!-- The Numbers -->
+            <section class="win95-section">
+              <h2>The Numbers</h2>
+              <p>I'm in the top 2000 youtubers in the US. We get <strong>over 3 million views per month</strong>, often breaking <strong>400,000 watch hours</strong> (~2 super bowl commercials).</p>
+              <p>My channel has significantly more reach than branded content reasonably should. Big brands on youtube (like Vercel) have <strong>less than 5% of my reach</strong>.</p>
+            </section>
 
-      <blockquote class="not-prose my-12 border-l-2 border-accent/40 pl-6">
-        <p class="text-subtle">
-          I always know when you guys publish something because we have a slack
-          channel with new signups and
-          <span class="text-text">it's getting flooded.</span>
-        </p>
-        <div class="mt-6 flex items-center gap-3">
-          <div class="size-10 text-text [&_svg]:size-full">
-            <SevallaLogo />
-          </div>
-          <div>
-            <p class="text-sm font-medium text-text">Paul</p>
-            <a
-              href="https://sevalla.com"
-              target="_blank"
-              class="text-xs text-muted transition-colors hover:text-accent"
-            >
-              Sevalla
-            </a>
+            <!-- Demographics -->
+            <section class="win95-section">
+              <h2>Demographics</h2>
+              <p>This isn't a bunch of beginners learning to code - my audience actually ships. <strong>76% of them are over 25</strong>. The most recent state of react survey showed that <em>over half of react devs watch my videos.</em></p>
+            </section>
+
+            <!-- CTA -->
+            <div class="win95-cta-box">
+              <p>I've helped <a href="/sponsors">over 40 brands grow their businesses</a> - will yours be next?</p>
+              <div class="win95-divider-h" style="margin: 12px 0;"></div>
+              <p><strong>Email us at:</strong> youtube @ (this domain)</p>
+              <p style="font-size: 11px; color: #808080;">for pricing and availability</p>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="win95-testimonial">
+              <div class="win95-testimonial-quote">
+                <p>"I always know when you guys publish something because we have a slack channel with new signups and <strong>it's getting flooded.</strong>"</p>
+              </div>
+              <div class="win95-testimonial-author">
+                <strong>— Paul, Sevalla</strong>
+              </div>
+            </div>
           </div>
         </div>
-      </blockquote>
-    </article>
+
+        <!-- Status bar -->
+        <div class="win95-statusbar">
+          <div class="win95-statusbar-section">
+            <a href="/sponsors" style="font-size: 11px; text-decoration: underline;">← Back to Sponsors</a>
+          </div>
+          <div class="win95-statusbar-section" style="flex: 0; min-width: 80px; text-align: center;">
+            Page 1
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </BaseLayout>
+
+<style>
+  /* Show/hide views based on theme */
+  .dark-view {
+    display: block;
+  }
+  .win95-view {
+    display: none;
+  }
+
+  :global(.win95) .dark-view {
+    display: none;
+  }
+  :global(.win95) .win95-view {
+    display: block;
+  }
+
+  /* Win95 sponsor container */
+  .win95-sponsor-container {
+    min-height: 100vh;
+    padding: 16px;
+    padding-bottom: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  /* Sponsor window */
+  .win95-sponsor-window {
+    width: 100%;
+    max-width: 700px;
+    margin-top: 16px;
+  }
+
+  /* WordPad toolbar */
+  .win95-wordpad-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 4px 8px;
+    background: #c0c0c0;
+    border-bottom: 1px solid #808080;
+  }
+
+  .win95-toolbar-btn {
+    width: 24px;
+    height: 22px;
+    background: #c0c0c0;
+    border: 1px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .win95-toolbar-btn:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+  }
+
+  .win95-toolbar-divider {
+    width: 2px;
+    height: 20px;
+    margin: 0 4px;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #ffffff;
+  }
+
+  /* Sponsor content area */
+  .win95-sponsor-content {
+    padding: 16px;
+    min-height: 400px;
+    max-height: calc(100vh - 220px);
+    overflow-y: auto;
+    font-family: "Tahoma", "Segoe UI", sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #000000;
+  }
+
+  /* Header */
+  .win95-sponsor-header {
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(to right, #808080 50%, #ffffff 50%) 1;
+  }
+
+  .win95-sponsor-header h1 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 4px 0;
+    color: #000080;
+  }
+
+  .win95-sponsor-header p {
+    font-size: 12px;
+    color: #808080;
+    margin: 0;
+  }
+
+  /* Sections */
+  .win95-section {
+    margin-bottom: 16px;
+  }
+
+  .win95-section h2 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000080;
+    margin: 0 0 8px 0;
+  }
+
+  .win95-section p {
+    margin: 0 0 8px 0;
+  }
+
+  /* Testimonial box */
+  .win95-testimonial {
+    background: #ffffcc;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    box-shadow: inset 1px 1px 0 #404040;
+    padding: 12px;
+    margin: 16px 0;
+  }
+
+  .win95-testimonial-quote {
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+
+  .win95-testimonial-quote p {
+    margin: 0 0 8px 0;
+  }
+
+  .win95-testimonial-author {
+    font-size: 11px;
+    text-align: right;
+  }
+
+  /* CTA Box */
+  .win95-cta-box {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    padding: 16px;
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  .win95-cta-box a {
+    color: #000080;
+    text-decoration: underline;
+  }
+
+  .win95-cta-box a:hover {
+    color: #0000aa;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .win95-sponsor-container {
+      padding: 8px;
+      padding-bottom: 44px;
+    }
+
+    .win95-sponsor-window {
+      margin-top: 8px;
+    }
+
+    .win95-sponsor-content {
+      padding: 12px;
+      max-height: calc(100vh - 200px);
+      font-size: 12px;
+    }
+  }
+</style>

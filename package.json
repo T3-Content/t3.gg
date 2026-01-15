@@ -22,6 +22,9 @@
   },
   "dependencies": {
     "@astrojs/prefetch": "^0.4.1",
+    "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/simple-icons": "^1.2.66",
+    "astro-icon": "^1.1.5",
     "date-fns": "^4.1.0"
   }
 }

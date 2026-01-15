@@ -34,8 +34,9 @@ const links = [
 ];
 ---
 
-<BaseLayout title={siteTitle} description={description}>
-  <div class="relative flex min-h-screen flex-col items-center justify-center px-6">
+<BaseLayout title={siteTitle} description={description} win95Title="theo.exe">
+  <!-- Dark theme view -->
+  <div class="dark-view relative flex min-h-screen flex-col items-center justify-center px-6">
     <!-- Subtle ambient glow -->
     <div
       class="pointer-events-none absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.03]"
@@ -101,4 +102,100 @@ const links = [
       </nav>
     </div>
   </div>
+
+  <!-- Win95 theme view - Classic window with title bar -->
+  <div class="win95-view relative flex min-h-screen flex-col items-center justify-center p-8 pb-12">
+    <div class="win95-window w-full max-w-md">
+      <!-- Title bar -->
+      <div class="win95-titlebar">
+        <span class="win95-titlebar-text">theo.exe</span>
+        <div class="win95-titlebar-buttons">
+          <button class="win95-titlebar-btn" aria-label="Minimize">_</button>
+          <button class="win95-titlebar-btn" aria-label="Maximize">□</button>
+          <button class="win95-titlebar-btn" aria-label="Close">×</button>
+        </div>
+      </div>
+
+      <!-- Menu bar -->
+      <div class="win95-menubar">
+        <span class="win95-menu-item"><u>F</u>ile</span>
+        <span class="win95-menu-item"><u>E</u>dit</span>
+        <span class="win95-menu-item"><u>V</u>iew</span>
+        <span class="win95-menu-item"><u>H</u>elp</span>
+      </div>
+
+      <!-- Window content -->
+      <div class="win95-content">
+        <!-- Header section -->
+        <div class="mb-4 pb-3" style="border-bottom: 1px solid #808080;">
+          <h1 class="text-base font-bold" style="font-size: 16px; margin-bottom: 2px;">theo</h1>
+          <p style="font-size: 11px; color: #808080;">builds things</p>
+        </div>
+
+        <!-- Links as Win95 style list -->
+        <div class="win95-inset p-2 mb-4" style="min-height: 120px;">
+          <nav class="flex flex-col">
+            {
+              links.map((link) => (
+                <a
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                  class="win95-list-item flex items-center gap-2 px-1 py-0.5"
+                >
+                  {link.external ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+                      <rect x="1" y="1" width="14" height="14" fill="#c0c0c0" stroke="#000080" stroke-width="1"/>
+                      <rect x="1" y="1" width="14" height="3" fill="#000080"/>
+                      <text x="8" y="10" font-size="6" fill="#000080" text-anchor="middle" font-family="sans-serif">WWW</text>
+                    </svg>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+                      <path d="M2 2h5l2 2h5v10H2V2z" fill="#ffff00" stroke="#808000" stroke-width="0.5"/>
+                      <rect x="3" y="5" width="7" height="1" fill="#808000"/>
+                    </svg>
+                  )}
+                  <span style="font-size: 11px;">{link.label}</span>
+                </a>
+              ))
+            }
+          </nav>
+        </div>
+
+    
+
+      <!-- Status bar -->
+      <div class="win95-statusbar">
+        <div class="win95-statusbar-section">Ready</div>
+        <div class="win95-statusbar-section" style="flex: 0; min-width: 80px; text-align: center;">5 objects</div>
+      </div>
+    </div>
+  </div>
 </BaseLayout>
+
+<style>
+  /* Show/hide views based on theme */
+  .dark-view {
+    display: flex;
+  }
+  .win95-view {
+    display: none;
+  }
+
+  :global(.win95) .dark-view {
+    display: none;
+  }
+  :global(.win95) .win95-view {
+    display: flex;
+  }
+
+  /* Win95 specific page styles */
+  .win95-list-item {
+    cursor: pointer;
+  }
+
+  .win95-list-item:hover {
+    background: #000080;
+    color: #ffffff;
+  }
+</style>

@@ -3,17 +3,21 @@ import { cn } from "../utils/cn";
 import "../style/global.css";
 import { ClientRouter } from "astro:transitions";
 import LeftArrow from "../assets/icons/left-arrow.svg.astro";
+import ThemeSwitcher from "../components/ThemeSwitcher.astro";
+import { setUpClientThemeScripts, getTheme } from "../utils/theme";
+import { Icon } from "astro-icon/components";
 
 const socialLinks = [
-  { href: "https://github.com/t3dotgg", label: "gh" },
-  { href: "https://twitter.com/theo", label: "x" },
-  { href: "https://twitch.tv/theo", label: "twitch" },
-  { href: "https://discord.gg/xHdCpcPHRE", label: "discord" },
+  { href: "https://github.com/t3dotgg", label: "gh", fullLabel: "GitHub", icon: "simple-icons:github" },
+  { href: "https://twitter.com/theo", label: "x", fullLabel: "Twitter", icon: "simple-icons:x" },
+  { href: "https://twitch.tv/theo", label: "twitch", fullLabel: "Twitch", icon: "simple-icons:twitch" },
+  { href: "https://discord.gg/xHdCpcPHRE", label: "discord", fullLabel: "Discord", icon: "simple-icons:discord" },
 ];
 
 interface Props {
   title: string;
   description: string;
+  win95Title?: string;
   classNames?: {
     html?: string;
     body?: string;
@@ -36,6 +40,7 @@ const defaultBackToLink: Props["backToLink"] = {
 const {
   title,
   description,
+  win95Title = `${title}.exe`,
   classNames,
   backToLink = defaultBackToLink,
 } = Astro.props;
@@ -44,7 +49,7 @@ const isHomepage = Astro.url.pathname === "/";
 
 <html
   lang="en"
-  class={cn("h-full bg-void", classNames?.html)}
+  class={cn("h-full bg-void dark", classNames?.html)}
   style="view-transition-name:root"
 >
   <head>
@@ -70,16 +75,36 @@ const isHomepage = Astro.url.pathname === "/";
       classNames?.body,
     )}
   >
-    <main
-      class={cn("flex min-h-screen flex-col text-text", classNames?.main)}
-    >
+    <!-- Win95 Clouds Background (only visible in win95 theme) -->
+    <div class="win95-clouds"></div>
+
+    <!-- Win95 Desktop Icons (using social links) -->
+    <div class="win95-desktop-icons">
+      {
+        socialLinks.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="win95-icon"
+          >
+            <div class="win95-icon-img">
+              <Icon name={link.icon} size={32} />
+            </div>
+            <span class="win95-icon-label">{link.fullLabel}</span>
+          </a>
+        ))
+      }
+    </div>
+
+    <main class={cn("flex min-h-screen flex-col text-text", classNames?.main)}>
       <slot />
       {
         !isHomepage && backToLink && (
-          <aside class="mb-8 text-center">
+          <aside class="dark-only mb-8 text-center">
             <a
               href={backToLink.href}
-              class="group mt-8 -mb-4 inline-flex items-center justify-center gap-2 p-2 text-muted transition-colors duration-200 hover:text-text"
+              class="group text-muted hover:text-text mt-8 -mb-4 inline-flex items-center justify-center gap-2 p-2 transition-colors duration-200"
             >
               <LeftArrow class="transition-transform duration-200 group-hover:-translate-x-0.5" />
               <span class="text-sm tracking-wide">{backToLink.text}</span>
@@ -104,7 +129,7 @@ const isHomepage = Astro.url.pathname === "/";
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-muted transition-colors duration-200 hover:text-text"
+                  class="text-muted hover:text-text transition-colors duration-200"
                 >
                   {link.label}
                 </a>
@@ -114,5 +139,134 @@ const isHomepage = Astro.url.pathname === "/";
         </div>
       </footer>
     </main>
+
+    <!-- Win95 Taskbar (only visible in win95 theme) -->
+    <div class="win95-taskbar">
+      <button class="win95-start-btn">
+        <img
+          src="/images/t3/300.svg"
+          width="10"
+          height="10"
+          viewBox="0 0 10 10"
+        />
+
+        Start
+      </button>
+      <div class="win95-divider" style="height: 22px;"></div>
+      <div
+        class="win95-taskbar-btn"
+        style="flex: 0 0 auto; padding: 2px 8px; background: #c0c0c0; border: 1px solid; border-color: #808080 #ffffff #ffffff #808080; font-size: 11px;"
+      >
+        <span style="font-weight: bold;">📁</span>
+        {win95Title}
+      </div>
+      <div class="win95-systray">
+        <span id="win95-time">12:00 PM</span>
+      </div>
+    </div>
+
+    <!-- Theme Switcher -->
+    <ThemeSwitcher />
+
+    <!-- Theme initialization script -->
+    <script>
+      import { setUpClientThemeScripts } from "../utils/theme";
+      setUpClientThemeScripts();
+
+      // Update Win95 clock
+      function updateWin95Clock() {
+        const clockEl = document.getElementById("win95-time");
+        if (clockEl) {
+          const now = new Date();
+          clockEl.textContent = now.toLocaleTimeString("en-US", {
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true,
+          });
+        }
+      }
+
+      // Update immediately and every minute
+      updateWin95Clock();
+      setInterval(updateWin95Clock, 60000);
+
+      // Re-init on view transitions
+      document.addEventListener("astro:after-swap", () => {
+        updateWin95Clock();
+      });
+    </script>
   </body>
 </html>
+
+<style>
+  /* Show/hide elements based on theme */
+  .dark-only {
+    display: block;
+  }
+
+  :global(.win95) .dark-only {
+    display: none;
+  }
+
+  /* Desktop icons styling - only show in Win95 mode */
+  .win95-desktop-icons {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    display: none;
+    flex-direction: column;
+    gap: 24px;
+    z-index: 10;
+  }
+
+  :global(.win95) .win95-desktop-icons {
+    display: flex;
+  }
+
+  /* Style the desktop icon SVGs */
+  .win95-icon-img :global(svg) {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* GitHub icon - black on white */
+  .win95-icon:nth-child(1) .win95-icon-img :global(svg) {
+    color: #000000;
+    background: #ffffff;
+    padding: 4px;
+    border: 1px solid #808080;
+  }
+
+  /* X/Twitter icon - white on black */
+  .win95-icon:nth-child(2) .win95-icon-img :global(svg) {
+    color: #ffffff;
+    background: #000000;
+    padding: 4px;
+    border: 1px solid #808080;
+  }
+
+  /* Twitch icon - white on purple */
+  .win95-icon:nth-child(3) .win95-icon-img :global(svg) {
+    color: #ffffff;
+    background: #9146ff;
+    padding: 4px;
+    border: 1px solid #000000;
+  }
+
+  /* Discord icon - white on blurple */
+  .win95-icon:nth-child(4) .win95-icon-img :global(svg) {
+    color: #ffffff;
+    background: #5865f2;
+    padding: 4px;
+    border: 1px solid #000000;
+  }
+
+  /* Taskbar only visible in Win95 mode */
+  .win95-taskbar {
+    display: none;
+  }
+
+  :global(.win95) .win95-taskbar {
+    display: flex;
+  }
+</style>

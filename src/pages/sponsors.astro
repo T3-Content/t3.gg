@@ -6,51 +6,418 @@ import { affiliates, sponsors } from "../lib/sponsors";
 
 const siteTitle = "sponsors";
 const description = "all of the brands running ads on my youtube channel";
+
+const allSponsors = [...affiliates, ...sponsors];
+
+// Import all sponsor SVG components
+const sponsorImages = import.meta.glob<any>("../assets/sponsors/*.svg.astro");
+
+// Helper to load a sponsor's image component
+async function getSponsorImage(imagePath: string) {
+  const importer = sponsorImages[`../assets/sponsors/${imagePath}`];
+  if (importer) {
+    const mod = await importer();
+    return mod.default || mod;
+  }
+  return null;
+}
 ---
 
-<BaseLayout title={siteTitle} description={description}>
-  <div class="mx-auto w-full max-w-5xl px-6 py-16">
-    <header class="mb-16 opacity-0 animate-fade-in-up" style="animation-delay: 0s;">
-      <h1 class="text-2xl tracking-tight text-text">sponsors</h1>
-      <p class="mt-2 text-sm text-muted">
-        brands that have run ads on my content
-      </p>
-      <p class="mt-4 text-sm text-subtle">
-        want to sponsor?
+<BaseLayout
+  title={siteTitle}
+  description={description}
+  win95Title="Sponsors - Control Panel"
+>
+  <!-- Dark theme view -->
+  <div class="dark-view">
+    <div class="mx-auto w-full max-w-5xl px-6 py-16">
+      <header
+        class="animate-fade-in-up mb-16 opacity-0"
+        style="animation-delay: 0s;"
+      >
+        <h1 class="text-text text-2xl tracking-tight">sponsors</h1>
+        <p class="text-muted mt-2 text-sm">
+          brands that have run ads on my content
+        </p>
+        <p class="text-subtle mt-4 text-sm">
+          want to sponsor?
+          <a
+            href="/sponsor-me"
+            class="text-accent hover:text-text transition-colors"
+          >
+            learn more
+          </a>
+        </p>
+      </header>
+
+      <div class="animate-fade-in-up opacity-0" style="animation-delay: 0.1s;">
+        <SponsorGridSection
+          heading="affiliates"
+          sponsors={affiliates}
+          class="mb-16"
+        />
+      </div>
+
+      <div class="animate-fade-in-up opacity-0" style="animation-delay: 0.15s;">
+        <SponsorGridSection heading="video sponsors" sponsors={sponsors} />
+      </div>
+
+      <footer
+        class="text-muted animate-fade-in-up mt-24 text-center text-sm opacity-0"
+        style="animation-delay: 0.2s;"
+      >
+        interested in sponsoring?
         <a
           href="/sponsor-me"
-          class="text-accent transition-colors hover:text-text"
+          class="text-accent hover:text-text transition-colors"
         >
-          learn more
+          get in touch
         </a>
-      </p>
-    </header>
-
-    <div
-      class="opacity-0 animate-fade-in-up"
-      style="animation-delay: 0.1s;"
-    >
-      <SponsorGridSection heading="affiliates" sponsors={affiliates} class="mb-16" />
+      </footer>
     </div>
+  </div>
 
-    <div
-      class="opacity-0 animate-fade-in-up"
-      style="animation-delay: 0.15s;"
-    >
-      <SponsorGridSection heading="video sponsors" sponsors={sponsors} />
+  <!-- Win95 theme view -->
+  <div class="win95-view">
+    <div class="win95-sponsors-container">
+      <div class="win95-window win95-sponsors-window">
+        <!-- Title bar -->
+        <div class="win95-titlebar">
+          <span class="win95-titlebar-text">Sponsors - Control Panel</span>
+          <div class="win95-titlebar-buttons">
+            <button class="win95-titlebar-btn" aria-label="Minimize">_</button>
+            <button class="win95-titlebar-btn" aria-label="Maximize">□</button>
+            <a href="/" class="win95-titlebar-btn" aria-label="Close">×</a>
+          </div>
+        </div>
+
+        <!-- Menu bar -->
+        <div class="win95-menubar">
+          <span class="win95-menu-item"><u>F</u>ile</span>
+          <span class="win95-menu-item"><u>E</u>dit</span>
+          <span class="win95-menu-item"><u>V</u>iew</span>
+          <span class="win95-menu-item"><u>H</u>elp</span>
+        </div>
+
+        <!-- Window content -->
+        <div class="win95-content" style="padding: 8px;">
+          <!-- Header -->
+          <div class="win95-sponsors-header">
+            <div class="win95-sponsors-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                width="32"
+                height="32"
+              >
+                <rect
+                  x="2"
+                  y="4"
+                  width="28"
+                  height="24"
+                  fill="#ffff00"
+                  stroke="#808000"
+                  stroke-width="1"></rect>
+                <rect
+                  x="4"
+                  y="6"
+                  width="10"
+                  height="8"
+                  fill="#ffffff"
+                  stroke="#808080"
+                  stroke-width="0.5"></rect>
+                <rect
+                  x="18"
+                  y="6"
+                  width="10"
+                  height="8"
+                  fill="#ffffff"
+                  stroke="#808080"
+                  stroke-width="0.5"></rect>
+                <rect
+                  x="4"
+                  y="18"
+                  width="10"
+                  height="8"
+                  fill="#ffffff"
+                  stroke="#808080"
+                  stroke-width="0.5"></rect>
+                <rect
+                  x="18"
+                  y="18"
+                  width="10"
+                  height="8"
+                  fill="#ffffff"
+                  stroke="#808080"
+                  stroke-width="0.5"></rect>
+              </svg>
+            </div>
+            <div>
+              <h1 style="font-size: 14px; font-weight: bold; margin: 0;">
+                Sponsors
+              </h1>
+              <p style="font-size: 11px; color: #808080; margin: 2px 0 0 0;">
+                brands that have run ads on my content
+              </p>
+            </div>
+          </div>
+
+          <!-- Affiliates Section -->
+          <div class="win95-groupbox" style="margin-top: 12px;">
+            <span class="win95-groupbox-label"
+              >Affiliates ({affiliates.length})</span
+            >
+            <div class="win95-inset win95-sponsors-grid-container">
+              <div class="win95-sponsors-grid">
+                {
+                  affiliates.map(async (sponsor) => {
+                    const SponsorLogo = await getSponsorImage(sponsor.image);
+                    return (
+                      <a
+                        href={sponsor.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="win95-sponsor-item"
+                        title={sponsor.description}
+                      >
+                        <div class="win95-sponsor-icon-box">
+                          <div class="win95-sponsor-icon-titlebar" />
+                          <div class="win95-sponsor-icon-content">
+                            {SponsorLogo ? (
+                              <SponsorLogo />
+                            ) : (
+                              <span>{sponsor.name.slice(0, 2)}</span>
+                            )}
+                          </div>
+                        </div>
+                        <span class="win95-sponsor-name">{sponsor.name}</span>
+                      </a>
+                    );
+                  })
+                }
+              </div>
+            </div>
+          </div>
+
+          <!-- Video Sponsors Section -->
+          <div class="win95-groupbox" style="margin-top: 12px;">
+            <span class="win95-groupbox-label"
+              >Video Sponsors ({sponsors.length})</span
+            >
+            <div
+              class="win95-inset win95-sponsors-grid-container win95-sponsors-grid-large"
+            >
+              <div class="win95-sponsors-grid">
+                {
+                  sponsors.map(async (sponsor) => {
+                    const SponsorLogo = await getSponsorImage(sponsor.image);
+                    return (
+                      <a
+                        href={sponsor.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="win95-sponsor-item"
+                        title={sponsor.description}
+                      >
+                        <div class="win95-sponsor-icon-box">
+                          <div class="win95-sponsor-icon-titlebar" />
+                          <div class="win95-sponsor-icon-content">
+                            {SponsorLogo ? (
+                              <SponsorLogo />
+                            ) : (
+                              <span>{sponsor.name.slice(0, 2)}</span>
+                            )}
+                          </div>
+                        </div>
+                        <span class="win95-sponsor-name">{sponsor.name}</span>
+                      </a>
+                    );
+                  })
+                }
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div style="margin-top: 12px; text-align: center;">
+            <a href="/sponsor-me" class="win95-btn"> Want to Sponsor? </a>
+          </div>
+        </div>
+
+        <!-- Status bar -->
+        <div class="win95-statusbar">
+          <div class="win95-statusbar-section">
+            {allSponsors.length} sponsor(s)
+          </div>
+          <div
+            class="win95-statusbar-section"
+            style="flex: 0; min-width: 100px; text-align: center;"
+          >
+            <a href="/" style="font-size: 11px; text-decoration: underline;"
+              >Back to Home</a
+            >
+          </div>
+        </div>
+      </div>
     </div>
-
-    <footer
-      class="mt-24 text-center text-sm text-muted opacity-0 animate-fade-in-up"
-      style="animation-delay: 0.2s;"
-    >
-      interested in sponsoring?
-      <a
-        href="/sponsor-me"
-        class="text-accent transition-colors hover:text-text"
-      >
-        get in touch
-      </a>
-    </footer>
   </div>
 </BaseLayout>
+
+<style>
+  /* Show/hide views based on theme */
+  .dark-view {
+    display: block;
+  }
+  .win95-view {
+    display: none;
+  }
+
+  :global(.win95) .dark-view {
+    display: none;
+  }
+  :global(.win95) .win95-view {
+    display: block;
+  }
+
+  /* Win95 sponsors container */
+  .win95-sponsors-container {
+    min-height: 100vh;
+    padding: 16px;
+    padding-bottom: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  /* Sponsors window - wider for grid */
+  .win95-sponsors-window {
+    width: 100%;
+    max-width: 700px;
+    margin-top: 16px;
+  }
+
+  /* Header styling */
+  .win95-sponsors-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #808080;
+  }
+
+  .win95-sponsors-icon {
+    flex-shrink: 0;
+  }
+
+  /* Sponsors grid container */
+  .win95-sponsors-grid-container {
+    padding: 8px;
+    max-height: 120px;
+    overflow-y: auto;
+  }
+
+  .win95-sponsors-grid-large {
+    max-height: 280px;
+  }
+
+  /* Sponsors grid */
+  .win95-sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 4px;
+  }
+
+  /* Individual sponsor item */
+  .win95-sponsor-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid transparent;
+  }
+
+  .win95-sponsor-item:hover {
+    background: #000080;
+    color: #ffffff;
+  }
+
+  .win95-sponsor-item:hover .win95-sponsor-name {
+    color: #ffffff;
+  }
+
+  /* Win95 style icon box with titlebar */
+  .win95-sponsor-icon-box {
+    width: 36px;
+    height: 36px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-bottom: 2px;
+  }
+
+  .win95-sponsor-icon-titlebar {
+    height: 4px;
+    background: linear-gradient(90deg, #000080, #1084d0);
+    flex-shrink: 0;
+  }
+
+  .win95-sponsor-icon-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    background: #989898;
+    overflow: hidden;
+  }
+
+  .win95-sponsor-icon-content :global(svg) {
+    width: 100%;
+    height: 100%;
+    max-width: 24px;
+    max-height: 24px;
+    object-fit: contain;
+  }
+
+  .win95-sponsor-icon-content span {
+    font-size: 10px;
+    font-weight: bold;
+    color: #000080;
+  }
+
+  .win95-sponsor-name {
+    font-size: 10px;
+    text-align: center;
+    max-width: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #000000;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .win95-sponsors-container {
+      padding: 8px;
+      padding-bottom: 44px;
+    }
+
+    .win95-sponsors-window {
+      margin-top: 8px;
+    }
+
+    .win95-sponsors-grid {
+      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    }
+
+    .win95-sponsors-grid-large {
+      max-height: 240px;
+    }
+  }
+</style>

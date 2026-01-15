@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(frontend-design)",
+      "Bash(npm install:*)",
+      "Bash(pnpm add:*)"
+    ]
+  }
+}
