@@ -1,0 +1,455 @@
+---
+/**
+ * Animated Radial Theme Switcher
+ * A circular toggle that expands to show available themes
+ * Designed to accommodate future theme additions
+ */
+import { THEMES, THEME_LABELS, type Theme } from '../utils/theme';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["theme-switcher-container", className]}>
+  <button
+    class="theme-switcher-toggle"
+    aria-label="Toggle theme menu"
+    aria-expanded="false"
+    type="button"
+  >
+    <span class="theme-toggle-icon">
+      <!-- Moon icon for dark theme -->
+      <svg class="theme-icon theme-icon-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <!-- Windows icon for Win95 theme -->
+      <svg class="theme-icon theme-icon-win95" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 5.5L10.5 4.5V11.25H3V5.5Z"/>
+        <path d="M11.5 4.35L21 3V11.25H11.5V4.35Z"/>
+        <path d="M3 12.25H10.5V19L3 18V12.25Z"/>
+        <path d="M11.5 12.25H21V20.5L11.5 19.15V12.25Z"/>
+      </svg>
+    </span>
+  </button>
+
+  <div class="theme-options" aria-hidden="true">
+    {THEMES.map((theme, index) => (
+      <button
+        class="theme-option"
+        data-theme-set={theme}
+        aria-label={`Switch to ${THEME_LABELS[theme]} theme`}
+        type="button"
+        style={`--option-index: ${index};`}
+      >
+        <span class="theme-option-icon">
+          {theme === 'dark' && (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          )}
+          {theme === 'win95' && (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 5.5L10.5 4.5V11.25H3V5.5Z"/>
+              <path d="M11.5 4.35L21 3V11.25H11.5V4.35Z"/>
+              <path d="M3 12.25H10.5V19L3 18V12.25Z"/>
+              <path d="M11.5 12.25H21V20.5L11.5 19.15V12.25Z"/>
+            </svg>
+          )}
+        </span>
+        <span class="theme-option-label">{THEME_LABELS[theme]}</span>
+      </button>
+    ))}
+  </div>
+</div>
+
+<style>
+  .theme-switcher-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9998;
+  }
+
+  /* Main toggle button */
+  .theme-switcher-toggle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.1);
+
+    /* Default dark theme styles */
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    color: #22d3ee;
+  }
+
+  .theme-switcher-toggle:hover {
+    transform: scale(1.08);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.15),
+      0 0 20px rgba(34, 211, 238, 0.2);
+  }
+
+  .theme-switcher-toggle:active {
+    transform: scale(0.95);
+  }
+
+  /* Toggle icon container */
+  .theme-toggle-icon {
+    width: 22px;
+    height: 22px;
+    position: relative;
+  }
+
+  .theme-icon {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Dark theme icon visible by default */
+  .theme-icon-dark {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  .theme-icon-win95 {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+  }
+
+  /* Options container */
+  .theme-options {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+  }
+
+  .theme-switcher-container.expanded .theme-options {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Individual theme option button */
+  .theme-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    opacity: 0;
+    transform: translateX(20px) scale(0.9);
+
+    /* Default dark theme option styles */
+    background: rgba(10, 10, 10, 0.95);
+    color: #a3a3a3;
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+  }
+
+  .theme-switcher-container.expanded .theme-option {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    transition-delay: calc(var(--option-index) * 0.05s);
+  }
+
+  .theme-option:hover {
+    color: #fafafa;
+    background: rgba(20, 20, 20, 0.98);
+    transform: translateX(-4px) scale(1);
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(34, 211, 238, 0.3);
+  }
+
+  .theme-option.active {
+    color: #22d3ee;
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(34, 211, 238, 0.5),
+      0 0 12px rgba(34, 211, 238, 0.15);
+  }
+
+  .theme-option-icon {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .theme-option-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .theme-option-label {
+    letter-spacing: 0.02em;
+  }
+
+  /* Radial expansion animation backdrop */
+  .theme-switcher-toggle::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(34, 211, 238, 0.3) 45deg,
+      transparent 90deg,
+      rgba(34, 211, 238, 0.2) 180deg,
+      transparent 270deg
+    );
+    opacity: 0;
+    animation: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .theme-switcher-container.expanded .theme-switcher-toggle::before {
+    opacity: 1;
+    animation: radial-spin 3s linear infinite;
+  }
+
+  @keyframes radial-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* Pulse ring on toggle */
+  .theme-switcher-toggle::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(34, 211, 238, 0.4);
+    opacity: 0;
+    transform: scale(1);
+    transition: all 0.4s ease;
+  }
+
+  .theme-switcher-container.expanded .theme-switcher-toggle::after {
+    opacity: 0;
+    transform: scale(1.5);
+    animation: pulse-ring 1.5s ease-out infinite;
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(2);
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     WIN95 THEME OVERRIDES FOR SWITCHER
+     ═══════════════════════════════════════════════════════════════ */
+
+  :global(.win95) .theme-switcher-toggle {
+    background: linear-gradient(180deg, #dfdfdf 0%, #c0c0c0 50%, #a0a0a0 100%);
+    color: #000080;
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+    box-shadow:
+      inset -1px -1px 0 #808080,
+      2px 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 0;
+    width: 44px;
+    height: 44px;
+  }
+
+  :global(.win95) .theme-switcher-toggle:hover {
+    transform: none;
+    box-shadow:
+      inset -1px -1px 0 #808080,
+      2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  :global(.win95) .theme-switcher-toggle:active {
+    border-color: #404040 #ffffff #ffffff #404040;
+    box-shadow: inset 1px 1px 0 #808080;
+    transform: none;
+  }
+
+  :global(.win95) .theme-switcher-toggle::before,
+  :global(.win95) .theme-switcher-toggle::after {
+    display: none;
+  }
+
+  :global(.win95) .theme-options {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+    box-shadow: inset -1px -1px 0 #808080;
+    padding: 4px;
+    gap: 2px;
+    border-radius: 0;
+  }
+
+  :global(.win95) .theme-option {
+    background: #c0c0c0;
+    color: #000000;
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+    box-shadow: inset -1px -1px 0 #808080;
+    border-radius: 0;
+    padding: 4px 12px;
+    font-family: "W95FA", "Tahoma", sans-serif;
+    font-size: 11px;
+    backdrop-filter: none;
+  }
+
+  :global(.win95) .theme-option:hover {
+    background: #000080;
+    color: #ffffff;
+    transform: none;
+    box-shadow: inset -1px -1px 0 #808080;
+  }
+
+  :global(.win95) .theme-option.active {
+    background: #c0c0c0;
+    color: #000000;
+    box-shadow: inset -1px -1px 0 #808080;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+
+  /* Show correct icon based on theme */
+  :global(.win95) .theme-icon-dark {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+  }
+
+  :global(.win95) .theme-icon-win95 {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 640px) {
+    .theme-switcher-container {
+      bottom: 16px;
+      right: 16px;
+    }
+
+    .theme-switcher-toggle {
+      width: 44px;
+      height: 44px;
+    }
+
+    .theme-option {
+      padding: 8px 14px;
+      font-size: 12px;
+    }
+  }
+
+  /* Taskbar offset for Win95 */
+  :global(.win95) .theme-switcher-container {
+    bottom: 36px;
+  }
+</style>
+
+<script>
+  import { THEMES, getTheme, type Theme } from '../utils/theme';
+
+  function initThemeSwitcher() {
+    const container = document.querySelector('.theme-switcher-container');
+    const toggle = document.querySelector('.theme-switcher-toggle');
+    const options = document.querySelector('.theme-options');
+
+    if (!container || !toggle || !options) return;
+
+    // Update active state based on current theme
+    function updateActiveState() {
+      const currentTheme = getTheme();
+      document.querySelectorAll('.theme-option').forEach((btn) => {
+        const btnTheme = (btn as HTMLButtonElement).dataset.themeSet;
+        btn.classList.toggle('active', btnTheme === currentTheme);
+      });
+    }
+
+    // Toggle expanded state
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isExpanded = container.classList.toggle('expanded');
+      toggle.setAttribute('aria-expanded', String(isExpanded));
+      options.setAttribute('aria-hidden', String(!isExpanded));
+      updateActiveState();
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!container.contains(e.target as Node)) {
+        container.classList.remove('expanded');
+        toggle.setAttribute('aria-expanded', 'false');
+        options.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // Close on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        container.classList.remove('expanded');
+        toggle.setAttribute('aria-expanded', 'false');
+        options.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // Close menu after selection (handled by theme.ts click listener)
+    options.addEventListener('click', () => {
+      setTimeout(() => {
+        container.classList.remove('expanded');
+        toggle.setAttribute('aria-expanded', 'false');
+        options.setAttribute('aria-hidden', 'true');
+        updateActiveState();
+      }, 100);
+    });
+
+    // Initial state
+    updateActiveState();
+  }
+
+  // Initialize on load
+  initThemeSwitcher();
+
+  // Re-initialize on view transitions
+  document.addEventListener('astro:after-swap', initThemeSwitcher);
+</script>

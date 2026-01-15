@@ -298,3 +298,609 @@ pre[class*="language-"] {
     background-size: cover;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   WINDOWS 95 THEME
+   Authentic retro computing aesthetic with beveled edges and classic colors
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Windows 95 System Font - Tahoma as closest web-safe match */
+@font-face {
+  font-family: "W95FA";
+  src: url("https://cdn.jsdelivr.net/gh/nickshanks/Windows-Fonts@main/W95FA/W95FA.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Win95 Theme Variables */
+.win95 {
+  /* Classic Windows 95 color palette */
+  --win95-desktop: #008080;
+  --win95-silver: #c0c0c0;
+  --win95-silver-light: #dfdfdf;
+  --win95-silver-dark: #808080;
+  --win95-white: #ffffff;
+  --win95-black: #000000;
+  --win95-navy: #000080;
+  --win95-highlight: #0000aa;
+  --win95-button-face: #c0c0c0;
+  --win95-button-highlight: #ffffff;
+  --win95-button-shadow: #808080;
+  --win95-button-dark-shadow: #404040;
+  --win95-window-bg: #c0c0c0;
+  --win95-title-active: linear-gradient(90deg, #000080, #1084d0);
+  --win95-title-inactive: linear-gradient(90deg, #808080, #b5b5b5);
+
+  /* Override default theme colors */
+  --color-void: var(--win95-desktop);
+  --color-surface: var(--win95-silver);
+  --color-muted: var(--win95-silver-dark);
+  --color-subtle: var(--win95-black);
+  --color-text: var(--win95-black);
+  --color-accent: var(--win95-navy);
+  --color-background: var(--win95-desktop);
+  --color-foreground: var(--win95-black);
+
+  /* System font */
+  --font-win95: "W95FA", "Tahoma", "MS Sans Serif", "Segoe UI", sans-serif;
+
+  /* Disable smooth animations for authentic feel */
+  --win95-transition: none;
+}
+
+/* Win95 Base Styles */
+.win95,
+.win95 body {
+  background: var(--win95-desktop);
+  font-family: var(--font-win95);
+  font-size: 11px;
+  color: var(--win95-black);
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  font-smooth: never;
+}
+
+/* Clouds Background - The iconic Windows 95 desktop */
+.win95 .win95-clouds {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: url(/images/wincloud.svg);
+  background-size: cover;
+  filter: blur(3.5px);
+}
+
+/* Win95 Window Chrome */
+.win95 .win95-window {
+  background: var(--win95-silver);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-dark-shadow) var(--win95-button-dark-shadow) var(--win95-button-highlight);
+  box-shadow:
+    inset 1px 1px 0 var(--win95-silver-light),
+    inset -1px -1px 0 var(--win95-button-shadow);
+  padding: 2px;
+  z-index: 99;
+}
+
+/* Win95 Title Bar */
+.win95 .win95-titlebar {
+  background: var(--win95-title-active);
+  padding: 3px 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  user-select: none;
+  height: 26px;
+}
+
+.win95 .win95-titlebar-text {
+  color: var(--win95-white);
+  font-weight: bold;
+  font-size: 13px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0;
+}
+
+/* Win95 Title Bar Buttons */
+.win95 .win95-titlebar-buttons {
+  display: flex;
+  gap: 2px;
+}
+
+.win95 .win95-titlebar-btn {
+  width: 21px;
+  height: 21px;
+  background: var(--win95-silver);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-dark-shadow) var(--win95-button-dark-shadow) var(--win95-button-highlight);
+  box-shadow: inset -1px -1px 0 var(--win95-button-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-win95);
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+  color: var(--win95-black);
+  cursor: pointer;
+  padding: 0;
+}
+
+.win95 .win95-titlebar-btn:active {
+  border-color: var(--win95-button-dark-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-dark-shadow);
+  box-shadow: inset 1px 1px 0 var(--win95-button-shadow);
+}
+
+/* Win95 Window Content */
+.win95 .win95-content {
+  background: var(--win95-silver);
+  padding: 8px;
+}
+
+/* Win95 Button - The classic 3D beveled look */
+.win95 .win95-btn {
+  background: var(--win95-silver);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-dark-shadow) var(--win95-button-dark-shadow) var(--win95-button-highlight);
+  box-shadow: inset -1px -1px 0 var(--win95-button-shadow);
+  padding: 4px 12px;
+  font-family: var(--font-win95);
+  font-size: 11px;
+  color: var(--win95-black);
+  cursor: pointer;
+  min-width: 75px;
+  text-align: center;
+}
+
+.win95 .win95-btn:hover {
+  background: var(--win95-silver-light);
+}
+
+.win95 .win95-btn:active {
+  border-color: var(--win95-button-dark-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-dark-shadow);
+  box-shadow: inset 1px 1px 0 var(--win95-button-shadow);
+  padding: 5px 11px 3px 13px;
+}
+
+.win95 .win95-btn:focus {
+  outline: 1px dotted var(--win95-black);
+  outline-offset: -4px;
+}
+
+/* Win95 Inset Panel - for content areas */
+.win95 .win95-inset {
+  background: var(--win95-white);
+  border: 2px solid;
+  border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+  box-shadow: inset 1px 1px 0 var(--win95-button-dark-shadow);
+}
+
+/* Win95 Outset Panel - for raised elements */
+.win95 .win95-outset {
+  background: var(--win95-silver);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-dark-shadow) var(--win95-button-dark-shadow) var(--win95-button-highlight);
+  box-shadow: inset -1px -1px 0 var(--win95-button-shadow);
+}
+
+/* Win95 Link styling */
+.win95 a {
+  color: var(--win95-navy);
+  text-decoration: underline;
+}
+
+.win95 a:hover {
+  color: var(--win95-highlight);
+}
+
+.win95 a:visited {
+  color: #551a8b;
+}
+
+/* Win95 Text Selection */
+.win95 ::selection {
+  background: var(--win95-navy);
+  color: var(--win95-white);
+}
+
+/* Win95 Scrollbar styling */
+.win95 ::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+.win95 ::-webkit-scrollbar-track {
+  background: repeating-conic-gradient(var(--win95-silver) 0% 25%, var(--win95-white) 0% 50%) 50% / 2px 2px;
+}
+
+.win95 ::-webkit-scrollbar-thumb {
+  background: var(--win95-silver);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-dark-shadow) var(--win95-button-dark-shadow) var(--win95-button-highlight);
+}
+
+.win95 ::-webkit-scrollbar-button {
+  background: var(--win95-silver);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-dark-shadow) var(--win95-button-dark-shadow) var(--win95-button-highlight);
+  width: 16px;
+  height: 16px;
+}
+
+/* Win95 Status Bar */
+.win95 .win95-statusbar {
+  background: var(--win95-silver);
+  border-top: 1px solid var(--win95-button-shadow);
+  padding: 2px 4px;
+  font-size: 11px;
+  display: flex;
+  gap: 4px;
+}
+
+.win95 .win95-statusbar-section {
+  border: 1px solid;
+  border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+  padding: 1px 4px;
+  flex: 1;
+}
+
+/* Win95 Menu Bar */
+.win95 .win95-menubar {
+  background: var(--win95-silver);
+  padding: 2px 0;
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--win95-button-shadow);
+}
+
+.win95 .win95-menu-item {
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.win95 .win95-menu-item:hover {
+  background: var(--win95-navy);
+  color: var(--win95-white);
+}
+
+/* Win95 Desktop Icons Grid */
+.win95 .win95-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 75px);
+  gap: 16px;
+  padding: 16px;
+}
+
+.win95 .win95-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.win95 .win95-icon:hover .win95-icon-label {
+  background: var(--win95-navy);
+  color: var(--win95-white);
+}
+
+.win95 .win95-icon-img {
+  width: 32px;
+  height: 32px;
+  image-rendering: pixelated;
+}
+
+.win95 .win95-icon-label {
+  font-size: 11px;
+  color: var(--win95-white);
+  text-shadow: 1px 1px 0 var(--win95-black), -1px -1px 0 var(--win95-black), 1px -1px 0 var(--win95-black), -1px 1px 0 var(--win95-black);
+  max-width: 70px;
+  word-wrap: break-word;
+}
+
+/* Win95 Taskbar */
+.win95 .win95-taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  background: var(--win95-silver);
+  border-top: 2px solid var(--win95-button-highlight);
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  gap: 4px;
+  z-index: 9999;
+}
+
+.win95 .win95-start-btn {
+  background: var(--win95-silver);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-dark-shadow) var(--win95-button-dark-shadow) var(--win95-button-highlight);
+  padding: 2px 6px;
+  font-family: var(--font-win95);
+  font-size: 11px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  height: 22px;
+}
+
+.win95 .win95-start-btn:active {
+  border-color: var(--win95-button-dark-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-dark-shadow);
+}
+
+/* Win95 System Tray */
+.win95 .win95-systray {
+  margin-left: auto;
+  background: var(--win95-silver);
+  border: 1px solid;
+  border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+  padding: 2px 8px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Win95 Divider */
+.win95 .win95-divider {
+  width: 2px;
+  height: 100%;
+  border-left: 1px solid var(--win95-button-shadow);
+  border-right: 1px solid var(--win95-button-highlight);
+}
+
+.win95 .win95-divider-h {
+  height: 2px;
+  width: 100%;
+  border-top: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-highlight);
+}
+
+/* Win95 Checkbox and Radio styling */
+.win95 input[type="checkbox"],
+.win95 input[type="radio"] {
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  background: var(--win95-white);
+  border: 1px solid;
+  border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+  box-shadow: inset 1px 1px 0 var(--win95-button-dark-shadow);
+  cursor: pointer;
+}
+
+.win95 input[type="radio"] {
+  border-radius: 50%;
+}
+
+.win95 input[type="checkbox"]:checked {
+  background: var(--win95-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 13'%3E%3Cpath d='M2 6l3 3 6-6' stroke='%23000' stroke-width='2' fill='none'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+.win95 input[type="radio"]:checked {
+  background: radial-gradient(circle at center, var(--win95-black) 3px, var(--win95-white) 3px);
+}
+
+/* Win95 Text Input */
+.win95 input[type="text"],
+.win95 input[type="password"],
+.win95 input[type="email"],
+.win95 textarea {
+  background: var(--win95-white);
+  border: 2px solid;
+  border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+  box-shadow: inset 1px 1px 0 var(--win95-button-dark-shadow);
+  padding: 2px 4px;
+  font-family: var(--font-win95);
+  font-size: 11px;
+}
+
+.win95 input:focus,
+.win95 textarea:focus {
+  outline: none;
+}
+
+/* Win95 Progress Bar */
+.win95 .win95-progress {
+  background: var(--win95-silver);
+  border: 2px solid;
+  border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+  height: 16px;
+  padding: 1px;
+}
+
+.win95 .win95-progress-bar {
+  background: var(--win95-navy);
+  height: 100%;
+  display: flex;
+}
+
+.win95 .win95-progress-block {
+  width: 8px;
+  height: 100%;
+  background: var(--win95-navy);
+  margin-right: 2px;
+}
+
+/* Win95 Tab styling */
+.win95 .win95-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--win95-button-shadow);
+}
+
+.win95 .win95-tab {
+  background: var(--win95-silver);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-dark-shadow) var(--win95-silver) var(--win95-button-highlight);
+  border-bottom: none;
+  padding: 4px 12px;
+  margin-right: -1px;
+  cursor: pointer;
+  position: relative;
+  top: 1px;
+}
+
+.win95 .win95-tab.active {
+  background: var(--win95-silver);
+  border-bottom: 2px solid var(--win95-silver);
+  z-index: 1;
+}
+
+/* Win95 Group Box */
+.win95 .win95-groupbox {
+  border: 1px solid;
+  border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+  padding: 12px 8px 8px;
+  margin-top: 8px;
+  position: relative;
+}
+
+.win95 .win95-groupbox-label {
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  background: var(--win95-silver);
+  padding: 0 4px;
+  font-size: 11px;
+}
+
+/* Win95 Tooltip */
+.win95 .win95-tooltip {
+  background: #ffffe1;
+  border: 1px solid var(--win95-black);
+  padding: 2px 4px;
+  font-size: 11px;
+  position: absolute;
+  z-index: 10000;
+  pointer-events: none;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.25);
+}
+
+/* Disable standard animations in Win95 mode for authenticity */
+.win95 .animate-fade-in-up,
+.win95 .animate-fade-in {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Win95 footer override */
+.win95 footer {
+  border-color: var(--win95-button-shadow) !important;
+  background: var(--win95-silver);
+}
+
+/* Win95 page specific overrides */
+.win95 .selection\:bg-accent\/20::selection {
+  background: var(--win95-navy) !important;
+  color: var(--win95-white) !important;
+}
+
+/* Win95 Typography - improved readability for blog content */
+.win95 .prose {
+  font-family: "Tahoma", "Segoe UI", "Arial", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--win95-black);
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+.win95 .prose h1,
+.win95 .prose h2,
+.win95 .prose h3,
+.win95 .prose h4 {
+  font-family: "Tahoma", "Segoe UI", "Arial", sans-serif;
+  font-weight: bold;
+  color: var(--win95-black);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.win95 .prose h1 { font-size: 20px; }
+.win95 .prose h2 { font-size: 17px; }
+.win95 .prose h3 { font-size: 15px; }
+
+.win95 .prose p {
+  margin-bottom: 1em;
+}
+
+.win95 .prose a {
+  color: var(--win95-navy);
+  text-decoration: underline;
+}
+
+.win95 .prose a:hover {
+  color: var(--win95-highlight);
+}
+
+.win95 .prose code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  background: var(--win95-white);
+  border: 1px solid var(--win95-button-shadow);
+  padding: 1px 4px;
+}
+
+.win95 .prose pre {
+  background: var(--win95-white);
+  border: 2px solid;
+  border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+  box-shadow: inset 1px 1px 0 var(--win95-button-dark-shadow);
+  padding: 12px;
+  overflow-x: auto;
+}
+
+.win95 .prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--win95-black);
+}
+
+.win95 .prose ul,
+.win95 .prose ol {
+  padding-left: 24px;
+  margin-bottom: 1em;
+}
+
+.win95 .prose li {
+  margin-bottom: 0.25em;
+}
+
+.win95 .prose blockquote {
+  border-left: 3px solid var(--win95-navy);
+  padding-left: 12px;
+  margin: 1em 0;
+  font-style: italic;
+  color: var(--win95-silver-dark);
+}
+
+.win95 .prose img {
+  border: 2px solid;
+  border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+  box-shadow: inset 1px 1px 0 var(--win95-button-dark-shadow);
+}
+
+.win95 .prose hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to bottom, var(--win95-button-shadow) 0%, var(--win95-button-shadow) 50%, var(--win95-button-highlight) 50%, var(--win95-button-highlight) 100%);
+  margin: 1.5em 0;
+}
+
+/* Win95 Hide standard footer in Win95 mode - use taskbar instead */
+.win95 footer {
+  display: none !important;
+}
