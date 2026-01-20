@@ -2,6 +2,9 @@
    https://tailwindcss.com/docs/detecting-classes-in-source-files#setting-your-base-path */
 @import "tailwindcss" source("..");
 
+/* Dark-only site: enable class-based dark mode */
+@variant dark (&:where(.dark, .dark *));
+
 /* Tailwind CSS Typography plugin + custom CSS overrides */
 @plugin "@tailwindcss/typography";
 @config "./plugin-configs/tailwindcss-typography.cjs";
