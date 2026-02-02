@@ -13,6 +13,7 @@ const posts = defineCollection({
       tags: z.array(z.string()).optional(),
       draft: z.boolean().default(false),
       hidden: z.boolean().default(false),
+      archived: z.boolean().default(false),
       readMore: z.boolean().optional(),
       cover: image().optional(),
       coverAlt: z.string().optional(),
@@ -24,4 +25,3 @@ const posts = defineCollection({
 export const collections = {
   posts,
 };
-

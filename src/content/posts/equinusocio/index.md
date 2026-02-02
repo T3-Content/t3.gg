@@ -5,6 +5,7 @@ description: "Mattia is the creator of Material Theme for VS Code. He is also in
 cover: ./images/equinusocio-danger.jpg
 coverAlt: "Material Theme warning graphic"
 readMore: true
+archived: true
 ---
 
 Remember the Material Theme for VS Code? It is being managed so poorly that the result is indistinguishable from malware, and Mattia Astorino (aka equinusocio) is to blame.

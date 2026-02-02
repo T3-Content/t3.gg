@@ -1,0 +1,41 @@
+---
+import "../../style/global.css";
+import BlogPostPreview from "../../components/BlogPostPreview.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const siteTitle = "blog archive";
+const description = "Older posts that have been manually archived";
+
+const allPosts = await getCollection("posts");
+const archivedPosts = allPosts
+  .filter((post) => !post.data.hidden && !post.data.draft && post.data.archived)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const backToLink = {
+  text: "blog",
+  href: "/blog",
+};
+---
+
+<BaseLayout title={siteTitle} description={description} {backToLink}>
+  <div class="mx-auto w-full max-w-4xl px-6 py-16">
+    <header class="mb-12">
+      <h1 class="text-2xl tracking-tight text-text">archived posts</h1>
+      <p class="mt-2 max-w-2xl text-sm text-muted">
+        these posts keep their URLs but no longer show up in the main feed.
+      </p>
+    </header>
+
+    {archivedPosts.length === 0 ? (
+      <p class="text-sm text-muted">no archived posts yet.</p>
+    ) : (
+      <div class="flex flex-col gap-1">
+        {archivedPosts.map((post) => (
+          <BlogPostPreview post={post} />
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>
+

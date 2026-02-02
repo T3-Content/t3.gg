@@ -4,6 +4,7 @@ date: "2023-03-02"
 description: "Picking the best tools for the job"
 imageURL: "https://img.youtube.com/vi/ODJkKJUnKtM/maxresdefault.jpg"
 readMore: true
+archived: true
 ---
 
 The quality of the tools you work with is important. I spend...too much time thinking about this.

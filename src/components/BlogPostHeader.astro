@@ -20,6 +20,11 @@ const coverAlt = post.data.coverAlt ?? post.data.title;
     {post.data.title}
   </h1>
   <time datetime={date.toString()} class="text-sm text-muted">{formatted}</time>
+  {post.data.archived ? (
+    <div class="mt-4 rounded-lg border border-amber-300/20 bg-amber-300/5 px-4 py-3 text-sm text-amber-100/90">
+      This post was archived manually by Theo. It is probably out of date or something.
+    </div>
+  ) : null}
   {coverImage ? (
     <figure class="mt-8">
       <BlogImage

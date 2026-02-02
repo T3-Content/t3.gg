@@ -15,7 +15,7 @@ const toExcerpt = (body: string): string =>
 export async function GET(context: { site: URL | undefined }) {
   const posts = await getCollection(
     "posts",
-    ({ data }) => !data.hidden && !data.draft,
+    ({ data }) => !data.hidden && !data.draft && !data.archived,
   );
 
   const sortedPosts = posts.sort(

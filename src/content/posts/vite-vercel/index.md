@@ -5,6 +5,7 @@ description: "Vite and Vercel are fun new technologies that sadly don't play nic
 cover: ./images/twitter.png
 coverAlt: "Vite and Vercel graphic"
 readMore: true
+archived: true
 ---
 
 ![Vite + Vercel](./images/twitter.png)
