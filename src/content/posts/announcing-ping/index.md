@@ -2,7 +2,8 @@
 title: "Why We're Building Ping"
 date: "2022-01-11"
 description: "Streaming with your friends is way too difficult. We're going to fix it. What if Zoom was built for streamers? 🤔"
-imageURL: "https://t3.gg/images/announcing-ping/twitter.png"
+cover: ./images/twitter.png
+coverAlt: "Ping announcement graphic"
 readMore: true
 ---
 
@@ -18,7 +19,7 @@ After collective decades of dealing with these problems, we’re building soluti
 
 Introducing our first creator-focused tool, [Ping](https://ping.t3.gg).
 
-[<img src="/images/announcing-ping/twitter.png" alt="Ping brand" />](https://ping.t3.gg)
+[![Ping brand](./images/twitter.png)](https://ping.t3.gg)
 
 Have you ever tried streaming with your friends before? If you have, then you know it’s one of the most painful processes in content creation. Interaction is the life blood of live content, and the tools to interact with your friends live are rough.
 

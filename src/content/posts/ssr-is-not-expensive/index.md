@@ -2,7 +2,8 @@
 title: "Debunking the Myth: SSR Isn't Expensive"
 date: "2024-12-10"
 description: "SSR is not expensive. It's actually a great way to save money and improve the user experience."
-imageURL: "https://t3.gg/images/ssr-expensive.jpg"
+cover: ./images/ssr-expensive.jpg
+coverAlt: "SSR is not expensive cover image"
 readMore: true
 ---
 

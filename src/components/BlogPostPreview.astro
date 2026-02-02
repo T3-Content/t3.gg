@@ -1,15 +1,16 @@
 ---
+import type { CollectionEntry } from "astro:content";
+import { format } from "date-fns";
+
 export interface Props {
-  post: any;
+  post: CollectionEntry<"posts">;
 }
 
-import { getSlugFromPath } from "../utils/get-slug-from-path";
-import { parseISO, format } from "date-fns";
-
 const { post } = Astro.props;
-const url = "/blog/post/" + getSlugFromPath(post.file);
+const slug = post.slug ?? post.id;
+const url = `/blog/post/${slug}`;
 
-const date = parseISO(post.frontmatter.date);
+const date = post.data.date;
 const formattedDate = format(date, "MMM d, yyyy");
 ---
 
@@ -18,7 +19,7 @@ const formattedDate = format(date, "MMM d, yyyy");
   class="group relative flex items-baseline justify-between gap-4 py-3"
 >
   <span class="text-subtle transition-colors duration-200 group-hover:text-text">
-    {post.frontmatter.title}
+    {post.data.title}
   </span>
   <span class="shrink-0 text-sm text-muted">{formattedDate}</span>
   <span

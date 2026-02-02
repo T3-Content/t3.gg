@@ -2,7 +2,8 @@
 title: "An Inconsistent Truth: Next.js and Type Safety"
 date: "2021-12-02"
 description: "Next.js is a great framework. The frontend and backend have never been closer. Can we bridge the remaining gap in a typesafe way?"
-imageURL: "https://t3.gg/images/next-typesafety/twitter.png"
+cover: ./images/twitter.png
+coverAlt: "Next.js type safety graphic"
 readMore: true
 ---
 
@@ -49,7 +50,7 @@ _But how??!_
 
 ### Type Inference
 
-<img src="/images/next-typesafety/drake.jpeg" style="margin-bottom:-1.5rem;" />
+![Type inference drake meme](./images/drake.jpeg)
 
 Credits to [Alex for this fantastic meme](https://twitter.com/alexdotjs/status/1465975816370728963)
 
@@ -186,7 +187,7 @@ The goal here is to use the types of your `getServerSideProps` function as a sou
 
 As happy I am to know this exists, I've already ran into some painful edges with Next's provided `InferGetServerSidePropsType`
 
-- It [overrides inferable types](https://t3.gg/images/next-typesafety/infer-props-fail-1.png) as `{[key: string]: any}` generic objects if you cast function as `GetServerSideProps` w/o also manually assigning a type
+- It [overrides inferable types](./images/infer-props-fail-1.png) as `{[key: string]: any}` generic objects if you cast function as `GetServerSideProps` w/o also manually assigning a type
 - It infers to `props: never` if you [don't specify input types as it expects](https://github.com/vercel/next.js/issues/15913)
 
 To use this correctly, I had to have decent familiarity with Next's internal typings and read through [this GitHub issue thoroughly](https://github.com/vercel/next.js/issues/15913). Even with that prerequisite, I found it shockingly easy to accidentally return a non-implicit `any` type, which _does not throw any errors under the provided Next.js `tsconfig`_ .

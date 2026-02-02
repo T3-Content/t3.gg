@@ -2,18 +2,15 @@
 import "../../style/global.css";
 import BlogPostPreview from "../../components/BlogPostPreview.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 
 const siteTitle = "blog";
 const description = "Thought dumps and nerdy stuff";
 
-const allPosts = await Astro.glob("../../content/posts/*.md");
+const allPosts = await getCollection("posts");
 const sortedPosts = allPosts
-  .sort(
-    (a, b) =>
-      new Date(b.frontmatter.date).valueOf() -
-      new Date(a.frontmatter.date).valueOf(),
-  )
-  .filter((p) => p.frontmatter.hidden !== true);
+  .filter((post) => !post.data.hidden && !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <BaseLayout title={siteTitle} description={description}>
@@ -23,6 +20,12 @@ const sortedPosts = allPosts
       <p class="mt-2 text-sm text-muted">
         thoughts on tech and content. usually goes to twitter, sometimes here.
       </p>
+      <a
+        href="/rss.xml"
+        class="mt-3 inline-block text-xs tracking-wide text-muted transition-colors hover:text-text"
+      >
+        rss
+      </a>
     </header>
 
     <div class="flex flex-col gap-1">

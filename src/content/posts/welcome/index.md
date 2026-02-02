@@ -1,6 +1,9 @@
 ---
 title: "Hello World"
 date: "2020-12-21"
+description: "Kicking off the blog and the stack behind it."
+cover: ./images/lighthouse-scores.png
+coverAlt: "Lighthouse performance scores"
 ---
 
 This is long, long overdue.
@@ -11,7 +14,7 @@ This blog is also built on things I'm nerdy about. My personal site was previous
 
 tl;dr on the tech - [Next.js](https://nextjs.org/) rewrite deployed on [Netlify](https://netlify.com)
 
-It's nothing too fancy. Still pumped about the [lighthouse score tho](/images/lighthouse-scores.png)
+It's nothing too fancy. Still pumped about the [lighthouse score tho](./images/lighthouse-scores.png)
 
 I'll likely write more on the tech itself in the future - but for now, know I'm loving this stack and highly recommend it.
 
