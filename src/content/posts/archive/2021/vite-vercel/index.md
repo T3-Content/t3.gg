@@ -1,5 +1,6 @@
 ---
 title: "Using Vite On Vercel (Semi-Outdated)"
+slug: "vite-vercel"
 date: "2021-06-14"
 description: "Vite and Vercel are fun new technologies that sadly don't play nice. This is a guide on how to work around that"
 cover: ./images/twitter.png

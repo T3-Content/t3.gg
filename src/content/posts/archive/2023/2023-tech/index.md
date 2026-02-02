@@ -1,5 +1,6 @@
 ---
 title: "Tech I'm Shipping In 2023"
+slug: "2023-tech"
 date: "2023-03-02"
 description: "Picking the best tools for the job"
 imageURL: "https://img.youtube.com/vi/ODJkKJUnKtM/maxresdefault.jpg"

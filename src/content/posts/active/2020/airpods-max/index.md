@@ -1,5 +1,6 @@
 ---
 title: "AirPods Max Review"
+slug: "airpods-max"
 date: "2020-12-22"
 description: "An Audiophile who happens to love Apple comes to terms with this terrible product"
 cover: ./images/miles.jpg

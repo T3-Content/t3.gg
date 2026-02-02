@@ -1,5 +1,6 @@
 ---
 title: "Why We're Building Ping"
+slug: "announcing-ping"
 date: "2022-01-11"
 description: "Streaming with your friends is way too difficult. We're going to fix it. What if Zoom was built for streamers? 🤔"
 cover: ./images/twitter.png

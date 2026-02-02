@@ -9,15 +9,33 @@ export async function getStaticPaths() {
     ({ data }) => !data.hidden && !data.draft,
   );
 
-  return posts.map((post) => ({
-    params: {
-      slug: post.slug ?? post.id,
-    },
-    props: { post },
-  }));
+  const paths: Array<{
+    params: { slug: string };
+    props: { post: (typeof posts)[number]; canonicalSlug: string; isAlias: boolean };
+  }> = [];
+
+  for (const post of posts) {
+    const canonicalSlug = post.id;
+
+    paths.push({
+      params: { slug: canonicalSlug },
+      props: { post, canonicalSlug, isAlias: false },
+    });
+
+    const aliases = post.data.slugAliases ?? [];
+    for (const alias of aliases) {
+      if (!alias || alias === canonicalSlug) continue;
+      paths.push({
+        params: { slug: alias },
+        props: { post, canonicalSlug, isAlias: true },
+      });
+    }
+  }
+
+  return paths;
 }
 
-const { post } = Astro.props;
+const { post, canonicalSlug, isAlias } = Astro.props;
 const { Content } = await render(post);
 
 const title = post.data.title;
@@ -36,6 +54,7 @@ const description =
   "Thought dumps and nerdy stuff";
 
 const ogImage = post.data.cover ?? post.data.imageURL;
+const canonicalPath = `/blog/post/${canonicalSlug}`;
 
 const backToLink = {
   text: "blog",
@@ -43,21 +62,45 @@ const backToLink = {
 };
 ---
 
-<BaseLayout
-  {title}
-  {description}
-  canonicalUrl={post.data.canonicalUrl}
-  ogImage={ogImage}
-  ogImageAlt={post.data.coverAlt}
-  ogType="article"
-  publishedTime={post.data.date}
-  updatedTime={post.data.updated}
-  {backToLink}
->
-  <div class="mx-auto w-full max-w-2xl px-6 py-16">
-    <article class="prose prose-invert prose-lg max-w-none">
-      <BlogPostHeader post={post} />
-      <Content />
-    </article>
-  </div>
-</BaseLayout>
+{
+  isAlias ? (
+    <BaseLayout
+      {title}
+      {description}
+      canonicalUrl={post.data.canonicalUrl}
+      ogImage={ogImage}
+      ogImageAlt={post.data.coverAlt}
+      ogType="article"
+      publishedTime={post.data.date}
+      updatedTime={post.data.updated}
+      {backToLink}
+    >
+      <div class="mx-auto w-full max-w-2xl px-6 py-16">
+        <p class="text-sm text-muted">
+          Redirecting to the canonical URL.{" "}
+          <a class="text-text underline" href={canonicalPath}>Continue</a>
+        </p>
+        <meta http-equiv="refresh" content={`0;url=${canonicalPath}`} />
+      </div>
+    </BaseLayout>
+  ) : (
+    <BaseLayout
+      {title}
+      {description}
+      canonicalUrl={post.data.canonicalUrl}
+      ogImage={ogImage}
+      ogImageAlt={post.data.coverAlt}
+      ogType="article"
+      publishedTime={post.data.date}
+      updatedTime={post.data.updated}
+      {backToLink}
+    >
+      <div class="mx-auto w-full max-w-2xl px-6 py-16">
+        <article class="prose prose-invert prose-lg max-w-none">
+          <BlogPostHeader post={post} />
+          <Content />
+        </article>
+      </div>
+    </BaseLayout>
+  )
+}

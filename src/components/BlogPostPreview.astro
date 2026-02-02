@@ -7,8 +7,7 @@ export interface Props {
 }
 
 const { post } = Astro.props;
-const slug = post.slug ?? post.id;
-const url = `/blog/post/${slug}`;
+const url = `/blog/post/${post.id}`;
 
 const date = post.data.date;
 const formattedDate = format(date, "MMM d, yyyy");

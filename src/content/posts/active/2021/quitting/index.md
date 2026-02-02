@@ -1,5 +1,6 @@
 ---
 title: "Quitting Your Dream Job (Twice)"
+slug: "quitting"
 date: "2021-09-02"
 description: "Quitting is never easy. Building things can be. I'm leaving TTFM Labs to start a company."
 readMore: true

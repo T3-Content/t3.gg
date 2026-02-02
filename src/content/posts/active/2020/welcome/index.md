@@ -1,5 +1,6 @@
 ---
 title: "Hello World"
+slug: "welcome"
 date: "2020-12-21"
 description: "Kicking off the blog and the stack behind it."
 cover: ./images/lighthouse-scores.png

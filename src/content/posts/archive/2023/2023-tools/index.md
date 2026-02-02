@@ -1,5 +1,6 @@
 ---
 title: "Software I Rely On In 2023"
+slug: "2023-tools"
 date: "2023-03-03"
 description: "The software you use is important!"
 imageURL: "https://img.youtube.com/vi/uaCypXEJjes/maxresdefault.jpg"

@@ -30,7 +30,7 @@ export async function GET(context: { site: URL | undefined }) {
       title: post.data.title,
       description: post.data.description ?? toExcerpt(post.body),
       pubDate: post.data.date,
-      link: `/blog/post/${post.slug ?? post.id}`,
+      link: `/blog/post/${post.id}`,
     })),
   });
 }

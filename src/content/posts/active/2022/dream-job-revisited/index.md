@@ -1,5 +1,6 @@
 ---
 title: "I'm So Happy I Quit My Dream Job"
+slug: "dream-job-revisited"
 date: "2022-06-30"
 description: "It's been a wild 9 months."
 cover: ./images/ping-1.0.png
