@@ -1,19 +1,38 @@
 ---
-export interface Props {
-  post: { title: string; date: string };
-}
+import type { CollectionEntry } from "astro:content";
+import { format } from "date-fns";
+import BlogImage from "./BlogImage.astro";
 
-import { parseISO, format } from "date-fns";
+export interface Props {
+  post: CollectionEntry<"posts">;
+}
 
 const { post } = Astro.props;
 
-const date = parseISO(post.date);
+const date = post.data.date;
 const formatted = format(date, "LLLL d, yyyy");
+const coverImage = post.data.cover ?? post.data.imageURL;
+const coverAlt = post.data.coverAlt ?? post.data.title;
 ---
 
 <header class="not-prose mb-12 border-b border-white/10 pb-8">
   <h1 class="mb-3 text-2xl font-medium tracking-tight text-text">
-    {post.title}
+    {post.data.title}
   </h1>
   <time datetime={date.toString()} class="text-sm text-muted">{formatted}</time>
+  {post.data.archived ? (
+    <div class="mt-4 rounded-lg border border-amber-300/20 bg-amber-300/5 px-4 py-3 text-sm text-amber-100/90">
+      This post was archived manually by Theo. It is probably out of date or something.
+    </div>
+  ) : null}
+  {coverImage ? (
+    <figure class="mt-8">
+      <BlogImage
+        src={coverImage}
+        alt={coverAlt}
+        priority={true}
+        class="w-full rounded-xl border border-white/10"
+      />
+    </figure>
+  ) : null}
 </header>

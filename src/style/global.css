@@ -219,6 +219,20 @@ pre[class*="language-"] {
   font-style: italic;
 }
 
+/* Blog prose image defaults */
+.prose :where(picture):not(:where([class~="not-prose"] *)) {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.prose :where(img):not(:where([class~="not-prose"] *)) {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.75rem;
+  border: 1px solid color-mix(in srgb, white 8%, transparent);
+}
+
 .token.entity {
   cursor: help;
 }

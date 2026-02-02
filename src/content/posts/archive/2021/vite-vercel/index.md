@@ -1,12 +1,15 @@
 ---
 title: "Using Vite On Vercel (Semi-Outdated)"
+slug: "vite-vercel"
 date: "2021-06-14"
 description: "Vite and Vercel are fun new technologies that sadly don't play nice. This is a guide on how to work around that"
-imageURL: "https://t3.gg/images/vite-vercel/twitter.png"
+cover: ./images/twitter.png
+coverAlt: "Vite and Vercel graphic"
 readMore: true
+archived: true
 ---
 
-![Vite + Vercel](https://t3.gg/images/vite-vercel/twitter.png)
+![Vite + Vercel](./images/twitter.png)
 
 ### UPDATE (4/17/22)
 
@@ -63,7 +66,7 @@ By default, Vercel tries to resolve all requests to a file at the path. Works gr
 
 Once this is added, you can go to [Vercel.com](https://vercel.com) and create a new project. For framework, select "other". For "Output directory", override the default with `dist`
 
-![Vercel Config](/images/vite-vercel/vercel-config.png)
+![Vercel Config](./images/vercel-config.png)
 
 Click "deploy" and you should be live in no time!
 
@@ -83,7 +86,7 @@ First, we have to modify our Vercel project settings once more to point it at a 
 
 Toggle "override" for "DEVELOPMENT COMMAND" and set it to `npm run {vercel-special-command-name}`.
 
-![Vercel dev special config](/images/vite-vercel/vercel-dev-config.png)
+![Vercel dev special config](./images/vercel-dev-config.png)
 
 The following is weird enough that I [stubbed out a commit with all the related changes to make it easier to apply to your project](https://github.com/TheoBr/vercel-vite-demo/commit/8fa15f3b4bfed02019a80fc68845a1e68ef5e196)
 

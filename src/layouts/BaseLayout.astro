@@ -3,6 +3,8 @@ import { cn } from "../utils/cn";
 import "../style/global.css";
 import { ClientRouter } from "astro:transitions";
 import LeftArrow from "../assets/icons/left-arrow.svg.astro";
+import { getImage } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
 const socialLinks = [
   { href: "https://github.com/t3dotgg", label: "gh" },
@@ -14,6 +16,12 @@ const socialLinks = [
 interface Props {
   title: string;
   description: string;
+  canonicalUrl?: string;
+  ogImage?: ImageMetadata | string;
+  ogImageAlt?: string;
+  ogType?: "website" | "article";
+  publishedTime?: Date;
+  updatedTime?: Date;
   classNames?: {
     html?: string;
     body?: string;
@@ -36,10 +44,40 @@ const defaultBackToLink: Props["backToLink"] = {
 const {
   title,
   description,
+  canonicalUrl,
+  ogImage,
+  ogImageAlt,
+  ogType = "website",
+  publishedTime,
+  updatedTime,
   classNames,
   backToLink = defaultBackToLink,
 } = Astro.props;
 const isHomepage = Astro.url.pathname === "/";
+
+const siteUrl = Astro.site ?? Astro.url;
+const canonicalHref =
+  canonicalUrl ?? new URL(Astro.url.pathname, siteUrl).toString();
+
+const defaultOgImagePath = "/images/twitter.png";
+let resolvedOgImageAlt = ogImageAlt ?? title;
+let resolvedOgImageHref = new URL(defaultOgImagePath, siteUrl).toString();
+
+if (ogImage) {
+  if (typeof ogImage === "string") {
+    resolvedOgImageHref = ogImage.startsWith("http")
+      ? ogImage
+      : new URL(ogImage, siteUrl).toString();
+  } else {
+    const generatedOgImage = await getImage({
+      src: ogImage,
+      width: 1200,
+      height: 630,
+      format: "png",
+    });
+    resolvedOgImageHref = new URL(generatedOgImage.src, siteUrl).toString();
+  }
+}
 ---
 
 <html
@@ -54,15 +92,37 @@ const isHomepage = Astro.url.pathname === "/";
     <meta name="color-scheme" content="dark" />
     <link rel="icon" href="/favicon.svg" />
     <meta name="description" content={description} />
-    <meta name="twitter:image" content="https://t3.gg/images/twitter.png" />
+    <link rel="canonical" href={canonicalHref} />
+    <meta name="twitter:image" content={resolvedOgImageHref} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@t3dotgg" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://t3.gg/images/twitter.png" />
+    <meta property="og:url" content={canonicalHref} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:image" content={resolvedOgImageHref} />
+    <meta property="og:image:alt" content={resolvedOgImageAlt} />
+    {
+      publishedTime && (
+        <meta
+          property="article:published_time"
+          content={publishedTime.toISOString()}
+        />
+      )
+    }
+    {
+      updatedTime && (
+        <meta
+          property="article:modified_time"
+          content={updatedTime.toISOString()}
+        />
+      )
+    }
     <title>{title}</title>
     <meta name="theme-color" content="#050505" />
-    <script defer data-domain="astro.t3.gg" src="/js/script.js"></script>
+    <script defer data-domain="t3.gg" src="/js/script.js"></script>
   </head>
   <body
     class={cn(

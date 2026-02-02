@@ -1,9 +1,11 @@
 ---
 title: "Software I Rely On In 2023"
+slug: "2023-tools"
 date: "2023-03-03"
 description: "The software you use is important!"
 imageURL: "https://img.youtube.com/vi/uaCypXEJjes/maxresdefault.jpg"
 readMore: true
+archived: true
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/uaCypXEJjes" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

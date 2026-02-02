@@ -22,6 +22,8 @@
   },
   "dependencies": {
     "@astrojs/prefetch": "^0.4.1",
+    "@astrojs/rss": "^4.0.15",
+    "@astrojs/sitemap": "^3.7.0",
     "date-fns": "^4.1.0"
   }
 }
