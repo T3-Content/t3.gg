@@ -1,6 +1,7 @@
 ---
+import type { BlogPost } from "../types/blog";
 export interface Props {
-  post: any;
+  post: BlogPost;
 }
 
 import { getSlugFromPath } from "../utils/get-slug-from-path";
@@ -17,12 +18,14 @@ const formattedDate = format(date, "MMM d, yyyy");
   href={url}
   class="group relative flex items-baseline justify-between gap-4 py-3"
 >
-  <span class="text-subtle transition-colors duration-200 group-hover:text-text">
+  <span
+    class="text-subtle group-hover:text-text transition-colors duration-200"
+  >
     {post.frontmatter.title}
   </span>
-  <span class="shrink-0 text-sm text-muted">{formattedDate}</span>
+  <span class="text-muted shrink-0 text-sm">{formattedDate}</span>
   <span
-    class="absolute bottom-2 left-0 h-px w-0 bg-accent/40 transition-all duration-300 ease-out group-hover:w-full"
+    class="bg-accent/40 absolute bottom-2 left-0 h-px w-0 transition-all duration-300 ease-out group-hover:w-full"
   >
   </span>
 </a>

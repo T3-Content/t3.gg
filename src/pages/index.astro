@@ -35,7 +35,9 @@ const links = [
 ---
 
 <BaseLayout title={siteTitle} description={description}>
-  <div class="relative flex min-h-screen flex-col items-center justify-center px-6">
+  <div
+    class="relative flex min-h-screen flex-col items-center justify-center px-6"
+  >
     <!-- Subtle ambient glow -->
     <div
       class="pointer-events-none absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.03]"
@@ -46,11 +48,11 @@ const links = [
     <div class="relative z-10 w-full max-w-xs">
       <!-- Header -->
       <header
-        class="mb-16 opacity-0 animate-fade-in-up"
+        class="animate-fade-in-up mb-16 opacity-0"
         style="animation-delay: 0s;"
       >
-        <h1 class="text-xl tracking-tight text-text">theo</h1>
-        <p class="mt-1 text-sm text-muted">builds things</p>
+        <h1 class="text-text text-xl tracking-tight">theo</h1>
+        <p class="text-muted mt-1 text-sm">builds things</p>
       </header>
 
       <!-- Links -->
@@ -61,13 +63,13 @@ const links = [
               href={link.href}
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
-              class="group relative flex items-center justify-between py-3 opacity-0 animate-fade-in-up"
+              class="group animate-fade-in-up relative flex items-center justify-between py-3 opacity-0"
               style={`animation-delay: ${(i + 1) * 0.05}s;`}
             >
-              <span class="text-subtle transition-colors duration-200 group-hover:text-text">
+              <span class="text-subtle group-hover:text-text transition-colors duration-200">
                 {link.label}
               </span>
-              <span class="text-muted opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0.5">
+              <span class="text-muted opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100">
                 {link.external ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -93,8 +95,7 @@ const links = [
                   </svg>
                 )}
               </span>
-              <!-- Hover line -->
-              <span class="absolute bottom-2 left-0 h-px w-0 bg-accent/40 transition-all duration-300 ease-out group-hover:w-full" />
+              <span class="bg-accent/40 absolute bottom-2 left-0 h-px w-0 transition-all duration-300 ease-out group-hover:w-full" />
             </a>
           ))
         }

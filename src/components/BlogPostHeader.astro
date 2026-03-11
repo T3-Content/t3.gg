@@ -12,8 +12,8 @@ const formatted = format(date, "LLLL d, yyyy");
 ---
 
 <header class="not-prose mb-12 border-b border-white/10 pb-8">
-  <h1 class="mb-3 text-2xl font-medium tracking-tight text-text">
+  <h1 class="text-text mb-3 text-2xl font-medium tracking-tight">
     {post.title}
   </h1>
-  <time datetime={date.toString()} class="text-sm text-muted">{formatted}</time>
+  <time datetime={date.toString()} class="text-muted text-sm">{formatted}</time>
 </header>
