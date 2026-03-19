@@ -1,0 +1,39 @@
+---
+const sponsorImages = import.meta.glob<any>("../assets/sponsors/*.svg.astro");
+
+interface Props {
+  image: string;
+  name: string;
+  class?: string;
+}
+
+const { image, name, class: className } = Astro.props;
+
+const imageImporter = sponsorImages[`../assets/sponsors/${image}`];
+
+let BrandImage: any = null;
+
+if (imageImporter) {
+  const imageModule = await imageImporter();
+  BrandImage = imageModule.default || imageModule;
+}
+---
+
+<div
+  role="img"
+  aria-label={name}
+  class:list={[
+    "text-text flex shrink-0 items-center justify-center [&_svg]:size-full",
+    className ?? "size-12",
+  ]}
+>
+  {
+    BrandImage ? (
+      <BrandImage />
+    ) : (
+      <span class="text-muted text-[10px] font-medium tracking-wider uppercase">
+        {name}
+      </span>
+    )
+  }
+</div>

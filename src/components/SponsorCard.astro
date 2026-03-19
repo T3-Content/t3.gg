@@ -1,0 +1,151 @@
+---
+import SponsorLogo from "./SponsorLogo.astro";
+import { formatSponsorCategory, type SponsorEntry } from "../lib/sponsors";
+
+interface Props {
+  sponsor: SponsorEntry;
+  variant?: "default" | "platinum" | "gold" | "silver";
+}
+
+const { sponsor, variant = "default" } = Astro.props;
+
+const categoryLabels = sponsor.categories.map(formatSponsorCategory);
+const searchableText = [
+  sponsor.name,
+  sponsor.description,
+  sponsor.kind,
+  sponsor.tier ?? "",
+  ...categoryLabels,
+]
+  .join(" ")
+  .toLowerCase();
+
+const isPlatinum = variant === "platinum";
+const isGold = variant === "gold";
+const isSilver = variant === "silver";
+const isDefault = variant === "default";
+---
+
+<article
+  data-sponsor-card
+  data-kind={sponsor.kind}
+  data-tier={sponsor.tier ?? ""}
+  data-categories={sponsor.categories.join(",")}
+  data-search={searchableText}
+>
+  {
+    isPlatinum ? (
+      <a
+        href={`/sponsors/${sponsor.slug}`}
+        class="sponsor-card-platinum group flex h-full flex-col items-center rounded-2xl p-6 text-center md:p-8"
+      >
+        <div class="relative mb-5">
+          <div
+            class="absolute -inset-4 rounded-full bg-cyan-400/10 blur-2xl"
+            aria-hidden="true"
+          />
+          <SponsorLogo
+            image={sponsor.image}
+            name={sponsor.name}
+            class="relative size-16 md:size-20"
+          />
+        </div>
+
+        <h3 class="text-text text-xl font-medium tracking-tight md:text-2xl">
+          {sponsor.name}
+        </h3>
+        <p class="text-muted mt-2 max-w-xs text-sm leading-relaxed md:text-base">
+          {sponsor.description}
+        </p>
+
+        <div class="mt-4 flex flex-wrap justify-center gap-1.5">
+          {categoryLabels.map((label) => (
+            <span class="rounded-full bg-cyan-400/[0.08] px-2.5 py-0.5 text-[10px] tracking-wider text-cyan-300/50 uppercase">
+              {label}
+            </span>
+          ))}
+        </div>
+      </a>
+    ) : (
+      <a
+        href={`/sponsors/${sponsor.slug}`}
+        class:list={[
+          "group flex h-full flex-col rounded-2xl transition-all duration-300",
+          isGold &&
+            "border border-gold/20 bg-gradient-to-br from-gold/[0.06] via-surface/80 to-surface/50 p-5 hover:border-gold/35 hover:shadow-[0_0_40px_-12px_rgba(212,168,83,0.25)] md:p-6",
+          isSilver &&
+            "border border-silver/15 bg-gradient-to-br from-silver/[0.04] via-surface/80 to-surface/50 p-4 hover:border-silver/25 hover:shadow-[0_0_30px_-12px_rgba(148,163,184,0.2)] md:p-5",
+          isDefault &&
+            "border border-white/5 bg-surface/50 p-4 hover:border-white/10 hover:bg-surface",
+        ]}
+      >
+        <div
+          class:list={[
+            "flex min-w-0 flex-1 gap-4",
+            isGold ? "items-start md:gap-5" : "items-start",
+          ]}
+        >
+          <SponsorLogo
+            image={sponsor.image}
+            name={sponsor.name}
+            class:list={[
+              "shrink-0",
+              isGold && "size-12 md:size-14",
+              isSilver && "size-10 md:size-12",
+              isDefault && "size-10",
+            ]}
+          />
+          <div class="min-w-0 flex-1">
+            <div class="flex flex-wrap items-center gap-2">
+              <h3
+                class:list={[
+                  "text-text font-medium tracking-tight",
+                  isGold && "text-base md:text-lg",
+                  (isSilver || isDefault) && "text-sm",
+                ]}
+              >
+                {sponsor.name}
+              </h3>
+              {sponsor.kind === "affiliate" && (
+                <span class="text-subtle rounded-full border border-white/10 px-2 py-0.5 text-[10px] tracking-wider uppercase">
+                  affiliate
+                </span>
+              )}
+            </div>
+
+            <p
+              class:list={[
+                "text-muted leading-relaxed",
+                isGold && "mt-2 text-sm",
+                isSilver && "mt-1.5 text-xs leading-5",
+                isDefault && "mt-1 text-xs leading-5",
+              ]}
+            >
+              {sponsor.description}
+            </p>
+
+            <div
+              class:list={[
+                "flex flex-wrap gap-1.5",
+                isGold ? "mt-3" : "mt-2.5",
+              ]}
+            >
+              {categoryLabels.map((label) => (
+                <span
+                  class:list={[
+                    "rounded-full px-2 py-0.5 text-[10px] tracking-wider uppercase",
+                    isGold && "bg-gold/[0.08] text-gold/50",
+                    isSilver && "bg-silver/[0.08] text-silver/50",
+                    isDefault && "bg-white/[0.05] text-muted",
+                  ]}
+                >
+                  {label}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </a>
+    )
+  }
+</article>

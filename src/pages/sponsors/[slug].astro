@@ -1,0 +1,154 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SponsorLogo from "../../components/SponsorLogo.astro";
+import {
+  formatSponsorCategory,
+  formatSponsorTier,
+  sponsorDirectory,
+  type SponsorEntry,
+} from "../../lib/sponsors";
+
+export const getStaticPaths = () => {
+  return sponsorDirectory.map((sponsor) => ({
+    params: {
+      slug: sponsor.slug,
+    },
+    props: {
+      sponsor,
+    },
+  }));
+};
+
+interface Props {
+  sponsor: SponsorEntry;
+}
+
+const { sponsor } = Astro.props;
+
+const categoryLabels = sponsor.categories.map(formatSponsorCategory);
+const backToLink = {
+  text: "back to sponsors",
+  href: "/sponsors",
+};
+---
+
+<BaseLayout
+  title={sponsor.page.seoTitle}
+  description={sponsor.page.seoDescription}
+  {backToLink}
+>
+  <div class="mx-auto w-full max-w-5xl px-6 py-16">
+    <header
+      class="bg-surface/50 animate-fade-in-up rounded-2xl border border-white/5 p-6 opacity-0 md:p-8"
+      style="animation-delay: 0s;"
+    >
+      <div class="flex flex-col gap-6 md:flex-row md:items-start">
+        <SponsorLogo
+          image={sponsor.image}
+          name={sponsor.name}
+          class="size-16 md:size-20"
+        />
+
+        <div class="min-w-0 flex-1">
+          <div class="flex flex-wrap gap-2">
+            {
+              sponsor.tier && (
+                <span class="text-accent rounded-full border border-cyan-400/20 bg-cyan-400/10 px-2 py-1 text-[10px] tracking-wider uppercase">
+                  {formatSponsorTier(sponsor.tier)}
+                </span>
+              )
+            }
+            <span
+              class="text-subtle rounded-full border border-white/10 px-2 py-1 text-[10px] tracking-wider uppercase"
+            >
+              {
+                sponsor.kind === "affiliate"
+                  ? "affiliate deal"
+                  : "video sponsor"
+              }
+            </span>
+            {
+              categoryLabels.map((label) => (
+                <span class="text-subtle rounded-full border border-white/10 px-2 py-1 text-[10px] tracking-wider uppercase">
+                  {label}
+                </span>
+              ))
+            }
+          </div>
+
+          <h1 class="text-text mt-4 text-2xl tracking-tight md:text-3xl">
+            {sponsor.name}
+          </h1>
+          <p class="text-subtle mt-3 max-w-3xl text-sm leading-7">
+            {sponsor.page.intro}
+          </p>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a
+              href={sponsor.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-accent hover:text-text inline-flex rounded-lg border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs tracking-wider uppercase transition-colors duration-200 hover:border-cyan-400/40"
+            >
+              {sponsor.page.primaryCtaLabel}
+            </a>
+            <a
+              href="/sponsors"
+              class="text-subtle hover:text-text inline-flex rounded-lg border border-white/10 px-4 py-2 text-xs tracking-wider uppercase transition-colors duration-200 hover:border-white/20"
+            >
+              browse all sponsors
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section
+      class="animate-fade-in-up mt-6 grid gap-4 opacity-0 md:grid-cols-3"
+      style="animation-delay: 0.05s;"
+    >
+      <div class="bg-surface/50 rounded-2xl border border-white/5 p-5">
+        <p class="text-muted text-[10px] tracking-wider uppercase">
+          relationship
+        </p>
+        <p class="text-text mt-2 text-sm">
+          {sponsor.kind === "affiliate" ? "affiliate deal" : "video sponsor"}
+        </p>
+      </div>
+      <div class="bg-surface/50 rounded-2xl border border-white/5 p-5">
+        <p class="text-muted text-[10px] tracking-wider uppercase">tier</p>
+        <p class="text-text mt-2 text-sm">
+          {
+            sponsor.kind === "affiliate"
+              ? "—"
+              : sponsor.tier
+                ? formatSponsorTier(sponsor.tier)
+                : "past sponsor"
+          }
+        </p>
+      </div>
+      <div class="bg-surface/50 rounded-2xl border border-white/5 p-5">
+        <p class="text-muted text-[10px] tracking-wider uppercase">
+          categories
+        </p>
+        <p class="text-text mt-2 text-sm">{categoryLabels.join(", ")}</p>
+      </div>
+    </section>
+
+    <section
+      class="animate-fade-in-up mt-6 grid gap-4 opacity-0 lg:grid-cols-3"
+      style="animation-delay: 0.1s;"
+    >
+      {
+        sponsor.page.bodySections.map((section) => (
+          <section class="bg-surface/50 rounded-2xl border border-white/5 p-6">
+            <h2 class="text-muted text-sm tracking-wider uppercase">
+              {section.heading}
+            </h2>
+            <p class="text-subtle mt-3 text-sm leading-7">{section.content}</p>
+          </section>
+        ))
+      }
+    </section>
+  </div>
+</BaseLayout>

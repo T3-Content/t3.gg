@@ -1,63 +1,92 @@
 ---
-const sponsorImages = import.meta.glob<any>("../assets/sponsors/*.svg.astro");
+import SponsorCard from "./SponsorCard.astro";
+import type { SponsorEntry } from "../lib/sponsors";
 
 interface Props {
+  id?: string;
   heading: string;
-  sponsors: {
-    name: string;
-    link: string;
-    image: string;
-    description: string;
-  }[];
+  sponsors: SponsorEntry[];
   class?: string;
+  variant?: "default" | "platinum" | "gold" | "silver";
 }
 
-const { heading, sponsors, class: className } = Astro.props;
+const {
+  id,
+  heading,
+  sponsors,
+  class: className,
+  variant = "default",
+} = Astro.props;
+
+const isPlatinum = variant === "platinum";
+const isGold = variant === "gold";
+const isSilver = variant === "silver";
+const isDefault = variant === "default";
 ---
 
-<section class={className}>
-  <h2 class="text-muted mb-6 text-sm tracking-wider">{heading}</h2>
-  <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-    {
-      sponsors.map(async (brand) => {
-        const imageImporter =
-          sponsorImages[`../assets/sponsors/${brand.image}`];
+<section id={id} data-sponsor-section class={className}>
+  {
+    isPlatinum ? (
+      <div class="mb-8 border-b border-cyan-400/10 pb-6">
+        <p class="text-accent mb-2 text-[10px] tracking-[0.25em] uppercase">
+          platinum tier
+        </p>
+        <h2 class="text-text text-2xl font-medium tracking-tight capitalize md:text-3xl">
+          {heading}
+        </h2>
+        <p class="text-muted mt-2 max-w-xl text-sm leading-relaxed">
+          partners running the biggest integrations on the channel right now.
+        </p>
+      </div>
+    ) : isGold ? (
+      <div class="mb-6">
+        <div class="flex items-center gap-3">
+          <span
+            class="inline-block size-1.5 rounded-full bg-gold"
+            aria-hidden="true"
+          />
+          <h2 class="text-gold text-sm font-medium tracking-wider uppercase">
+            {heading}
+          </h2>
+          <div
+            class="h-px flex-1 bg-gradient-to-r from-gold/20 to-transparent"
+            aria-hidden="true"
+          />
+        </div>
+      </div>
+    ) : isSilver ? (
+      <div class="mb-6">
+        <div class="flex items-center gap-3">
+          <span
+            class="inline-block size-1.5 rounded-full bg-silver"
+            aria-hidden="true"
+          />
+          <h2 class="text-silver text-sm font-medium tracking-wider uppercase">
+            {heading}
+          </h2>
+          <div
+            class="h-px flex-1 bg-gradient-to-r from-silver/20 to-transparent"
+            aria-hidden="true"
+          />
+        </div>
+      </div>
+    ) : (
+      <div class="mb-6">
+        <h2 class="text-muted text-sm tracking-wider uppercase">{heading}</h2>
+      </div>
+    )
+  }
 
-        try {
-          const BrandImage = await imageImporter().then(
-            (mod) => mod.default || mod,
-          );
-
-          return (
-            <a
-              href={brand.link}
-              class="group bg-surface/50 hover:bg-surface flex flex-row items-center gap-4 rounded-lg border border-white/5 p-4 transition-all duration-200 hover:border-white/10"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div
-                role="img"
-                aria-label={brand.name}
-                class="text-text flex size-12 shrink-0 items-center justify-center [&_svg]:size-full"
-              >
-                <BrandImage />
-              </div>
-              <div class="flex min-w-0 grow flex-col">
-                <h3 class="text-text text-sm font-medium">{brand.name}</h3>
-                <p class="text-muted mt-0.5 line-clamp-2 text-xs">
-                  {brand.description}
-                </p>
-              </div>
-            </a>
-          );
-        } catch (error) {
-          console.error(
-            `Failed to load image component for ${brand.image}:`,
-            error,
-          );
-          return null;
-        }
-      })
-    }
+  <div
+    data-sponsor-grid
+    class:list={[
+      "grid grid-cols-1",
+      isPlatinum && "gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8",
+      isGold && "gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6",
+      isSilver && "gap-4 md:grid-cols-2 lg:grid-cols-3",
+      isDefault && "gap-3 md:grid-cols-2 lg:grid-cols-3",
+    ]}
+  >
+    {sponsors.map((brand) => <SponsorCard sponsor={brand} variant={variant} />)}
   </div>
 </section>
