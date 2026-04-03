@@ -1,25 +1,23 @@
 ---
+import type { BlogPost } from "../../../types/blog";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import BlogPostHeader from "../../../components/BlogPostHeader.astro";
 import { getSlugFromPath } from "../../../utils/get-slug-from-path";
 
-export async function getStaticPaths({ paginate, rss }) {
-  const allPosts = await Astro.glob("../../../content/posts/*.md");
-
-  const paths = allPosts.map((post) => {
+export function getStaticPaths() {
+  return Object.values(
+    import.meta.glob<BlogPost>("../../../content/posts/*.md", { eager: true }),
+  ).map((post) => {
     const slug = getSlugFromPath(post.file);
+
     return {
-      params: {
-        slug,
-      },
+      params: { slug },
       props: { post },
     };
   });
-
-  return paths;
 }
 
-const { post } = Astro.props;
+const { post } = Astro.props as { post: BlogPost };
 const title = post.frontmatter.title;
 const description = post.frontmatter.description;
 
