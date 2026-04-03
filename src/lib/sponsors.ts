@@ -395,16 +395,10 @@ export const sponsors = [
     link: "https://soydev.link/deepsource",
   },
   {
-    name: "jfrog fly",
-    image: "jfrog.svg.astro",
-    description: "artifact management that's built for your ai agents",
-    link: "https://soydev.link/jfrogfly",
-  },
-  {
     name: "wispr flow",
     image: "wispr.svg.astro",
     description: "the voice to text product that i can't live without",
-    link: "https://soydev.link/wispr",
+    link: "https://soydev.link/wisprflow",
   },
   {
     name: "dnsimple",
