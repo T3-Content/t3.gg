@@ -58,15 +58,13 @@ const backToLink = {
                 </span>
               )
             }
-            <span
-              class="text-subtle rounded-full border border-white/10 px-2 py-1 text-[10px] tracking-wider uppercase"
-            >
-              {
-                sponsor.kind === "affiliate"
-                  ? "affiliate deal"
-                  : "video sponsor"
-              }
-            </span>
+            {
+              sponsor.kind === "affiliate" && (
+                <span class="text-subtle rounded-full border border-white/10 px-2 py-1 text-[10px] tracking-wider uppercase">
+                  affiliate deal
+                </span>
+              )
+            }
             {
               categoryLabels.map((label) => (
                 <span class="text-subtle rounded-full border border-white/10 px-2 py-1 text-[10px] tracking-wider uppercase">
@@ -112,7 +110,7 @@ const backToLink = {
           relationship
         </p>
         <p class="text-text mt-2 text-sm">
-          {sponsor.kind === "affiliate" ? "affiliate deal" : "video sponsor"}
+          {sponsor.kind === "affiliate" ? "affiliate deal" : "sponsor"}
         </p>
       </div>
       <div class="bg-surface/50 rounded-2xl border border-white/5 p-5">

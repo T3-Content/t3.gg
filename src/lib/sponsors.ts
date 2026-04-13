@@ -378,7 +378,7 @@ const sponsorSeeds: SponsorSeed[] = [
   {
     name: "clerk",
     image: "clerk.svg.astro",
-    description: "the only auth solution i don't hate using.",
+    description: "auth that your devs and agents will love",
     link: "https://soydev.link/clerk",
     categories: ["auth", "security"],
     tier: "gold",
