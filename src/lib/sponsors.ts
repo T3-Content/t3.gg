@@ -6,6 +6,7 @@ export const sponsorCategoryOptions = [
   { slug: "ai", label: "ai" },
   { slug: "analytics", label: "analytics" },
   { slug: "auth", label: "auth" },
+  { slug: "ci", label: "ci" },
   { slug: "communications", label: "communications" },
   { slug: "data", label: "data" },
   { slug: "deployment", label: "deployment" },
@@ -232,7 +233,7 @@ const sponsorSeeds: SponsorSeed[] = [
     image: "blacksmith.svg.astro",
     description: "github actions but they're 2x faster and way cheaper.",
     link: "https://soydev.link/blacksmith",
-    categories: ["developer-tools", "infrastructure"],
+    categories: ["ci", "developer-tools", "infrastructure"],
     tier: "platinum",
   },
   {
@@ -341,7 +342,7 @@ const sponsorSeeds: SponsorSeed[] = [
     image: "depot.svg.astro",
     description: "40x faster docker builds used by posthog and so many more.",
     link: "https://soydev.link/depot",
-    categories: ["developer-tools", "infrastructure"],
+    categories: ["ci", "developer-tools", "infrastructure"],
     tier: "gold",
   },
   {
@@ -647,7 +648,7 @@ const sponsorSeeds: SponsorSeed[] = [
     image: "rwx.svg.astro",
     description: "the best modern ci/cd for teams that actually ship",
     link: "https://soydev.link/rwx",
-    categories: ["deployment", "developer-tools"],
+    categories: ["ci", "deployment", "developer-tools"],
     tier: "new",
   },
   {
