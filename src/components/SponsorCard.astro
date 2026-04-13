@@ -4,7 +4,7 @@ import { formatSponsorCategory, type SponsorEntry } from "../lib/sponsors";
 
 interface Props {
   sponsor: SponsorEntry;
-  variant?: "default" | "platinum" | "gold" | "silver";
+  variant?: "default" | "platinum" | "platinum-featured" | "gold" | "silver";
 }
 
 const { sponsor, variant = "default" } = Astro.props;
@@ -20,6 +20,7 @@ const searchableText = [
   .join(" ")
   .toLowerCase();
 
+const isPlatinumFeatured = variant === "platinum-featured";
 const isPlatinum = variant === "platinum";
 const isGold = variant === "gold";
 const isSilver = variant === "silver";
@@ -34,12 +35,22 @@ const isDefault = variant === "default";
   data-search={searchableText}
 >
   {
-    isPlatinum ? (
+    isPlatinumFeatured ? (
+      /* unused - keeping for type compatibility */
       <a
         href={`/sponsors/${sponsor.slug}`}
-        class="sponsor-card-platinum group flex h-full flex-col items-center rounded-2xl p-6 text-center md:p-8"
+        class="sponsor-card-platinum group flex h-full flex-col items-center rounded-2xl p-6 text-center md:p-7"
       >
-        <div class="relative mb-5">
+        <SponsorLogo image={sponsor.image} name={sponsor.name} class="size-16" />
+        <h3 class="text-text mt-4 text-xl font-medium">{sponsor.name}</h3>
+        <p class="text-muted mt-2 text-sm">{sponsor.description}</p>
+      </a>
+    ) : isPlatinum ? (
+      <a
+        href={`/sponsors/${sponsor.slug}`}
+        class="sponsor-card-platinum group flex h-full items-start gap-5 rounded-2xl p-6 md:gap-6 md:p-8"
+      >
+        <div class="relative shrink-0">
           <div
             class="absolute -inset-4 rounded-full bg-cyan-400/10 blur-2xl"
             aria-hidden="true"
@@ -47,23 +58,25 @@ const isDefault = variant === "default";
           <SponsorLogo
             image={sponsor.image}
             name={sponsor.name}
-            class="relative size-16 md:size-20"
+            class="relative size-14 md:size-16"
           />
         </div>
 
-        <h3 class="text-text text-xl font-medium tracking-tight md:text-2xl">
-          {sponsor.name}
-        </h3>
-        <p class="text-muted mt-2 max-w-xs text-sm leading-relaxed md:text-base">
-          {sponsor.description}
-        </p>
+        <div class="flex min-w-0 flex-1 flex-col">
+          <h3 class="text-text text-lg font-medium tracking-tight md:text-xl">
+            {sponsor.name}
+          </h3>
+          <p class="text-muted mt-2 text-sm leading-relaxed">
+            {sponsor.description}
+          </p>
 
-        <div class="mt-4 flex flex-wrap justify-center gap-1.5">
-          {categoryLabels.map((label) => (
-            <span class="rounded-full bg-cyan-400/[0.08] px-2.5 py-0.5 text-[10px] tracking-wider text-cyan-300/50 uppercase">
-              {label}
-            </span>
-          ))}
+          <div class="mt-4 flex flex-wrap gap-1.5">
+            {categoryLabels.map((label) => (
+              <span class="rounded-full bg-cyan-400/[0.08] px-2.5 py-0.5 text-[10px] tracking-wider text-cyan-300/50 uppercase">
+                {label}
+              </span>
+            ))}
+          </div>
         </div>
       </a>
     ) : (

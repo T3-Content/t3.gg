@@ -7,7 +7,7 @@ interface Props {
   heading: string;
   sponsors: SponsorEntry[];
   class?: string;
-  variant?: "default" | "platinum" | "gold" | "silver";
+  variant?: "default" | "platinum" | "platinum-featured" | "gold" | "silver";
 }
 
 const {
@@ -27,16 +27,20 @@ const isDefault = variant === "default";
 <section id={id} data-sponsor-section class={className}>
   {
     isPlatinum ? (
-      <div class="mb-8 border-b border-cyan-400/10 pb-6">
-        <p class="text-accent mb-2 text-[10px] tracking-[0.25em] uppercase">
-          platinum tier
-        </p>
-        <h2 class="text-text text-2xl font-medium tracking-tight capitalize md:text-3xl">
-          {heading}
-        </h2>
-        <p class="text-muted mt-2 max-w-xl text-sm leading-relaxed">
-          partners running the biggest integrations on the channel right now.
-        </p>
+      <div class="mb-8">
+        <div class="flex items-center gap-3">
+          <span
+            class="inline-block size-1.5 rounded-full bg-accent"
+            aria-hidden="true"
+          />
+          <h2 class="text-accent text-sm font-medium tracking-wider uppercase">
+            {heading}
+          </h2>
+          <div
+            class="h-px flex-1 bg-gradient-to-r from-cyan-400/20 to-transparent"
+            aria-hidden="true"
+          />
+        </div>
       </div>
     ) : isGold ? (
       <div class="mb-6">
@@ -81,7 +85,7 @@ const isDefault = variant === "default";
     data-sponsor-grid
     class:list={[
       "grid grid-cols-1",
-      isPlatinum && "gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8",
+      isPlatinum && "gap-6 md:grid-cols-2",
       isGold && "gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6",
       isSilver && "gap-4 md:grid-cols-2 lg:grid-cols-3",
       isDefault && "gap-3 md:grid-cols-2 lg:grid-cols-3",

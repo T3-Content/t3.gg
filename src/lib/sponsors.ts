@@ -205,7 +205,7 @@ const sponsorSeeds: SponsorSeed[] = [
     name: "posthog",
     image: "posthog.svg.astro",
     description:
-      '"All in one suite of product tools" - also the only analytics provider i don\'t hate. open source too!',
+      'open source product analytics, feature flags, and llm observability',
     link: "https://soydev.link/posthog",
     categories: ["analytics", "developer-tools"],
     tier: "silver",
@@ -216,7 +216,7 @@ const sponsorSeeds: SponsorSeed[] = [
     description: "ai code review that doesn't suck.",
     link: "https://soydev.link/coderabbit",
     categories: ["ai", "developer-tools"],
-    tier: "gold",
+    tier: "platinum",
   },
   {
     name: "imagekit",
@@ -238,7 +238,7 @@ const sponsorSeeds: SponsorSeed[] = [
     name: "kilo",
     image: "kilo.svg.astro",
     description:
-      "the open source ai coding agent for vscode that codes, architects, debugs, and much more.",
+      "the open source code agent that works everywhere with every model",
     link: "https://soydev.link/kilo",
     categories: ["ai", "developer-tools"],
     tier: "gold",
@@ -315,7 +315,7 @@ const sponsorSeeds: SponsorSeed[] = [
     name: "graphite",
     image: "graphite.svg.astro",
     description:
-      "if github is slowing you down, graphite will speed you back up. better pr flows for fast moving teams (used by vercel, ramp, snowflake, brex and more)",
+      "github reimagined for people who hate github.",
     link: "https://soydev.link/graphite",
     categories: ["developer-tools", "productivity"],
   },
@@ -323,7 +323,7 @@ const sponsorSeeds: SponsorSeed[] = [
     name: "g2i",
     image: "g2i.svg.astro",
     description:
-      "stop hiring bad engineers. g2i will do real video interviews with hundreds of candidates to get you the best possible engineer in weeks.",
+      "hire great engineers in days instead of weeks.",
     link: "https://soydev.link/g2i",
     categories: ["hiring"],
     tier: "silver",
@@ -385,7 +385,7 @@ const sponsorSeeds: SponsorSeed[] = [
     name: "browserbase",
     image: "browserbase.svg.astro",
     description:
-      "web browser for your ai. prompt for parsing, dodge captchas, get data out of anything.",
+      "cloud browser infrastructure for ai agents",
     link: "https://soydev.link/browserbase",
     categories: ["ai", "infrastructure"],
     tier: "platinum",
@@ -650,14 +650,6 @@ const sponsorSeeds: SponsorSeed[] = [
     categories: ["deployment", "developer-tools"],
   },
   {
-    name: "kernel",
-    image: "kernel.svg.astro",
-    description: "stupidly fast browser infra for your agents",
-    link: "https://soydev.link/kernel",
-    categories: ["ai", "infrastructure"],
-    tier: "gold",
-  },
-  {
     name: "milkstraw",
     image: "milkstraw.svg.astro",
     description: "save up to 50% on your aws bill",
@@ -687,6 +679,14 @@ const sponsorSeeds: SponsorSeed[] = [
     categories: ["communications"],
     slug: "sent-dm",
   },
+  {
+    name: "kernel",
+    image: "kernel.svg.astro",
+    description: "stupidly fast browser infra for your agents",
+    link: "https://soydev.link/kernel",
+    categories: ["ai", "infrastructure"],
+    tier: "gold",
+  },
 ];
 
 export const affiliates = affiliateSeeds.map((brand) =>
@@ -710,8 +710,8 @@ export const getSponsorBySlug = (slug: string) => {
 };
 
 const sponsorTierSlugOrder: Record<SponsorTier, string[]> = {
-  platinum: ["workos", "blacksmith", "browserbase"],
-  gold: ["kernel", "clerk", "greptile", "kilo", "depot", "coderabbit"],
+  platinum: ["workos", "blacksmith", "browserbase", "coderabbit"],
+  gold: ["clerk", "greptile", "kilo", "depot", "kernel"],
   silver: ["arcjet", "g2i", "posthog"],
 };
 
