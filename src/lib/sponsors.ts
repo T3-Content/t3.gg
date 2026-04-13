@@ -671,11 +671,6 @@ export const usedSponsorCategories = sponsorCategoryOptions.filter(
   },
 );
 
-export const getSponsorBySlug = (slug: string) => {
-  return sponsorDirectory.find((brand) => brand.slug === slug);
-};
-
-
 const sponsorTierSlugOrder: Record<SponsorTier, string[]> = {
   platinum: ["workos", "blacksmith", "browserbase", "coderabbit"],
   gold: ["clerk", "greptile", "kilo", "depot"],
