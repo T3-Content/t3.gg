@@ -28,6 +28,12 @@
   font-display: swap;
 }
 
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
 @theme {
   /* dark-only color palette */
   --color-void: #050505;
@@ -46,6 +52,9 @@
   --color-white: var(--color-text);
   --color-theo-purple: #a78bfa;
   --color-theo-blue: var(--color-accent);
+
+  --color-gold: #d4a853;
+  --color-silver: #94a3b8;
 
   /* typography */
   --font-mono: "Geist Mono", ui-monospace, monospace;
@@ -85,6 +94,12 @@
     }
   }
 
+  @keyframes rotate-border {
+    to {
+      --border-angle: 360deg;
+    }
+  }
+
   /* stagger delays */
   --animate-delay-1: 0.05s;
   --animate-delay-2: 0.1s;
@@ -98,6 +113,32 @@
 /* custom `bg-texture` image utility */
 @utility bg-texture {
   @apply bg-[url(/images/bg-texture.png)] bg-fixed bg-center bg-repeat dark:bg-[url(/images/bg-texture_dark.png)];
+}
+
+.sponsor-card-platinum {
+  border: 1.5px solid transparent;
+  background:
+    linear-gradient(135deg, rgba(34, 211, 238, 0.06), #0a0a0a 40%, #080808)
+      padding-box,
+    conic-gradient(
+        from var(--border-angle),
+        rgba(34, 211, 238, 0.8),
+        rgba(167, 139, 250, 0.3),
+        rgba(34, 211, 238, 0.08),
+        rgba(167, 139, 250, 0.3),
+        rgba(34, 211, 238, 0.8)
+      )
+      border-box;
+  animation: rotate-border 4s linear infinite;
+  box-shadow: 0 0 60px -15px rgba(34, 211, 238, 0.25);
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.sponsor-card-platinum:hover {
+  box-shadow: 0 0 80px -10px rgba(34, 211, 238, 0.4);
+  transform: translateY(-2px);
 }
 
 /* custom view transition */

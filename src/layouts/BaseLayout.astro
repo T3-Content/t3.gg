@@ -7,6 +7,7 @@ import LeftArrow from "../assets/icons/left-arrow.svg.astro";
 const socialLinks = [
   { href: "https://github.com/t3dotgg", label: "gh" },
   { href: "https://twitter.com/theo", label: "x" },
+  { href: "https://youtube.com/@t3dotgg", label: "yt" },
   { href: "https://twitch.tv/theo", label: "twitch" },
   { href: "https://discord.gg/xHdCpcPHRE", label: "discord" },
 ];
@@ -71,14 +72,16 @@ const isHomepage = Astro.url.pathname === "/";
       classNames?.body,
     )}
   >
-    <main class={cn("flex min-h-screen flex-col text-text", classNames?.main)}>
+    <main
+      class={cn("flex flex-col text-text", classNames?.main)}
+    >
       <slot />
       {
         !isHomepage && backToLink && (
           <aside class="mb-8 text-center">
             <a
               href={backToLink.href}
-              class="group text-muted hover:text-text mt-8 -mb-4 inline-flex items-center justify-center gap-2 p-2 transition-colors duration-200"
+              class="group mt-8 -mb-4 inline-flex items-center justify-center gap-2 p-2 text-muted transition-colors duration-200 hover:text-text"
             >
               <LeftArrow class="transition-transform duration-200 group-hover:-translate-x-0.5" />
               <span class="text-sm tracking-wide">{backToLink.text}</span>
@@ -86,32 +89,32 @@ const isHomepage = Astro.url.pathname === "/";
           </aside>
         )
       }
-      <footer
-        class={cn(
-          "[--space:--spacing(6)] sm:[--space:--spacing(10)]",
-          "border-t border-white/5 pt-(--space) pb-safe-offset-(--space)",
-          classNames?.footer,
-        )}
-      >
-        <div class="container mx-auto px-4">
-          <div
-            class="flex w-full items-center justify-center gap-x-6 text-sm tracking-wider"
+      {
+        !isHomepage && (
+          <footer
+            class={cn(
+              "[--space:--spacing(6)] sm:[--space:--spacing(10)]",
+              "border-t border-white/5 pt-(--space) pb-safe-offset-(--space) mb-8",
+              classNames?.footer,
+            )}
           >
-            {
-              socialLinks.map((link) => (
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-muted hover:text-text transition-colors duration-200"
-                >
-                  {link.label}
-                </a>
-              ))
-            }
-          </div>
-        </div>
-      </footer>
+            <div class="container mx-auto px-4">
+              <div class="flex w-full items-center justify-center gap-x-6 text-sm tracking-wider">
+                {socialLinks.map((link) => (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-muted transition-colors duration-200 hover:text-text"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </footer>
+        )
+      }
     </main>
   </body>
 </html>

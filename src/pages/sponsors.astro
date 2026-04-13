@@ -2,44 +2,180 @@
 import "../style/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SponsorGridSection from "../components/SponsorGridSection.astro";
-import { affiliates, sponsors } from "../lib/sponsors";
+import {
+  getSponsorDirectorySections,
+  usedSponsorCategories,
+} from "../lib/sponsors";
 
 const siteTitle = "sponsors";
 const description = "all of the brands running ads on my youtube channel";
+
+const sponsorSections = getSponsorDirectorySections();
 ---
 
 <BaseLayout title={siteTitle} description={description}>
-  <div class="mx-auto w-full max-w-5xl px-6 py-16">
+  <div
+    data-sponsor-directory
+    class="relative mx-auto w-full max-w-6xl px-6 py-16"
+  >
     <header
-      class="animate-fade-in-up mb-16 opacity-0"
+      class="animate-fade-in-up relative mb-10 pr-12 opacity-0 sm:pr-14"
       style="animation-delay: 0s;"
     >
+      <button
+        type="button"
+        data-sponsor-filters-toggle
+        aria-expanded="false"
+        aria-controls="sponsor-filters-expandable"
+        aria-label="Search and filter sponsors"
+        class="group text-subtle hover:text-text data-[open=true]:text-accent absolute top-0 right-0 flex size-11 items-center justify-center rounded-xl border border-white/10 transition-colors duration-200 hover:border-white/20 data-[open=true]:border-cyan-400/30"
+        data-open="false"
+      >
+        <span class="relative inline-flex">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="size-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.75"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z"
+            ></path>
+          </svg>
+          <span
+            data-sponsor-filters-active-dot
+            class="bg-accent ring-void absolute -top-0.5 -right-0.5 hidden size-2 rounded-full ring-2"
+            aria-hidden="true"></span>
+        </span>
+      </button>
+
       <h1 class="text-text text-2xl tracking-tight">sponsors</h1>
-      <p class="text-muted mt-2 text-sm">
+      <p class="text-muted mt-2 max-w-2xl text-sm leading-7">
         brands that have run ads on my content
       </p>
       <p class="text-subtle mt-4 text-sm">
         want to sponsor?
         <a
           href="/sponsor-me"
-          class="text-accent hover:text-text transition-colors"
+          class="text-accent hover:text-text transition-colors duration-200"
         >
           learn more
         </a>
       </p>
     </header>
 
-    <div class="animate-fade-in-up opacity-0" style="animation-delay: 0.1s;">
-      <SponsorGridSection
-        heading="affiliates"
-        sponsors={affiliates}
-        class="mb-16"
-      />
+    <div
+      id="sponsor-filters-expandable"
+      data-sponsor-filters-panel
+      hidden
+      class="bg-surface/50 animate-fade-in-up mb-10 rounded-2xl border border-white/5 p-5 opacity-0 md:p-6"
+      style="animation-delay: 0.05s;"
+    >
+      <div class="max-w-2xl">
+        <h2 class="text-muted text-sm tracking-wider uppercase">
+          search and filter
+        </h2>
+        <p class="text-subtle mt-2 text-sm leading-7">
+          search by name or description, then narrow things down by category.
+        </p>
+      </div>
+
+      <div class="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+        <label class="flex flex-col gap-2">
+          <span class="text-muted text-[11px] tracking-wider uppercase">
+            search
+          </span>
+          <input
+            type="search"
+            name="q"
+            data-sponsor-search
+            placeholder="search sponsors"
+            class="bg-void text-text placeholder:text-muted rounded-lg border border-white/10 px-4 py-3 text-sm transition-colors outline-none focus:border-cyan-400/40"
+          />
+        </label>
+
+        <div class="flex flex-col gap-3">
+          <p class="text-muted text-[11px] tracking-wider uppercase">
+            categories
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {
+              usedSponsorCategories.map(({ slug, label }) => (
+                <button
+                  type="button"
+                  value={slug}
+                  data-category-filter
+                  data-active="false"
+                  aria-pressed="false"
+                  class="text-subtle hover:text-text data-[active=true]:text-accent rounded-full border border-white/10 px-3 py-1.5 text-[11px] tracking-wider uppercase transition-colors duration-200 hover:border-white/20 data-[active=true]:border-cyan-400/20 data-[active=true]:bg-cyan-400/10"
+                >
+                  {label}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 flex justify-end border-t border-white/5 pt-5">
+        <button
+          type="button"
+          data-clear-filters
+          class="text-subtle hover:text-text inline-flex rounded-lg border border-white/10 px-4 py-2 text-[11px] tracking-wider uppercase transition-colors duration-200 hover:border-white/20"
+        >
+          clear filters
+        </button>
+      </div>
     </div>
 
-    <div class="animate-fade-in-up opacity-0" style="animation-delay: 0.15s;">
-      <SponsorGridSection heading="video sponsors" sponsors={sponsors} />
+    <div class="space-y-14">
+      {
+        sponsorSections.map((section, index) => (
+          <div
+            class="animate-fade-in-up opacity-0"
+            style={`animation-delay: ${0.1 + index * 0.05}s;`}
+          >
+            <SponsorGridSection
+              id={section.id}
+              heading={section.heading}
+              sponsors={section.sponsors}
+              variant={
+                section.id === "platinum"
+                  ? "platinum"
+                  : section.id === "gold"
+                    ? "gold"
+                    : section.id === "silver"
+                      ? "silver"
+                      : section.id === "new"
+                        ? "new"
+                        : "default"
+              }
+            />
+          </div>
+        ))
+      }
     </div>
+
+    <section
+      class="animate-fade-in-up mt-8 opacity-0"
+      style="animation-delay: 0.15s;"
+      data-no-results
+      hidden
+    >
+      <div
+        class="bg-surface/50 rounded-2xl border border-white/5 px-6 py-10 text-center"
+      >
+        <h2 class="text-muted text-sm tracking-wider uppercase">no matches</h2>
+        <p class="text-subtle mt-3 text-sm leading-7">
+          try a different search or clear some filters.
+        </p>
+      </div>
+    </section>
 
     <footer
       class="text-muted animate-fade-in-up mt-24 text-center text-sm opacity-0"
@@ -48,10 +184,208 @@ const description = "all of the brands running ads on my youtube channel";
       interested in sponsoring?
       <a
         href="/sponsor-me"
-        class="text-accent hover:text-text transition-colors"
+        class="text-accent hover:text-text transition-colors duration-200"
       >
         get in touch
       </a>
     </footer>
   </div>
 </BaseLayout>
+
+<script>
+  const initSponsorDirectory = () => {
+    const root = document.querySelector("[data-sponsor-directory]");
+
+    if (!(root instanceof HTMLElement) || root.dataset.initialized === "true") {
+      return;
+    }
+
+    root.dataset.initialized = "true";
+
+    const searchInput = root.querySelector("[data-sponsor-search]");
+    const noResults = root.querySelector("[data-no-results]");
+    const clearFiltersButton = root.querySelector("[data-clear-filters]");
+    const filtersToggle = root.querySelector("[data-sponsor-filters-toggle]");
+    const filtersPanel = root.querySelector("[data-sponsor-filters-panel]");
+    const activeDot = root.querySelector("[data-sponsor-filters-active-dot]");
+    const sectionElements = Array.from(
+      root.querySelectorAll("[data-sponsor-section]"),
+    );
+    const categoryButtons = Array.from(
+      root.querySelectorAll("[data-category-filter]"),
+    );
+
+    if (!(searchInput instanceof HTMLInputElement)) {
+      return;
+    }
+
+    const setFiltersOpen = (open: boolean) => {
+      if (!(filtersPanel instanceof HTMLElement)) {
+        return;
+      }
+      if (!(filtersToggle instanceof HTMLButtonElement)) {
+        return;
+      }
+      filtersPanel.hidden = !open;
+      filtersToggle.setAttribute("aria-expanded", String(open));
+      filtersToggle.dataset.open = String(open);
+    };
+
+    if (filtersToggle instanceof HTMLButtonElement) {
+      filtersToggle.addEventListener("click", () => {
+        const open = filtersPanel instanceof HTMLElement && filtersPanel.hidden;
+        setFiltersOpen(open);
+      });
+    }
+
+    const getSelectedCategories = () => {
+      return categoryButtons.flatMap((button) => {
+        if (!(button instanceof HTMLButtonElement)) {
+          return [];
+        }
+
+        return button.dataset.active === "true" ? [button.value] : [];
+      });
+    };
+
+    const syncCategoryButtons = (selectedCategories: string[]) => {
+      categoryButtons.forEach((button) => {
+        if (!(button instanceof HTMLButtonElement)) {
+          return;
+        }
+
+        const isActive = selectedCategories.includes(button.value);
+        button.dataset.active = String(isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+    };
+
+    const syncUrl = (query: string, selectedCategories: string[]) => {
+      const nextUrl = new URL(window.location.href);
+
+      if (query) {
+        nextUrl.searchParams.set("q", query);
+      } else {
+        nextUrl.searchParams.delete("q");
+      }
+
+      if (selectedCategories.length > 0) {
+        nextUrl.searchParams.set("categories", selectedCategories.join(","));
+      } else {
+        nextUrl.searchParams.delete("categories");
+      }
+
+      const nextHref = `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`;
+      window.history.replaceState({}, "", nextHref);
+    };
+
+    const applyFilters = ({ updateUrl } = { updateUrl: true }) => {
+      const query = searchInput.value.trim().toLowerCase();
+      const selectedCategories = getSelectedCategories();
+      let visibleCardCount = 0;
+
+      sectionElements.forEach((section) => {
+        if (!(section instanceof HTMLElement)) {
+          return;
+        }
+
+        const cards = Array.from(
+          section.querySelectorAll("[data-sponsor-card]"),
+        );
+        let visibleSectionCount = 0;
+
+        cards.forEach((card) => {
+          if (!(card instanceof HTMLElement)) {
+            return;
+          }
+
+          const searchTarget = card.dataset.search ?? "";
+          const cardCategories = (card.dataset.categories ?? "")
+            .split(",")
+            .filter(Boolean);
+
+          const matchesQuery =
+            query.length === 0 || searchTarget.includes(query);
+          const matchesCategory =
+            selectedCategories.length === 0 ||
+            selectedCategories.some((category) =>
+              cardCategories.includes(category),
+            );
+          const isVisible = matchesQuery && matchesCategory;
+
+          card.hidden = !isVisible;
+
+          if (isVisible) {
+            visibleCardCount += 1;
+            visibleSectionCount += 1;
+          }
+        });
+
+        section.hidden = visibleSectionCount === 0;
+      });
+
+      if (noResults instanceof HTMLElement) {
+        noResults.hidden = visibleCardCount !== 0;
+      }
+
+      if (activeDot instanceof HTMLElement) {
+        const activeCount =
+          (query.length > 0 ? 1 : 0) + selectedCategories.length;
+        activeDot.classList.toggle("hidden", activeCount === 0);
+      }
+
+      if (updateUrl) {
+        syncUrl(query, selectedCategories);
+      }
+    };
+
+    const syncControlsFromUrl = () => {
+      const searchParams = new URLSearchParams(window.location.search);
+      const query = searchParams.get("q") ?? "";
+      const selectedCategories = (searchParams.get("categories") ?? "")
+        .split(",")
+        .filter(Boolean);
+
+      searchInput.value = query;
+      syncCategoryButtons(selectedCategories);
+    };
+
+    categoryButtons.forEach((button) => {
+      if (!(button instanceof HTMLButtonElement)) {
+        return;
+      }
+
+      button.addEventListener("click", () => {
+        const isActive = button.dataset.active === "true";
+        button.dataset.active = String(!isActive);
+        button.setAttribute("aria-pressed", String(!isActive));
+        applyFilters();
+      });
+    });
+
+    searchInput.addEventListener("input", () => {
+      applyFilters();
+    });
+
+    if (clearFiltersButton instanceof HTMLButtonElement) {
+      clearFiltersButton.addEventListener("click", () => {
+        searchInput.value = "";
+        syncCategoryButtons([]);
+        applyFilters();
+      });
+    }
+
+    syncControlsFromUrl();
+    const urlParams = new URLSearchParams(window.location.search);
+    const hasUrlFilters =
+      (urlParams.get("q") ?? "").trim().length > 0 ||
+      (urlParams.get("categories") ?? "").length > 0;
+    if (hasUrlFilters) {
+      setFiltersOpen(true);
+    }
+    applyFilters({ updateUrl: false });
+  };
+
+  initSponsorDirectory();
+  document.addEventListener("astro:page-load", initSponsorDirectory);
+</script>

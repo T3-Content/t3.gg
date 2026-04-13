@@ -5,10 +5,23 @@ const siteTitle = "theo";
 const description =
   "theo (aka t3, t3dotgg) is a youtuber/ceo/dev. built t3 chat, ping.gg, t3 stack and more.";
 
+const socialLinks = [
+  { href: "https://github.com/t3dotgg", label: "gh" },
+  { href: "https://twitter.com/theo", label: "x" },
+  { href: "https://youtube.com/@t3dotgg", label: "yt" },
+  { href: "https://twitch.tv/theo", label: "twitch" },
+  { href: "https://discord.gg/xHdCpcPHRE", label: "discord" },
+];
+
 const links = [
   {
     href: "https://t3.chat",
     label: "t3.chat",
+    external: true,
+  },
+  {
+    href: "https://t3.codes",
+    label: "t3.code",
     external: true,
   },
   {
@@ -100,6 +113,25 @@ const links = [
           ))
         }
       </nav>
+
+      <!-- Footer -->
+      <footer
+        class="mt-16 flex items-center gap-x-5 border-t border-white/5 pt-6 text-sm tracking-wider opacity-0 animate-fade-in-up"
+        style={`animation-delay: ${(links.length + 1) * 0.05}s;`}
+      >
+        {
+          socialLinks.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-muted transition-colors duration-200 hover:text-text"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </footer>
     </div>
   </div>
 </BaseLayout>
