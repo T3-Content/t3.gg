@@ -350,6 +350,7 @@ const sponsorSeeds: SponsorSeed[] = [
     description: "the best way to setup, run, and scale your ai agents.",
     link: "https://soydev.link/agentuity",
     categories: ["ai", "infrastructure"],
+    tier: "silver",
   },
   {
     name: "chef by convex",
@@ -513,7 +514,7 @@ const sponsorSeeds: SponsorSeed[] = [
       "ai code assistant built for large codebases. works with vs code, jetbrains, and neovim.",
     link: "https://soydev.link/augmentcode",
     categories: ["ai", "developer-tools"],
-    tier: "new",
+    tier: "silver",
   },
   {
     name: "vercel",
@@ -618,14 +619,6 @@ const sponsorSeeds: SponsorSeed[] = [
     categories: ["developer-tools", "security"],
   },
   {
-    name: "jfrog fly",
-    image: "jfrog.svg.astro",
-    description: "artifact management that's built for your ai agents",
-    link: "https://soydev.link/jfrogfly",
-    categories: ["developer-tools", "infrastructure"],
-    slug: "jfrog-fly",
-  },
-  {
     name: "wispr flow",
     image: "wispr.svg.astro",
     description: "the voice to text product that i can't live without",
@@ -723,8 +716,8 @@ export const getSponsorBySlug = (slug: string) => {
 const sponsorTierSlugOrder: Record<SponsorTier, string[]> = {
   platinum: ["workos", "blacksmith", "browserbase", "coderabbit"],
   gold: ["clerk", "greptile", "kilo", "depot"],
-  silver: ["infinite-red", "arcjet", "g2i", "posthog"],
-  new: ["embrace", "rork", "daytona", "milkstraw", "sent-dm", "trigger-dev", "magicpatterns", "rwx", "wispr-flow", "dnsimple", "augment-code"],
+  silver: ["infinite-red", "arcjet", "g2i", "posthog", "augment-code", "agentuity"],
+  new: ["embrace", "rork", "daytona", "milkstraw", "sent-dm", "trigger-dev", "magicpatterns", "rwx", "wispr-flow", "dnsimple"],
 };
 
 const sortSponsorsBySlugOrder = (order: string[], list: SponsorEntry[]) => {
