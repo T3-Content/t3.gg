@@ -63,7 +63,8 @@ const isHomepage = Astro.url.pathname === "/";
     <meta property="og:image" content="https://t3.gg/images/twitter.png" />
     <title>{title}</title>
     <meta name="theme-color" content="#050505" />
-    <script defer data-domain="astro.t3.gg" src="/js/script.js"></script>
+    <script is:inline defer data-domain="astro.t3.gg" src="/js/script.js"
+    ></script>
   </head>
   <body
     class={cn(
