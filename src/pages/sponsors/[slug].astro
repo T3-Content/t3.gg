@@ -100,53 +100,5 @@ const backToLink = {
         </div>
       </div>
     </header>
-
-    <section
-      class="animate-fade-in-up mt-6 grid gap-4 opacity-0 md:grid-cols-3"
-      style="animation-delay: 0.05s;"
-    >
-      <div class="bg-surface/50 rounded-2xl border border-white/5 p-5">
-        <p class="text-muted text-[10px] tracking-wider uppercase">
-          relationship
-        </p>
-        <p class="text-text mt-2 text-sm">
-          {sponsor.kind === "affiliate" ? "affiliate deal" : "sponsor"}
-        </p>
-      </div>
-      <div class="bg-surface/50 rounded-2xl border border-white/5 p-5">
-        <p class="text-muted text-[10px] tracking-wider uppercase">tier</p>
-        <p class="text-text mt-2 text-sm">
-          {
-            sponsor.kind === "affiliate"
-              ? "—"
-              : sponsor.tier
-                ? formatSponsorTier(sponsor.tier)
-                : "past sponsor"
-          }
-        </p>
-      </div>
-      <div class="bg-surface/50 rounded-2xl border border-white/5 p-5">
-        <p class="text-muted text-[10px] tracking-wider uppercase">
-          categories
-        </p>
-        <p class="text-text mt-2 text-sm">{categoryLabels.join(", ")}</p>
-      </div>
-    </section>
-
-    <section
-      class="animate-fade-in-up mt-6 grid gap-4 opacity-0 lg:grid-cols-3"
-      style="animation-delay: 0.1s;"
-    >
-      {
-        sponsor.page.bodySections.map((section) => (
-          <section class="bg-surface/50 rounded-2xl border border-white/5 p-6">
-            <h2 class="text-muted text-sm tracking-wider uppercase">
-              {section.heading}
-            </h2>
-            <p class="text-subtle mt-3 text-sm leading-7">{section.content}</p>
-          </section>
-        ))
-      }
-    </section>
   </div>
 </BaseLayout>

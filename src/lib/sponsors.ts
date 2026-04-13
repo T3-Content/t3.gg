@@ -25,16 +25,10 @@ export const sponsorCategoryOptions = [
 export type SponsorCategory = (typeof sponsorCategoryOptions)[number]["slug"];
 export type SponsorKind = "sponsor" | "affiliate";
 
-export interface SponsorPageSection {
-  heading: string;
-  content: string;
-}
-
 export interface SponsorPageContent {
   seoTitle: string;
   seoDescription: string;
   intro: string;
-  bodySections: SponsorPageSection[];
   primaryCtaLabel: string;
 }
 
@@ -64,7 +58,7 @@ type SponsorSeed = {
   categories: SponsorCategory[];
   tier?: SponsorTier | null;
   slug?: string;
-  page?: Partial<SponsorPageContent>;
+  page?: Partial<Pick<SponsorPageContent, "seoTitle" | "seoDescription" | "intro" | "primaryCtaLabel">>;
 };
 
 const sponsorCategoryLabelMap = Object.fromEntries(
@@ -74,18 +68,6 @@ const sponsorCategoryLabelMap = Object.fromEntries(
 const sponsorKindLabelMap: Record<SponsorKind, string> = {
   sponsor: "video sponsor",
   affiliate: "affiliate deal",
-};
-
-const formatList = (values: string[]) => {
-  if (values.length <= 1) {
-    return values[0] ?? "";
-  }
-
-  if (values.length === 2) {
-    return `${values[0]} and ${values[1]}`;
-  }
-
-  return `${values.slice(0, -1).join(", ")}, and ${values.at(-1)}`;
 };
 
 const buildSlug = (brand: SponsorSeed) => {
@@ -104,14 +86,7 @@ const buildSponsorPage = (
   brand: SponsorSeed,
   kind: SponsorKind,
 ): SponsorPageContent => {
-  const categoryLabels = brand.categories.map(formatSponsorCategory);
-  const categorySummary = formatList(categoryLabels);
   const kindLabel = sponsorKindLabelMap[kind];
-  const tierSummary = brand.tier
-    ? `it currently sits in theo's ${brand.tier} tier.`
-    : kind === "sponsor"
-      ? "it's listed in the past sponsors section here."
-      : "it currently lives in theo's broader sponsor directory.";
 
   return {
     seoTitle: brand.page?.seoTitle ?? `${brand.name} | sponsors`,
@@ -119,20 +94,6 @@ const buildSponsorPage = (
     intro:
       brand.page?.intro ??
       `${brand.name} is a ${kindLabel} on theo's site. ${brand.description}`,
-    bodySections: brand.page?.bodySections ?? [
-      {
-        heading: "overview",
-        content: brand.description,
-      },
-      {
-        heading: "where it fits",
-        content: `this is a good fit if you're looking at ${categorySummary}.`,
-      },
-      {
-        heading: "partnership",
-        content: `${brand.name} is listed here as a ${kindLabel}, and ${tierSummary}`,
-      },
-    ],
     primaryCtaLabel: brand.page?.primaryCtaLabel ?? `visit ${brand.name}`,
   };
 };
@@ -713,6 +674,7 @@ export const usedSponsorCategories = sponsorCategoryOptions.filter(
 export const getSponsorBySlug = (slug: string) => {
   return sponsorDirectory.find((brand) => brand.slug === slug);
 };
+
 
 const sponsorTierSlugOrder: Record<SponsorTier, string[]> = {
   platinum: ["workos", "blacksmith", "browserbase", "coderabbit"],
