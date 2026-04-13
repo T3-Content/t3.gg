@@ -685,7 +685,6 @@ const sponsorSeeds: SponsorSeed[] = [
     description: "stupidly fast browser infra for your agents",
     link: "https://soydev.link/kernel",
     categories: ["ai", "infrastructure"],
-    tier: "gold",
   },
 ];
 
@@ -711,7 +710,7 @@ export const getSponsorBySlug = (slug: string) => {
 
 const sponsorTierSlugOrder: Record<SponsorTier, string[]> = {
   platinum: ["workos", "blacksmith", "browserbase", "coderabbit"],
-  gold: ["clerk", "greptile", "kilo", "depot", "kernel"],
+  gold: ["clerk", "greptile", "kilo", "depot"],
   silver: ["arcjet", "g2i", "posthog"],
 };
 
