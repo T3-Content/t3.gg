@@ -151,7 +151,9 @@ const sponsorSections = getSponsorDirectorySections();
                     ? "gold"
                     : section.id === "silver"
                       ? "silver"
-                      : "default"
+                      : section.id === "new"
+                        ? "new"
+                        : "default"
               }
             />
           </div>

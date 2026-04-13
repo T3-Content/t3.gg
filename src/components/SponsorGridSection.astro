@@ -7,7 +7,7 @@ interface Props {
   heading: string;
   sponsors: SponsorEntry[];
   class?: string;
-  variant?: "default" | "platinum" | "platinum-featured" | "gold" | "silver";
+  variant?: "default" | "platinum" | "platinum-featured" | "gold" | "silver" | "new";
 }
 
 const {
@@ -21,6 +21,7 @@ const {
 const isPlatinum = variant === "platinum";
 const isGold = variant === "gold";
 const isSilver = variant === "silver";
+const isNew = variant === "new";
 const isDefault = variant === "default";
 ---
 
@@ -74,6 +75,22 @@ const isDefault = variant === "default";
           />
         </div>
       </div>
+    ) : isNew ? (
+      <div class="mb-6">
+        <div class="flex items-center gap-3">
+          <span
+            class="inline-block size-1.5 rounded-full bg-emerald-400"
+            aria-hidden="true"
+          />
+          <h2 class="text-emerald-400 text-sm font-medium tracking-wider uppercase">
+            {heading}
+          </h2>
+          <div
+            class="h-px flex-1 bg-gradient-to-r from-emerald-400/20 to-transparent"
+            aria-hidden="true"
+          />
+        </div>
+      </div>
     ) : (
       <div class="mb-6">
         <h2 class="text-muted text-sm tracking-wider uppercase">{heading}</h2>
@@ -88,6 +105,7 @@ const isDefault = variant === "default";
       isPlatinum && "gap-6 md:grid-cols-2",
       isGold && "gap-5 md:grid-cols-2 lg:gap-6",
       isSilver && "gap-4 md:grid-cols-2 lg:grid-cols-3",
+      isNew && "gap-4 md:grid-cols-2 lg:grid-cols-3",
       isDefault && "gap-3 md:grid-cols-2 lg:grid-cols-3",
     ]}
   >

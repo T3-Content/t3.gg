@@ -1,4 +1,4 @@
-export const sponsorTierOrder = ["platinum", "gold", "silver"] as const;
+export const sponsorTierOrder = ["platinum", "gold", "silver", "new"] as const;
 
 export type SponsorTier = (typeof sponsorTierOrder)[number];
 
@@ -192,6 +192,7 @@ const sponsorSeeds: SponsorSeed[] = [
     description: "the first people i call for react native help.",
     link: "https://soydev.link/infinitered",
     categories: ["developer-tools", "frontend"],
+    tier: "silver",
   },
   {
     name: "sevalla",
@@ -512,6 +513,7 @@ const sponsorSeeds: SponsorSeed[] = [
       "ai code assistant built for large codebases. works with vs code, jetbrains, and neovim.",
     link: "https://soydev.link/augmentcode",
     categories: ["ai", "developer-tools"],
+    tier: "new",
   },
   {
     name: "vercel",
@@ -562,6 +564,7 @@ const sponsorSeeds: SponsorSeed[] = [
     description: "web and mobile observability that's actually amazing",
     link: "https://soydev.link/embrace",
     categories: ["monitoring"],
+    tier: "new",
   },
   {
     name: "exa",
@@ -576,6 +579,7 @@ const sponsorSeeds: SponsorSeed[] = [
     description: "the place where you let agents run their code",
     link: "https://soydev.link/daytona",
     categories: ["ai", "infrastructure"],
+    tier: "new",
   },
   {
     name: "rork",
@@ -583,6 +587,7 @@ const sponsorSeeds: SponsorSeed[] = [
     description: "the vibe coding platform that actually gets react native",
     link: "https://soydev.link/rork",
     categories: ["ai", "frontend"],
+    tier: "new",
   },
   {
     name: "modal",
@@ -627,6 +632,7 @@ const sponsorSeeds: SponsorSeed[] = [
     link: "https://soydev.link/wispr",
     categories: ["productivity"],
     slug: "wispr-flow",
+    tier: "new",
   },
   {
     name: "dnsimple",
@@ -634,6 +640,7 @@ const sponsorSeeds: SponsorSeed[] = [
     description: "the best way to manage your domains and dns",
     link: "https://soydev.link/dnsimple",
     categories: ["deployment", "infrastructure"],
+    tier: "new",
   },
   {
     name: "railway",
@@ -648,6 +655,7 @@ const sponsorSeeds: SponsorSeed[] = [
     description: "the best modern ci/cd for teams that actually ship",
     link: "https://soydev.link/rwx",
     categories: ["deployment", "developer-tools"],
+    tier: "new",
   },
   {
     name: "milkstraw",
@@ -655,6 +663,7 @@ const sponsorSeeds: SponsorSeed[] = [
     description: "save up to 50% on your aws bill",
     link: "https://soydev.link/milkstraw",
     categories: ["finance", "infrastructure"],
+    tier: "new",
   },
   {
     name: "trigger.dev",
@@ -663,6 +672,7 @@ const sponsorSeeds: SponsorSeed[] = [
     link: "https://soydev.link/trigger",
     categories: ["ai", "developer-tools"],
     slug: "trigger-dev",
+    tier: "new",
   },
   {
     name: "magicpatterns",
@@ -670,6 +680,7 @@ const sponsorSeeds: SponsorSeed[] = [
     description: "the ai design tool for teams that get product",
     link: "https://soydev.link/magicpatterns",
     categories: ["ai", "design"],
+    tier: "new",
   },
   {
     name: "sent.dm",
@@ -678,6 +689,7 @@ const sponsorSeeds: SponsorSeed[] = [
     link: "https://soydev.link/sentdm",
     categories: ["communications"],
     slug: "sent-dm",
+    tier: "new",
   },
   {
     name: "kernel",
@@ -711,7 +723,8 @@ export const getSponsorBySlug = (slug: string) => {
 const sponsorTierSlugOrder: Record<SponsorTier, string[]> = {
   platinum: ["workos", "blacksmith", "browserbase", "coderabbit"],
   gold: ["clerk", "greptile", "kilo", "depot"],
-  silver: ["arcjet", "g2i", "posthog"],
+  silver: ["infinite-red", "arcjet", "g2i", "posthog"],
+  new: ["embrace", "rork", "daytona", "milkstraw", "sent-dm", "trigger-dev", "magicpatterns", "rwx", "wispr-flow", "dnsimple", "augment-code"],
 };
 
 const sortSponsorsBySlugOrder = (order: string[], list: SponsorEntry[]) => {
@@ -722,11 +735,18 @@ const sortSponsorsBySlugOrder = (order: string[], list: SponsorEntry[]) => {
   return [...list].sort((a, b) => rank(a.slug) - rank(b.slug));
 };
 
+const tierHeadings: Record<SponsorTier, string> = {
+  platinum: "platinum",
+  gold: "gold",
+  silver: "silver",
+  new: "new sponsors",
+};
+
 export const getSponsorDirectorySections = (): SponsorDirectorySection[] => {
   const tierSections: SponsorDirectorySection[] = sponsorTierOrder
     .map((tier) => ({
       id: tier,
-      heading: tier,
+      heading: tierHeadings[tier],
       sponsors: sortSponsorsBySlugOrder(
         sponsorTierSlugOrder[tier],
         sponsors.filter((brand) => brand.tier === tier),
