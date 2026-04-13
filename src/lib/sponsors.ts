@@ -622,7 +622,7 @@ const sponsorSeeds: SponsorSeed[] = [
     name: "wispr flow",
     image: "wispr.svg.astro",
     description: "the voice to text product that i can't live without",
-    link: "https://soydev.link/wispr",
+    link: "https://soydev.link/wisprflow",
     categories: ["productivity"],
     slug: "wispr-flow",
     tier: "new",
