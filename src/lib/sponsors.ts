@@ -172,8 +172,7 @@ const sponsorSeeds: SponsorSeed[] = [
   {
     name: "macroscope",
     image: "macroscope.svg.astro",
-    description:
-      "ai code intelligence for understanding and improving large codebases.",
+    description: "ai code reviewer that feels like part of your team.",
     link: "https://macroscope.com",
     categories: ["ai", "developer-tools"],
     tier: "new",
