@@ -58,7 +58,12 @@ type SponsorSeed = {
   categories: SponsorCategory[];
   tier?: SponsorTier | null;
   slug?: string;
-  page?: Partial<Pick<SponsorPageContent, "seoTitle" | "seoDescription" | "intro" | "primaryCtaLabel">>;
+  page?: Partial<
+    Pick<
+      SponsorPageContent,
+      "seoTitle" | "seoDescription" | "intro" | "primaryCtaLabel"
+    >
+  >;
 };
 
 const sponsorCategoryLabelMap = Object.fromEntries(
@@ -165,10 +170,18 @@ const sponsorSeeds: SponsorSeed[] = [
     categories: ["deployment", "infrastructure"],
   },
   {
+    name: "macroscope",
+    image: "macroscope.svg.astro",
+    description: "ai code reviewer that feels like part of your team.",
+    link: "https://macroscope.com",
+    categories: ["ai", "developer-tools"],
+    tier: "new",
+  },
+  {
     name: "posthog",
     image: "posthog.svg.astro",
     description:
-      'open source product analytics, feature flags, and llm observability',
+      "open source product analytics, feature flags, and llm observability",
     link: "https://soydev.link/posthog",
     categories: ["analytics", "developer-tools"],
     tier: "silver",
@@ -277,16 +290,14 @@ const sponsorSeeds: SponsorSeed[] = [
   {
     name: "graphite",
     image: "graphite.svg.astro",
-    description:
-      "github reimagined for people who hate github.",
+    description: "github reimagined for people who hate github.",
     link: "https://soydev.link/graphite",
     categories: ["developer-tools", "productivity"],
   },
   {
     name: "g2i",
     image: "g2i.svg.astro",
-    description:
-      "hire great engineers in days instead of weeks.",
+    description: "hire great engineers in days instead of weeks.",
     link: "https://soydev.link/g2i",
     categories: ["hiring"],
     tier: "silver",
@@ -348,8 +359,7 @@ const sponsorSeeds: SponsorSeed[] = [
   {
     name: "browserbase",
     image: "browserbase.svg.astro",
-    description:
-      "cloud browser infrastructure for ai agents",
+    description: "cloud browser infrastructure for ai agents",
     link: "https://soydev.link/browserbase",
     categories: ["ai", "infrastructure"],
     tier: "platinum",
@@ -674,8 +684,27 @@ export const usedSponsorCategories = sponsorCategoryOptions.filter(
 const sponsorTierSlugOrder: Record<SponsorTier, string[]> = {
   platinum: ["workos", "blacksmith", "browserbase", "coderabbit"],
   gold: ["clerk", "greptile", "kilo", "depot"],
-  silver: ["infinite-red", "arcjet", "g2i", "posthog", "augment-code", "agentuity"],
-  new: ["embrace", "rork", "daytona", "milkstraw", "sent-dm", "trigger-dev", "magicpatterns", "rwx", "wispr-flow", "dnsimple"],
+  silver: [
+    "infinite-red",
+    "arcjet",
+    "g2i",
+    "posthog",
+    "augment-code",
+    "agentuity",
+  ],
+  new: [
+    "macroscope",
+    "embrace",
+    "rork",
+    "daytona",
+    "milkstraw",
+    "sent-dm",
+    "trigger-dev",
+    "magicpatterns",
+    "rwx",
+    "wispr-flow",
+    "dnsimple",
+  ],
 };
 
 const sortSponsorsBySlugOrder = (order: string[], list: SponsorEntry[]) => {
