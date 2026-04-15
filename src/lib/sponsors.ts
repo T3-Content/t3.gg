@@ -220,6 +220,15 @@ const sponsorSeeds: SponsorSeed[] = [
     tier: "gold",
   },
   {
+    name: "General Translation",
+    image: "general-translation.webp",
+    slug: "general-translation",
+    description: "translate your entire app with a single component.",
+    link: "https://soydev.link/gt",
+    categories: ["developer-tools", "frontend"],
+    tier: "gold",
+  },
+  {
     name: "arcjet",
     image: "arcjet.svg.astro",
     description: "the security platform for the modern web.",
@@ -683,7 +692,7 @@ export const usedSponsorCategories = sponsorCategoryOptions.filter(
 
 const sponsorTierSlugOrder: Record<SponsorTier, string[]> = {
   platinum: ["workos", "blacksmith", "browserbase", "coderabbit"],
-  gold: ["clerk", "greptile", "kilo", "depot"],
+  gold: ["clerk", "greptile", "kilo", "depot", "general-translation"],
   silver: [
     "infinite-red",
     "arcjet",

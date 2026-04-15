@@ -1,5 +1,9 @@
 ---
-const sponsorImages = import.meta.glob<any>("../assets/sponsors/*.svg.astro");
+import type { ImageMetadata } from "astro";
+
+const sponsorImages = import.meta.glob<{
+  default: ImageMetadata | astroHTML.JSX.Element;
+}>("../assets/sponsors/*.{svg.astro,webp}");
 
 interface Props {
   image: string;
@@ -11,11 +15,13 @@ const { image, name, class: className } = Astro.props;
 
 const imageImporter = sponsorImages[`../assets/sponsors/${image}`];
 
-let BrandImage: any = null;
+const isRasterImage = image.endsWith(".webp");
+
+let BrandImage: ImageMetadata | astroHTML.JSX.Element | null = null;
 
 if (imageImporter) {
   const imageModule = await imageImporter();
-  BrandImage = imageModule.default || imageModule;
+  BrandImage = imageModule.default;
 }
 ---
 
@@ -23,13 +29,23 @@ if (imageImporter) {
   role="img"
   aria-label={name}
   class:list={[
-    "text-text flex shrink-0 items-center justify-center [&_svg]:size-full",
+    "text-text flex shrink-0 items-center justify-center [&_img]:size-full [&_svg]:size-full",
     className ?? "size-12",
   ]}
 >
   {
     BrandImage ? (
-      <BrandImage />
+      isRasterImage ? (
+        <img
+          src={(BrandImage as ImageMetadata).src}
+          alt=""
+          class="size-full object-contain"
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <BrandImage />
+      )
     ) : (
       <span class="text-muted text-[10px] font-medium tracking-wider uppercase">
         {name}
