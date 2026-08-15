@@ -175,6 +175,23 @@ const sponsorSeeds: SponsorSeed[] = [
     description: "ai code reviewer that feels like part of your team.",
     link: "https://soydev.link/macroscope",
     categories: ["ai", "developer-tools"],
+    tier: "silver",
+  },
+  {
+    name: "mux",
+    image: "mux.svg.astro",
+    description: "ship high-performance video in minutes, not months.",
+    link: "https://soydev.link/mux",
+    categories: ["developer-tools", "infrastructure"],
+    tier: "new",
+  },
+  {
+    name: "clickhouse",
+    image: "clickhouse.svg.astro",
+    description:
+      "the open source real time data warehouse that handles absurd scale and is used by everyone",
+    link: "https://soydev.link/clickhouse",
+    categories: ["data", "infrastructure"],
     tier: "new",
   },
   {
@@ -739,9 +756,11 @@ const sponsorTierSlugOrder: Record<SponsorTier, string[]> = {
     "posthog",
     "augment-code",
     "agentuity",
+    "macroscope",
   ],
   new: [
-    "macroscope",
+    "mux",
+    "clickhouse",
     "embrace",
     "rork",
     "daytona",
