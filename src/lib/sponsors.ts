@@ -189,7 +189,7 @@ const sponsorSeeds: SponsorSeed[] = [
     name: "clickhouse",
     image: "clickhouse.svg.astro",
     description:
-      "postgres for transactions, clickhouse for analytics, and no operational overhead.",
+      "the open source real time data warehouse that handles absurd scale and is used by everyone",
     link: "https://soydev.link/clickhouse",
     categories: ["data", "infrastructure"],
     tier: "new",
