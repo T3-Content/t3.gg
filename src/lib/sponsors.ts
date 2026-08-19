@@ -195,6 +195,40 @@ const sponsorSeeds: SponsorSeed[] = [
     tier: "new",
   },
   {
+    name: "qdrant",
+    image: "qdrant.svg.astro",
+    description: "the vector database for production-grade ai search.",
+    link: "https://soydev.link/qdrant",
+    categories: ["ai", "data", "infrastructure"],
+    tier: "new",
+  },
+  {
+    name: "pydantic",
+    image: "pydantic.svg.astro",
+    description:
+      "the data validation library for python, plus agents and observability.",
+    link: "https://soydev.link/pydantic",
+    categories: ["ai", "developer-tools"],
+    tier: "new",
+  },
+  {
+    name: "qa wolf",
+    image: "qa-wolf.svg.astro",
+    description: "flake-free end-to-end test coverage for web and mobile apps.",
+    link: "https://soydev.link/qawolf",
+    categories: ["ci", "developer-tools"],
+    tier: "new",
+  },
+  {
+    name: "parallel ai",
+    image: "parallel.svg.astro",
+    description:
+      "web infrastructure for ai agents to search, extract, and research.",
+    link: "https://soydev.link/parallel",
+    categories: ["ai", "data", "developer-tools"],
+    tier: "new",
+  },
+  {
     name: "posthog",
     image: "posthog.svg.astro",
     description:
@@ -242,7 +276,6 @@ const sponsorSeeds: SponsorSeed[] = [
     description: "the security platform for the modern web.",
     link: "https://soydev.link/arcjet",
     categories: ["security"],
-    tier: "silver",
   },
   {
     name: "vapi",
@@ -751,7 +784,6 @@ const sponsorTierSlugOrder: Record<SponsorTier, string[]> = {
   gold: ["clerk", "greptile", "kilo", "depot"],
   silver: [
     "infinite-red",
-    "arcjet",
     "g2i",
     "posthog",
     "augment-code",
@@ -759,6 +791,10 @@ const sponsorTierSlugOrder: Record<SponsorTier, string[]> = {
     "macroscope",
   ],
   new: [
+    "qdrant",
+    "pydantic",
+    "qa-wolf",
+    "parallel",
     "mux",
     "clickhouse",
     "embrace",
