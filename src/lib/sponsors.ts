@@ -195,6 +195,15 @@ const sponsorSeeds: SponsorSeed[] = [
     tier: "new",
   },
   {
+    name: "traycer",
+    image: "traycer.svg.astro",
+    description:
+      "the shared workspace for all the coding agents you already pay for.",
+    link: "https://soydev.link/traycer",
+    categories: ["ai", "developer-tools", "productivity"],
+    tier: "new",
+  },
+  {
     name: "qdrant",
     image: "qdrant.svg.astro",
     description:
@@ -791,6 +800,7 @@ const sponsorTierSlugOrder: Record<SponsorTier, string[]> = {
     "macroscope",
   ],
   new: [
+    "traycer",
     "qdrant",
     "pydantic",
     "qa-wolf",
