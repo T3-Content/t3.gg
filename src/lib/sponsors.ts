@@ -197,7 +197,8 @@ const sponsorSeeds: SponsorSeed[] = [
   {
     name: "qdrant",
     image: "qdrant.svg.astro",
-    description: "the vector database for production-grade ai search.",
+    description:
+      "the vector database for ai apps that need search to actually work.",
     link: "https://soydev.link/qdrant",
     categories: ["ai", "data", "infrastructure"],
     tier: "new",
@@ -206,7 +207,7 @@ const sponsorSeeds: SponsorSeed[] = [
     name: "pydantic",
     image: "pydantic.svg.astro",
     description:
-      "the data validation library for python, plus agents and observability.",
+      "the python validation library everyone uses. now they do agents too.",
     link: "https://soydev.link/pydantic",
     categories: ["ai", "developer-tools"],
     tier: "new",
@@ -214,7 +215,7 @@ const sponsorSeeds: SponsorSeed[] = [
   {
     name: "qa wolf",
     image: "qa-wolf.svg.astro",
-    description: "flake-free end-to-end test coverage for web and mobile apps.",
+    description: "end-to-end test coverage without building a whole qa team.",
     link: "https://soydev.link/qawolf",
     categories: ["ci", "developer-tools"],
     tier: "new",
@@ -222,8 +223,7 @@ const sponsorSeeds: SponsorSeed[] = [
   {
     name: "parallel ai",
     image: "parallel.svg.astro",
-    description:
-      "web infrastructure for ai agents to search, extract, and research.",
+    description: "the web search api built for agents, not humans.",
     link: "https://soydev.link/parallel",
     categories: ["ai", "data", "developer-tools"],
     tier: "new",
