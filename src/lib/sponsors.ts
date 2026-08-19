@@ -195,6 +195,49 @@ const sponsorSeeds: SponsorSeed[] = [
     tier: "new",
   },
   {
+    name: "traycer",
+    image: "traycer.svg.astro",
+    description:
+      "the shared workspace for all the coding agents you already pay for.",
+    link: "https://soydev.link/traycer",
+    categories: ["ai", "developer-tools", "productivity"],
+    tier: "new",
+  },
+  {
+    name: "qdrant",
+    image: "qdrant.svg.astro",
+    description:
+      "the vector database for ai apps that need search to actually work.",
+    link: "https://soydev.link/qdrant",
+    categories: ["ai", "data", "infrastructure"],
+    tier: "new",
+  },
+  {
+    name: "pydantic",
+    image: "pydantic.svg.astro",
+    description:
+      "the python validation library everyone uses. now they do agents too.",
+    link: "https://soydev.link/pydantic",
+    categories: ["ai", "developer-tools"],
+    tier: "new",
+  },
+  {
+    name: "qa wolf",
+    image: "qa-wolf.svg.astro",
+    description: "end-to-end test coverage without building a whole qa team.",
+    link: "https://soydev.link/qawolf",
+    categories: ["ci", "developer-tools"],
+    tier: "new",
+  },
+  {
+    name: "parallel ai",
+    image: "parallel.svg.astro",
+    description: "the web search api built for agents, not humans.",
+    link: "https://soydev.link/parallel",
+    categories: ["ai", "data", "developer-tools"],
+    tier: "new",
+  },
+  {
     name: "posthog",
     image: "posthog.svg.astro",
     description:
@@ -242,7 +285,6 @@ const sponsorSeeds: SponsorSeed[] = [
     description: "the security platform for the modern web.",
     link: "https://soydev.link/arcjet",
     categories: ["security"],
-    tier: "silver",
   },
   {
     name: "vapi",
@@ -751,7 +793,6 @@ const sponsorTierSlugOrder: Record<SponsorTier, string[]> = {
   gold: ["clerk", "greptile", "kilo", "depot"],
   silver: [
     "infinite-red",
-    "arcjet",
     "g2i",
     "posthog",
     "augment-code",
@@ -759,6 +800,11 @@ const sponsorTierSlugOrder: Record<SponsorTier, string[]> = {
     "macroscope",
   ],
   new: [
+    "traycer",
+    "qdrant",
+    "pydantic",
+    "qa-wolf",
+    "parallel",
     "mux",
     "clickhouse",
     "embrace",
