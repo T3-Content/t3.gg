@@ -63,19 +63,19 @@ const links = [
         <p class="text-muted mt-1 text-sm">builds things</p>
       </header>
 
-      <!-- T3 Code callout. Most visitors come here looking for it. -->
+      <!-- T3 Code. Most visitors come here looking for it, so it sits first. -->
       <a
         href="https://t3.codes"
         target="_blank"
         rel="noopener noreferrer"
-        class="group animate-fade-in-up border-accent/40 hover:border-accent mb-8 flex items-center justify-between border-l-2 py-2 pl-4 opacity-0 transition-colors duration-200"
+        class="group animate-fade-in-up relative mb-2 flex items-center justify-between py-3 opacity-0"
         style="animation-delay: 0.05s;"
       >
         <span class="flex flex-col gap-0.5">
-          <span class="text-text text-sm">t3 code</span>
+          <span class="text-text">t3 code</span>
           <span class="text-muted text-xs">the coding agent app</span>
         </span>
-        <span class="text-accent transition-transform duration-200 group-hover:translate-x-0.5">
+        <span class="text-muted opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-3.5 w-3.5"
@@ -86,6 +86,7 @@ const links = [
             <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
           </svg>
         </span>
+        <span class="bg-accent/40 absolute bottom-2 left-0 h-px w-0 transition-all duration-300 ease-out group-hover:w-full" />
       </a>
 
       <!-- Links -->
