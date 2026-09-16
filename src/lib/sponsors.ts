@@ -207,7 +207,7 @@ const sponsorSeeds: SponsorSeed[] = [
     name: "qdrant",
     image: "qdrant.svg.astro",
     description:
-      "the vector database for ai apps that need search to actually work.",
+      "the vector search engine for ai apps that need search to actually work.",
     link: "https://soydev.link/qdrant",
     categories: ["ai", "data", "infrastructure"],
     tier: "new",
