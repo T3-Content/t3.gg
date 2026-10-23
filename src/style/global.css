@@ -148,6 +148,17 @@
   animation-timing-function: ease-out;
 }
 
+/* Shiki code blocks in posts: drop the theme's gray inline background so
+   blocks sit on the site surface, and use the site's mono font */
+.prose pre.astro-code {
+  background-color: var(--color-surface) !important;
+}
+
+.prose pre.astro-code,
+.prose pre.astro-code code {
+  font-family: inherit;
+}
+
 /**
  * a11y-dark theme for JavaScript, CSS, and HTML
  * Based on the okaidia theme: https://github.com/PrismJS/prism/blob/gh-pages/themes/prism-okaidia.css

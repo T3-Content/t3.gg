@@ -28,7 +28,7 @@ By default, all an LLM can do is generate text. In order for a language model to
 
 The LLM still just sends text though! It can't click a button like a human. As such, we need a custom text format for the LLM to use that indicates "you should run some code". Let's say we give the LLM a format for calling tools, such as:
 
-```
+```html
 <read_file name="README.md">
 ```
 
@@ -153,3 +153,7 @@ T3 Code is a restaurant that lets you bring whatever kitchen you want. We have o
 If you like these types of top to bottom explanations, tell your boss to pay for the [Mega.dev](https://soydev.link/mega) course I'm putting out next week. I go way more in depth on all this there :)
 
 Also check out [T3 Code](https://t3.codes/). It's [open source](https://github.com/pingdotgg/t3code), so you can ask your agent to explain how it works to go way deeper
+
+---
+
+_Originally posted [on X](https://x.com/theo/status/2113424203345265053)._
