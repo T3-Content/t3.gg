@@ -10,3 +10,7 @@ I started this repo to play around with Astro, and had so much fun that I ended 
 pnpm install
 pnpm run dev
 ```
+
+### Blog posts
+
+Set `hidden: true` in a post's frontmatter to hide it from `/blog`. Its direct URL stays available.
